@@ -1,0 +1,9 @@
+@import 'src/assets/scss/mixins';
+
+:host {
+  flex: 1 1 auto;
+
+  mat-icon {
+    @include md-icon-size(20px);
+  }
+}
