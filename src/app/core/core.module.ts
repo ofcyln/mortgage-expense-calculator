@@ -6,11 +6,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HeaderComponent } from './header/header.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material.module';
+import { ShareButtonsComponent } from './header/share-buttons/share-buttons.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ShareButtonsComponent
   ],
   imports: [
     CommonModule,
