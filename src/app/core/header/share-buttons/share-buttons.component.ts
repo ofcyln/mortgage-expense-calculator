@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { CustomIconService } from '../../../shared/custom-icon.service';
 
 @Component({
   selector: 'app-share-buttons',
   templateUrl: './share-buttons.component.html',
-  styleUrls: ['./share-buttons.component.scss']
+  styleUrls: [ './share-buttons.component.scss' ]
 })
-export class ShareButtonsComponent implements OnInit {
+export class ShareButtonsComponent {
 
-  constructor() { }
+  constructor(
+    private customIconService: CustomIconService
+  ) {
+    this.customIconService.addIcon('twitter', 'twitter.svg');
 
-  ngOnInit(): void {
+    this.customIconService.addIcon('github', 'github.svg');
   }
-
 }

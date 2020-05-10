@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomIconService } from '../../shared/custom-icon.service';
 
 @Component({
   selector: 'app-header',
@@ -6,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: [ './header.component.scss' ],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {
+  constructor(private customIconService: CustomIconService) {
+    this.customIconService.addIcon('mecLogoEmpty', 'mecLogoEmpty.svg');
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 }
