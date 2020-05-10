@@ -1,20 +1,9 @@
-<article fxLayout="column"
-         fxLayoutAlign="start center"
-         fxFill>
-  <mat-toolbar color="primary">
-    <mat-toolbar-row fxLayout="row" fxLayoutGap="10px">
-      <mat-icon
-        class="example-icon"
-        aria-hidden="false"
-        aria-label="House icon">house</mat-icon>
+<main fxLayout="column"
+      fxLayoutAlign="start center"
+      fxFill>
+  <app-header class="w-100"></app-header>
 
-      <h1>Mortgage Expense Calculator</h1>
-    </mat-toolbar-row>
-  </mat-toolbar>
-
-  <section>
-    <main>
-      <router-outlet></router-outlet>
-    </main>
+  <section fxFill>
+    <router-outlet></router-outlet>
   </section>
-</article>
+</main>

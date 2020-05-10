@@ -1,0 +1,19 @@
+:host {
+	.not-found-area {
+		.not-found-content {
+			max-width: 900px;
+			padding-top: 60px;
+			padding-bottom: 60px;
+			margin: 0 auto;
+
+			h1 {
+        font-size: 160px;
+        line-height: 1;
+			}
+
+			p {
+				padding-bottom: 32px;
+			}
+		}
+	}
+}
