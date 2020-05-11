@@ -19,3 +19,36 @@ body {
 .w-100 {
   width: 100%;
 }
+
+.margin-top {
+  &-xl {
+    margin-top: 5em !important;
+  }
+
+  &-lg {
+    margin-top: 3em !important;
+  }
+
+  &-md {
+    margin-top: 2em !important;
+  }
+
+  &-sm {
+    margin-top: 1em !important;
+  }
+}
+
+/**
+ * Custom Angular Material input
+ */
+.mat-form-field {
+  width: 270px !important;
+  font-size: 18px;
+}
+
+.mat-form-field-appearance-legacy {
+  .mat-form-field-infix {
+    padding: 0.7em 0 !important;
+  }
+}
+

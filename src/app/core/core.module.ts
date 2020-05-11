@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material.module';
 import { ShareButtonsComponent } from './header/share-buttons/share-buttons.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ShareButtonsComponent } from './header/share-buttons/share-buttons.comp
   imports: [
     CommonModule,
     AppRoutingModule,
+    FormsModule,
     FlexLayoutModule,
     MaterialModule
   ],
@@ -25,7 +27,8 @@ import { ShareButtonsComponent } from './header/share-buttons/share-buttons.comp
     NotFoundComponent,
     AppRoutingModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
 })
 export class CoreModule {

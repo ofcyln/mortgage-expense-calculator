@@ -1,0 +1,50 @@
+<article fxLayout="column"
+         fxLayoutAlign="center center">
+  <h2 class="margin-top-lg"
+      [ngStyle]="{'text-transform': 'uppercase'}"
+      [ngClass.lt-md]="'margin-top-sm'">Mortgage Expense Calculator</h2>
+
+  <div fxLayout="row"
+       fxLayoutAlign="center center"
+       class="margin-top-md"
+       [ngClass.lt-md]="'margin-top-sm'">
+    <p fxFlex="0 1 80">
+      Buying a property is a big investment in our lives. Most people don't know what amount of money they need for the
+      expenses of a mortgage.
+      <br>
+      'Mortgage Expense Calculator' is an application to use of calculating estimated mortgage expenses when you buy a
+      property.
+      <br>
+      Simply enter the mortgage amount that you are going to get below and click the calculate button to see the
+      estimated expenses that you need for buying your property of dreams.
+    </p>
+  </div>
+
+  <div class="margin-top-md"
+       [ngClass.lt-md]="'margin-top-sm'">
+    <mat-form-field>
+      <mat-label [style.fontSize.px]="20">Mortgage Amount</mat-label>
+
+      <label>
+        <input matInput
+               type="number"
+               [(ngModel)]="value">
+      </label>
+
+      <button mat-button
+              *ngIf="value"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div class="margin-top-lg">
+    <button mat-raised-button
+            color="primary">CALCULATE</button>
+  </div>
+</article>
+
