@@ -28,7 +28,9 @@
       <label>
         <input matInput
                type="number"
-               [(ngModel)]="value">
+               [(ngModel)]="value"
+               inputmode="numeric"
+               pattern="[0-9]*">
       </label>
 
       <button mat-button

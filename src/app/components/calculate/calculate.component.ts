@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: [ './calculate.component.scss' ]
 })
 export class CalculateComponent implements OnInit {
-  value = '';
+  value = null;
 
   constructor() {
   }
