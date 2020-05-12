@@ -90,17 +90,31 @@ export class ResultsComponent implements OnInit {
         taxDeductible: false,
       },
       {
-        name: 'Real Estate Agent',
+        name: 'Bank Guarantee',
         amount: {
-          percentage: [ 0.5, 1.5 ],
+          percentage: [ 1 ],
           costRange: {
-            min: 500,
-            max: 3000,
+            min: 0,
+            max: 0,
           },
-          bothApplicable: true,
+          bothApplicable: false,
         },
-        info: 'You may wish to hire a real estate agent for help finding a house and negotiating the price. Some agents charge a fixed fee that’s usually between 500 and 3,000 euros. Others charge between 0.5% and 1.5% of the property value. Some charge both.',
-        compulsory: false,
+        info: 'You’ll need to provide the seller with a 10% deposit once you’ve signed the purchase agreement. If you can’t provide a 10% deposit, you’ll need to get a bank guarantee for that amount. You can expect the bank guarantee to cost you about 1% of the amount of the guarantee.',
+        compulsory: true,
+        taxDeductible: false,
+      },
+      {
+        name: 'Structural Survey',
+        amount: {
+          percentage: [ 0 ],
+          costRange: {
+            min: 250,
+            max: 900,
+          },
+          bothApplicable: false,
+        },
+        info: 'A structural survey to inspect your home will cost between 250 and 900 euros, depending on the size of the building.',
+        compulsory: true,
         taxDeductible: false,
       },
       {
@@ -116,34 +130,22 @@ export class ResultsComponent implements OnInit {
         info: 'NHG is a protection against residual debt if you can’t pay your mortgage due to unemployment, divorce or the inability to work. It will cost you 0.9% of the mortgage amount, but you’ll earn your money back quickly because lenders offer much lower interest rates if you make use of this protection. NHG is only available for mortgages up to maximum 310,000 euros as of 2020.',
         compulsory: false,
         taxDeductible: true,
+        specialExpense: true,
       },
       {
-        name: 'Bank Guarantee',
+        name: 'Real Estate Agent',
         amount: {
-          percentage: [ 1 ],
+          percentage: [ 0.5, 1.5 ],
           costRange: {
-            min: 0,
-            max: 0,
+            min: 500,
+            max: 3000,
           },
-          bothApplicable: false,
+          bothApplicable: true,
         },
-        info: 'You’ll need to provide the seller with a 10% deposit once you’ve signed the purchase agreement. If you can’t provide a 10% deposit, you’ll need to get a bank guarantee for that amount. You can expect the bank guarantee to cost you about 1% of the amount of the guarantee.',
+        info: 'You may wish to hire a real estate agent for help finding a house and negotiating the price. Some agents charge a fixed fee that’s usually between 500 and 3,000 euros. Others charge between 0.5% and 1.5% of the property value. Some charge both.',
         compulsory: false,
         taxDeductible: false,
-      },
-      {
-        name: 'Structural Survey',
-        amount: {
-          percentage: [ 0 ],
-          costRange: {
-            min: 250,
-            max: 900,
-          },
-          bothApplicable: false,
-        },
-        info: 'A structural survey to inspect your home will cost between 250 and 900 euros, depending on the size of the building.',
-        compulsory: false,
-        taxDeductible: false,
+        specialExpense: true,
       },
       {
         name: 'Life Insurance',
