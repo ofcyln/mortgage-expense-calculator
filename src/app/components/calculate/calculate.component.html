@@ -7,7 +7,7 @@
   <div fxLayout="row"
        fxLayoutAlign="center center"
        class="margin-top-md"
-       [ngClass.lt-md]="'margin-top-sm'">
+       [ngClass]="'margin-top-sm'">
     <p fxFlex="0 1 80">
       Buying a property is a big investment in our lives. Most people don't know what amount of money they need for the
       expenses of a mortgage.
@@ -48,5 +48,10 @@
     <button mat-raised-button
             color="primary">CALCULATE</button>
   </div>
+
+  <app-results fxFill
+               fxLayout="row"
+               class="margin-top-lg margin-bottom-lg"
+               fxLayoutAlign="center center"></app-results>
 </article>
 

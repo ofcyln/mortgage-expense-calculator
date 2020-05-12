@@ -1,6 +1,6 @@
 @mixin md-icon-size($size: 24px) {
-  font-size: $size;
-  height: $size;
-  width: $size;
-  line-height: $size;
+  font-size: $size !important;
+  height: $size !important;
+  width: $size !important;
+  line-height: $size !important;
 }

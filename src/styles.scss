@@ -20,26 +20,50 @@ body {
   width: 100%;
 }
 
-.margin-top {
-  &-xl {
-    margin-top: 5em !important;
+.margin {
+  &-top {
+    &-xl {
+      margin-top: 5em !important;
+    }
+
+    &-lg {
+      margin-top: 3em !important;
+    }
+
+    &-md {
+      margin-top: 2em !important;
+    }
+
+    &-sm {
+      margin-top: 1em !important;
+    }
   }
 
-  &-lg {
-    margin-top: 3em !important;
-  }
+  &-bottom {
+    &-xl {
+      margin-bottom: 5em !important;
+    }
 
-  &-md {
-    margin-top: 2em !important;
-  }
+    &-lg {
+      margin-bottom: 3em !important;
+    }
 
-  &-sm {
-    margin-top: 1em !important;
+    &-md {
+      margin-bottom: 2em !important;
+    }
+
+    &-sm {
+      margin-bottom: 1em !important;
+    }
   }
 }
 
+.position-relative {
+  position: relative !important;
+}
+
 /**
- * Custom Angular Material input
+ * Custom Angular Material styles
  */
 .mat-form-field {
   width: 270px !important;
@@ -50,5 +74,22 @@ body {
   .mat-form-field-infix {
     padding: 0.7em 0 !important;
   }
+}
+
+.mat-list-base .mat-list-item,
+.mat-list-base .mat-list-option {
+  height: initial !important;
+  min-height: 48px;
+  max-height: 100px;
+}
+
+.mat-card .mat-divider-horizontal {
+  min-height: 30px;
+}
+
+.mat-list-base .mat-list-item .mat-list-item-content {
+  justify-content: center;
+  align-items: center;
+  min-height: 48px;
 }
 

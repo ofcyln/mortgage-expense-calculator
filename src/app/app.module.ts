@@ -9,11 +9,13 @@ import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 import { CalculateComponent } from './components/calculate/calculate.component';
 import { AppComponent } from './app.component';
+import { ResultsComponent } from './components/calculate/results/results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalculateComponent
+    CalculateComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,
