@@ -1,11 +1,13 @@
 <mat-card fxLayout="row"
           fxLayoutAlign="center center"
           fxFlex="0 1 80"
+          class="md-elevation-z9"
           [fxFlex.lt-md]="'0 1 90'">
   <mat-list fxFlex="0 1 85"
             [fxFlex.lt-md]="'0 1 100'"
             fxLayout="column"
-            fxLayoutAlign="center center">
+            fxLayoutAlign="center center"
+            class="margin-top-md margin-bottom-md">
     <mat-list-item *ngFor="let expenseItem of expenseItems"
                    [ngStyle.lt-md]="{'height': '100%'}"
                    fxFlex>

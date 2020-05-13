@@ -1,14 +1,16 @@
 <article fxLayout="column"
          fxLayoutAlign="center center">
   <h2 class="margin-top-lg"
-      [ngStyle]="{'text-transform': 'uppercase'}"
+      [ngStyle]="{'text-transform': 'uppercase', 'font-size': '24px'}"
+      [ngStyle.lt-md]="{'font-size': '22px'}"
       [ngClass.lt-md]="'margin-top-sm'">Mortgage Expense Calculator</h2>
 
   <div fxLayout="row"
        fxLayoutAlign="center center"
        class="margin-top-md"
        [ngClass]="'margin-top-sm'">
-    <p fxFlex="0 1 80">
+    <p fxFlex="0 1 80"
+       [ngStyle]="{'line-height': '29px'}">
       Buying a property is a big investment in our lives. Most people don't know what amount of money they need for the
       expenses of a mortgage.
       <br>
@@ -38,20 +40,25 @@
               matSuffix
               mat-icon-button
               aria-label="Clear"
-              (click)="value=''">
+              (click)="value=null">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
   </div>
 
   <div class="margin-top-lg">
-    <button mat-raised-button
-            color="primary">CALCULATE</button>
+    <button *ngIf="!isCalculate"
+            mat-raised-button
+            color="primary"
+            (click)="setCalculationState()">CALCULATE</button>
   </div>
 
-  <app-results fxFill
+  <app-results *ngIf="isCalculate"
+               fxFill
                fxLayout="row"
-               class="margin-top-lg margin-bottom-lg"
+               [mortgageValue]="value"
+               [calculateState]="isCalculate"
+               class="margin-bottom-lg"
                fxLayoutAlign="center center"></app-results>
 </article>
 

@@ -2,6 +2,11 @@ body {
   height: 100vh;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-image: url('assets/logo/mecLogoEmptyWhite.svg');
+  background-repeat: no-repeat;
+  background-color: #fbfbfb;
+  background-size: 30%;
+  background-position: bottom;
 }
 
 .no--padding {
@@ -140,4 +145,8 @@ body {
 
 .mat-checkbox-layout .mat-checkbox-label {
   white-space: initial;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.07), 0px 1px 1px 0 rgba(0, 0, 0, 0.35), 0 1px 3px 0 rgba(0, 0, 0, 0.43);
 }

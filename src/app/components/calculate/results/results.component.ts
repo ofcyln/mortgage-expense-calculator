@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import { ExpenseItems } from '../../../shared/expense-data.model';
 
@@ -7,14 +7,36 @@ import { ExpenseItems } from '../../../shared/expense-data.model';
   templateUrl: './results.component.html',
   styleUrls: [ './results.component.scss' ]
 })
-export class ResultsComponent implements OnInit {
+export class ResultsComponent implements OnInit, OnChanges {
+  @Input() mortgageValue;
+  @Input() calculateState;
+
   public expenseItems: ExpenseItems[];
 
   constructor() {
   }
 
   ngOnInit(): void {
-    this.expenseItems = this.createExpenseItemsList();
+    if (this.calculateState) {
+      this.expenseItems = this.createExpenseItemsList();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    for (const propName in changes) {
+      if (changes.hasOwnProperty(propName)) {
+        switch (propName) {
+          case 'mortgageValue': {
+            console.log(changes[propName].currentValue);
+            break;
+          }
+          case 'calculateState': {
+            console.log(changes[propName].currentValue);
+            break;
+          }
+        }
+      }
+    }
   }
 
   createExpenseItemsList(): ExpenseItems[] {

@@ -7,11 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalculateComponent implements OnInit {
   value = null;
+  isCalculate = false;
 
   constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  setCalculationState() {
+    const showCalculation = !this.isCalculate
+      && this.value !== null
+      && this.value !== undefined
+      && this.value !== '';
+
+    if (showCalculation) {
+      this.isCalculate = true;
+    }
   }
 
 }
