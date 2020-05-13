@@ -50,7 +50,8 @@
     <button *ngIf="!isCalculate"
             mat-raised-button
             color="primary"
-            (click)="setCalculationState()">CALCULATE</button>
+            (click)="setCalculationState()">CALCULATE
+    </button>
   </div>
 
   <app-results *ngIf="isCalculate"
@@ -60,5 +61,15 @@
                [calculateState]="isCalculate"
                class="margin-bottom-lg"
                fxLayoutAlign="center center"></app-results>
+
+  <button *ngIf="isCalculate"
+          mat-icon-button
+          color="primary"
+          class="margin-bottom-xl"
+          matTooltip="Re-calculate"
+          [matTooltipPosition]="'right'"
+          (click)="refreshPage()">
+    <mat-icon>refresh</mat-icon>
+  </button>
 </article>
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-calculate',
@@ -9,7 +10,7 @@ export class CalculateComponent implements OnInit {
   value = null;
   isCalculate = false;
 
-  constructor() {
+  constructor(@Inject(DOCUMENT) private doc: Document) {
   }
 
   ngOnInit(): void {
@@ -24,6 +25,10 @@ export class CalculateComponent implements OnInit {
     if (showCalculation) {
       this.isCalculate = true;
     }
+  }
+
+  refreshPage() {
+    this.doc.defaultView.location.reload();
   }
 
 }
