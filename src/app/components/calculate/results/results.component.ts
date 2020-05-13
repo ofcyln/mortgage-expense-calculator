@@ -20,30 +20,16 @@ export class ResultsComponent implements OnInit {
   createExpenseItemsList(): ExpenseItems[] {
     const expenseItems: ExpenseItems[] = [
       {
-        name: 'Transfer Tax',
-        amount: {
-          percentage: [ 2 ],
-          costRange: {
-            min: 0,
-            max: 0,
-          },
-          bothApplicable: false,
-        },
-        info: 'When you buy a home, you’ll pay 2% of the property value to the government. The only times this charge doesn’t apply are when you’re purchasing a newly built property or when you’re buying a property from a seller who has bought it less than 6 months previously.',
-        compulsory: true,
-        taxDeductible: false,
-      },
-      {
-        name: 'Civil-Law Notary',
+        name: 'Financial Advisor',
         amount: {
           percentage: [ 0 ],
           costRange: {
-            min: 900,
-            max: 2000,
+            min: 2000,
+            max: 5000,
           },
           bothApplicable: false,
         },
-        info: 'You’ll need a notary to legally transfer the property to your name and register it at the land registry. Costs for this will vary from 900 euros to as much as 2,000 euros, depending on the notary.',
+        info: 'Prices for a financial advisor can vary from approx. 2,000 euros to more than 5,000 euros.',
         compulsory: true,
         taxDeductible: true,
       },
@@ -62,18 +48,32 @@ export class ResultsComponent implements OnInit {
         taxDeductible: true,
       },
       {
-        name: 'Financial Advisor',
+        name: 'Civil-Law Notary',
         amount: {
           percentage: [ 0 ],
           costRange: {
-            min: 2000,
-            max: 5000,
+            min: 900,
+            max: 2000,
           },
           bothApplicable: false,
         },
-        info: 'Prices for a financial advisor can vary from approx. 2,000 euros to more than 5,000 euros.',
+        info: 'You’ll need a notary to legally transfer the property to your name and register it at the land registry. Costs for this will vary from 900 euros to as much as 2,000 euros, depending on the notary.',
         compulsory: true,
         taxDeductible: true,
+      },
+      {
+        name: 'Transfer Tax',
+        amount: {
+          percentage: [ 2 ],
+          costRange: {
+            min: 0,
+            max: 0,
+          },
+          bothApplicable: false,
+        },
+        info: 'When you buy a home, you’ll pay 2% of the property value to the government. The only times this charge doesn’t apply are when you’re purchasing a newly built property or when you’re buying a property from a seller who has bought it less than 6 months previously.',
+        compulsory: true,
+        taxDeductible: false,
       },
       {
         name: 'Organizing Medical Report',
