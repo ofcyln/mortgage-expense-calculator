@@ -7,19 +7,43 @@
             fxLayout="column"
             fxLayoutAlign="center center">
     <mat-list-item *ngFor="let expenseItem of expenseItems"
-                   [ngStyle.lt-md]="{'min-height': '75px'}"
+                   [ngStyle.lt-md]="{'height': '100%'}"
                    fxFlex>
-      <article fxFlex="50"
+      <article fxFlex="70"
                [fxFlex.lt-md]="75"
-               fxLayoutAlign="space-between center">
-        <section>
+               fxLayout="row"
+                fxLayoutAlign="space-between center">
+        <section fxLayout="column">
           <mat-checkbox *ngIf="expenseItem.specialExpense; else nameField"
-                        [ngModel]="expenseItem.compulsory"> {{ expenseItem.name }} </mat-checkbox>
+                        [ngModel]="expenseItem.compulsory">
+                        <p [ngStyle.lt-md]="{'font-weight': '500'}"
+                            [ngClass.lt-md]="'margin-top-sm'"
+                            class="margin-bottom-zero">
+                          {{ expenseItem.name }}
+                        </p>
 
-          <ng-template #nameField> {{ expenseItem.name }} </ng-template>
+                        <span *ngIf="!expenseItem.compulsory"
+                              [ngStyle.gt-sm]="{'display': 'none'}"
+                              [ngStyle.lt-md]="{'font-size': '11px', 'font-weight': '500'}">(Not compulsory)</span>
+
+                        <p [ngStyle.gt-sm]="{'display': 'none'}"
+                            [ngStyle.lt-md]="{'font-size': '12px'}"> {{ expenseItem.info }} </p>
+          </mat-checkbox>
+
+          <ng-template #nameField>
+            <p [ngStyle.lt-md]="{'font-weight': '500'}"> {{ expenseItem.name }}
+              <span *ngIf="!expenseItem.compulsory"
+                    [ngStyle.gt-sm]="{'display': 'none'}"
+                    [ngStyle.lt-md]="{'font-size': '12px'}">(Not compulsory)</span>
+            </p>
+
+            <p [ngStyle.gt-sm]="{'display': 'none'}"
+                [ngStyle.lt-md]="{'font-size': '12px'}"> {{ expenseItem.info }} </p>
+          </ng-template>
         </section>
 
-        <section fxLayoutAlign="end center">
+        <section fxLayoutAlign="end center"
+                  [ngStyle.lt-md]="{'display': 'none'}">
           <mat-icon *ngIf="!expenseItem.compulsory"
                     mat-list-icon
                     matTooltip="Not compulsory"
@@ -34,7 +58,7 @@
 
       </article>
 
-      <article fxFlex="50"
+      <article fxFlex="30"
                [fxFlex.lt-md]="25"
                fxLayoutAlign="end center">
         <span> ??? </span>
@@ -44,10 +68,10 @@
     <mat-divider class="position-relative"></mat-divider>
 
     <mat-list-item fxFlex>
-      <p fxFlex="50"
+      <p fxFlex="70"
          fxLayoutAlign="end center"
          [ngStyle]="{'font-size': '24px'}"> TOTAL </p>
-      <p fxFlex="50"
+      <p fxFlex="30"
          fxLayoutAlign="end center"
          [ngStyle]="{'font-size': '24px'}"> ??? </p>
     </mat-list-item>

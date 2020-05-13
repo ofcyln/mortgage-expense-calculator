@@ -37,6 +37,10 @@ body {
     &-sm {
       margin-top: 1em !important;
     }
+
+    &-zero {
+      margin-top: 0 !important;
+    }
   }
 
   &-bottom {
@@ -54,6 +58,54 @@ body {
 
     &-sm {
       margin-bottom: 1em !important;
+    }
+
+    &-zero {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  &-left {
+    &-xl {
+      margin-left: 5em !important;
+    }
+
+    &-lg {
+      margin-left: 3em !important;
+    }
+
+    &-md {
+      margin-left: 2em !important;
+    }
+
+    &-sm {
+      margin-left: 1em !important;
+    }
+
+    &-zero {
+      margin-left: 0 !important;
+    }
+  }
+
+  &-right {
+    &-xl {
+      margin-right: 5em !important;
+    }
+
+    &-lg {
+      margin-right: 3em !important;
+    }
+
+    &-md {
+      margin-right: 2em !important;
+    }
+
+    &-sm {
+      margin-right: 1em !important;
+    }
+
+    &-zero {
+      margin-right: 0 !important;
     }
   }
 }
@@ -76,13 +128,6 @@ body {
   }
 }
 
-.mat-list-base .mat-list-item,
-.mat-list-base .mat-list-option {
-  height: initial !important;
-  min-height: 48px;
-  max-height: 100px;
-}
-
 .mat-card .mat-divider-horizontal {
   min-height: 30px;
 }
@@ -93,3 +138,6 @@ body {
   min-height: 48px;
 }
 
+.mat-checkbox-layout .mat-checkbox-label {
+  white-space: initial;
+}
