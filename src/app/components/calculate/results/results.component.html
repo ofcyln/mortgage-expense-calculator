@@ -1,7 +1,8 @@
 <mat-card fxLayout="row"
           fxLayoutAlign="center center"
-          fxFlex="0 1 80"
-          class="md-elevation-z9"
+          [fxFlex.xl]="'0 1 50'"
+          [fxFlex.lg]="'0 1 60'"
+          [fxFlex.md]="'0 1 75'"
           [fxFlex.lt-md]="'0 1 90'">
   <mat-list fxFlex="0 1 85"
             [fxFlex.lt-md]="'0 1 100'"
@@ -36,6 +37,11 @@
                class="margin-bottom-zero">(This cost is tax deductible, which means it can be lowered with effectively
               38% or 49% depending on the amount of your gross income.)</p>
 
+            <p *ngIf="expenseItem.approximate"
+               [ngStyle.gt-sm]="{'display': 'none'}"
+               [ngStyle.lt-md]="{'font-size': '11px', 'font-weight': '500'}"
+               class="margin-bottom-zero">(This expense has an average amount.)</p>
+
             <p [ngStyle.gt-sm]="{'display': 'none'}"
                [ngStyle.lt-md]="{'font-size': '12px'}"
                [ngClass.lt-md]="'margin-top-sm'"> {{ expenseItem.info }} </p>
@@ -48,19 +54,20 @@
                     [ngStyle.lt-md]="{'font-size': '12px'}">(Not compulsory.)</span>
             </p>
 
-            <p *ngIf="expenseItem.approximate"
+            <p *ngIf="expenseItem.taxDeductible"
                [ngStyle.gt-sm]="{'display': 'none'}"
                [ngStyle.lt-md]="{'font-size': '11px', 'font-weight': '500'}"
                class="margin-bottom-zero">(This cost is tax deductible, which means it can be lowered with effectively
               38% or 49% depending on the amount of your gross income.)</p>
 
-            <p *ngIf="expenseItem.taxDeductible"
+            <p *ngIf="expenseItem.approximate"
                [ngStyle.gt-sm]="{'display': 'none'}"
                [ngStyle.lt-md]="{'font-size': '11px', 'font-weight': '500'}"
                class="margin-bottom-zero">(This expense has an average amount.)</p>
 
             <p [ngStyle.gt-sm]="{'display': 'none'}"
-               [ngStyle.lt-md]="{'font-size': '12px'}"> {{ expenseItem.info }} </p>
+               [ngStyle.lt-md]="{'font-size': '12px'}"
+               [ngClass.lt-md]="'margin-top-sm'"> {{ expenseItem.info }} </p>
           </ng-template>
         </section>
 
