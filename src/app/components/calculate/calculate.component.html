@@ -7,10 +7,10 @@
 
   <div fxLayout="row"
        fxLayoutAlign="center center"
-       class="margin-top-md"
        [ngClass]="'margin-top-sm'">
     <p fxFlex="0 1 80"
-       [ngStyle]="{'line-height': '29px'}">
+       [ngStyle]="{'line-height': '29px'}"
+       [ngStyle.lt-md]="{'font-size': '13px', 'line-height': '27px'}">
       Buying a property is a big investment in our lives.
       <br>
       Most people are not sure what amount of money they need to have upfront for buying a property with a mortgage.
@@ -25,7 +25,8 @@
 
   <div class="margin-top-md"
        [ngClass.lt-md]="'margin-top-sm'">
-    <mat-form-field [ngStyle]="{'font-size': '24px'}">
+    <mat-form-field [ngStyle]="{'font-size': '24px'}"
+                    [ngStyle.lt-md]="{'font-size': '20px'}">
       <mat-label [style.fontSize.px]="20">Mortgage Amount</mat-label>
 
       <label>
@@ -47,7 +48,8 @@
     </mat-form-field>
   </div>
 
-  <div class="margin-top-lg">
+  <div class="margin-top-lg"
+        [ngClass.lt-md]="'margin-top-sm'">
     <button *ngIf="!isCalculate"
             mat-raised-button
             color="primary"
@@ -67,6 +69,7 @@
           mat-icon-button
           color="primary"
           class="margin-bottom-xl"
+          [ngClass.lt-md]="'margin-bottom-lg'"
           matTooltip="Re-calculate"
           [matTooltipPosition]="'right'"
           (click)="refreshPage()">
