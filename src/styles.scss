@@ -28,6 +28,11 @@ body {
   width: 100%;
 }
 
+::selection {
+  color: white;
+  background: #673ab7;
+}
+
 .margin {
   &-top {
     &-xl {
