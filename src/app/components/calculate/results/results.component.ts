@@ -18,6 +18,7 @@ export class ResultsComponent implements OnInit, OnChanges {
 
   private readonly FIRST_ELEMENT = 0;
   private readonly SECOND_ELEMENT = 1;
+  private readonly MAX_NATIONAL_MORTGAGE_GUARANTEE_AMOUNT = 31e4;
   private readonly TOTAL_NUMBER_OF_REAL_ESTATE_EXPENSE_SCENARIOS = 12;
 
   constructor(private customIconService: CustomIconService) {
@@ -36,11 +37,23 @@ export class ResultsComponent implements OnInit, OnChanges {
 
             this.expenseItems = this.calculatedMortgageExpenses;
 
+            this.setExceededAmountFlag(this.mortgageValue);
+
             this.totalExpenseAmounts = this.calculateTotal(this.expenseItems);
             break;
           }
         }
       }
+    }
+  }
+
+  setExceededAmountFlag(mortgageValue) {
+    if (mortgageValue > this.MAX_NATIONAL_MORTGAGE_GUARANTEE_AMOUNT) {
+      const exceededAmountItem = this.expenseItems.find(expenseElement => expenseElement.exceededAmount === false);
+
+      exceededAmountItem.exceededAmount = true;
+      exceededAmountItem.amount.percentage[this.FIRST_ELEMENT] = 0;
+      exceededAmountItem.checked = false;
     }
   }
 
@@ -74,8 +87,9 @@ export class ResultsComponent implements OnInit, OnChanges {
   calculateExpense(isBothApplicable: boolean, costRange: MinMaxModel, percentage: number[], checked: boolean): ExpenseVariations {
     const firstPercentageElement = percentage[this.FIRST_ELEMENT];
     const secondPercentageElement = percentage[this.SECOND_ELEMENT];
+    const checkNotDefined = checked === undefined || checked === null;
 
-    if (checked === null) {
+    if (checkNotDefined) {
       if (firstPercentageElement === 0) {
         return {
           min: costRange.min,
@@ -157,7 +171,8 @@ export class ResultsComponent implements OnInit, OnChanges {
           taxDeductible: expenseItem.taxDeductible,
           specialExpense: expenseItem.specialExpense,
           checked: expenseItem.checked,
-          approximate: expenseItem.approximate
+          approximate: expenseItem.approximate,
+          exceededAmount: expenseItem.exceededAmount,
         };
 
         const constRange = {
@@ -225,7 +240,6 @@ export class ResultsComponent implements OnInit, OnChanges {
         compulsory: true,
         taxDeductible: true,
         approximate: true,
-        checked: null
       },
       {
         name: 'Valuation',
@@ -241,7 +255,6 @@ export class ResultsComponent implements OnInit, OnChanges {
         compulsory: true,
         taxDeductible: true,
         approximate: true,
-        checked: null
       },
       {
         name: 'Civil-Law Notary',
@@ -257,7 +270,6 @@ export class ResultsComponent implements OnInit, OnChanges {
         compulsory: true,
         taxDeductible: true,
         approximate: true,
-        checked: null
       },
       {
         name: 'Transfer Tax',
@@ -272,7 +284,6 @@ export class ResultsComponent implements OnInit, OnChanges {
         info: 'When you buy a home, you’ll pay 2% of the property value to the government. The only times this charge doesn’t apply are when you’re purchasing a newly built property or when you’re buying a property from a seller who has bought it less than 6 months previously.',
         compulsory: true,
         taxDeductible: false,
-        checked: null
       },
       {
         name: 'Organizing Medical Report',
@@ -288,7 +299,6 @@ export class ResultsComponent implements OnInit, OnChanges {
         compulsory: true,
         taxDeductible: false,
         approximate: true,
-        checked: null
       },
       {
         name: 'Bank Guarantee',
@@ -306,7 +316,6 @@ export class ResultsComponent implements OnInit, OnChanges {
           ' upon transfer. You can expect the bank guarantee to cost you between from nothing to 1% of the amount of the guarantee.',
         compulsory: true,
         taxDeductible: false,
-        checked: null
       },
       {
         name: 'Structural Survey',
@@ -322,7 +331,6 @@ export class ResultsComponent implements OnInit, OnChanges {
         compulsory: true,
         taxDeductible: false,
         approximate: true,
-        checked: null
       },
       {
         name: 'National Mortgage Guarantee(NHG)',
@@ -338,6 +346,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         compulsory: false,
         taxDeductible: true,
         specialExpense: true,
+        exceededAmount: false,
         checked: true
       },
       {

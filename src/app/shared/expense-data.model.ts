@@ -4,9 +4,10 @@ export interface ExpenseItem {
   info: string;
   compulsory: boolean;
   taxDeductible: boolean;
+  checked?: boolean;
   specialExpense?: boolean;
   approximate?: boolean;
-  checked: boolean;
+  exceededAmount?: boolean;
 }
 
 export interface CostRanges {

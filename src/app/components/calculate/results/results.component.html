@@ -18,6 +18,7 @@
                fxLayoutAlign="space-between center">
         <section fxLayout="column">
           <mat-checkbox *ngIf="expenseItem.specialExpense; else nameField"
+                        [disabled]="expenseItem.exceededAmount"
                         (change)="updateExpenseItemCheckedState()"
                         [(ngModel)]="expenseItem.checked">
             <p [ngStyle.lt-md]="{'font-weight': '500'}"
