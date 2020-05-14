@@ -3,5 +3,9 @@
 :host {
   mat-icon {
     @include md-icon-size(16px);
+
+    &[svgicon=approximately] {
+      @include md-icon-size(14px);
+    }
   }
 }

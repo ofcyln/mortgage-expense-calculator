@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import { ExpenseItem, ExpenseVariations, MinMaxModel } from '../../../shared/expense-data.model';
+import { CustomIconService } from '../../../shared/custom-icon.service';
 
 @Component({
   selector: 'app-results',
@@ -19,13 +20,11 @@ export class ResultsComponent implements OnInit, OnChanges {
   private readonly SECOND_ELEMENT = 1;
   private readonly TOTAL_NUMBER_OF_REAL_ESTATE_EXPENSE_SCENARIOS = 12;
 
-  constructor() {
+  constructor(private customIconService: CustomIconService) {
+    this.customIconService.addIcon('approximately', 'approximately.svg');
   }
 
   ngOnInit(): void {
-    if (this.calculateState) {
-      this.expenseItems = this.calculatedMortgageExpenses;
-    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -45,6 +44,10 @@ export class ResultsComponent implements OnInit, OnChanges {
     }
   }
 
+  updateExpenseItemCheckedState() {
+    this.totalExpenseAmounts = this.calculateTotal(this.expenseItems);
+  }
+
   calculateTotal(expenseItems: ExpenseItem[]): ExpenseVariations {
     const totalExpenseAmounts: ExpenseVariations = {
       min: 0,
@@ -53,10 +56,11 @@ export class ResultsComponent implements OnInit, OnChanges {
     };
 
     expenseItems.forEach((expenseItem: ExpenseItem) => {
-      const expenseVariations = this.calculateExpenses(
+      const expenseVariations = this.calculateExpense(
         expenseItem.amount.bothApplicable,
         expenseItem.amount.costRange,
-        expenseItem.amount.percentage
+        expenseItem.amount.percentage,
+        expenseItem.checked
       );
 
       totalExpenseAmounts.min += expenseVariations.min;
@@ -67,15 +71,15 @@ export class ResultsComponent implements OnInit, OnChanges {
     return totalExpenseAmounts;
   }
 
-  calculateExpenses(isBothApplicable: boolean, costRange: MinMaxModel, percentage: number[]): ExpenseVariations {
+  calculateExpense(isBothApplicable: boolean, costRange: MinMaxModel, percentage: number[], checked: boolean): ExpenseVariations {
     const firstPercentageElement = percentage[this.FIRST_ELEMENT];
     const secondPercentageElement = percentage[this.SECOND_ELEMENT];
 
-    if (!isBothApplicable) {
+    if (checked === null) {
       if (firstPercentageElement === 0) {
         return {
           min: costRange.min,
-          average: Math.ceil( ( costRange.min + costRange.max ) / 2 ),
+          average: Math.ceil(( costRange.min + costRange.max ) / 2),
           max: costRange.max
         };
       } else {
@@ -86,11 +90,35 @@ export class ResultsComponent implements OnInit, OnChanges {
         };
       }
     } else {
-      return {
-        min: costRange.min,
-        average: this.calculateRealEstateAgencyAverageExpense(costRange, percentage),
-        max: costRange.max + secondPercentageElement
-      };
+      if (checked) {
+        if (!isBothApplicable) {
+          if (firstPercentageElement === 0) {
+            return {
+              min: costRange.min,
+              average: Math.ceil(( costRange.min + costRange.max ) / 2),
+              max: costRange.max
+            };
+          } else {
+            return {
+              min: firstPercentageElement,
+              average: firstPercentageElement,
+              max: firstPercentageElement
+            };
+          }
+        } else {
+          return {
+            min: costRange.min,
+            average: this.calculateRealEstateAgencyAverageExpense(costRange, percentage),
+            max: costRange.max + secondPercentageElement
+          };
+        }
+      } else {
+        return {
+          min: 0,
+          average: 0,
+          max: 0
+        };
+      }
     }
   }
 
@@ -128,6 +156,8 @@ export class ResultsComponent implements OnInit, OnChanges {
           compulsory: expenseItem.compulsory,
           taxDeductible: expenseItem.taxDeductible,
           specialExpense: expenseItem.specialExpense,
+          checked: expenseItem.checked,
+          approximate: expenseItem.approximate
         };
 
         const constRange = {
@@ -194,6 +224,8 @@ export class ResultsComponent implements OnInit, OnChanges {
         info: 'Prices for a financial advisor can vary from approx. 2,000 euros to more than 5,000 euros.',
         compulsory: true,
         taxDeductible: true,
+        approximate: true,
+        checked: null
       },
       {
         name: 'Valuation',
@@ -208,6 +240,8 @@ export class ResultsComponent implements OnInit, OnChanges {
         info: 'Every bank or lender requires an official valuation report if you’re getting a mortgage. This will cost you somewhere between 300 and 800 euros, depending on the size of the house (the bigger, the more work) and of course the evaluator you choose.',
         compulsory: true,
         taxDeductible: true,
+        approximate: true,
+        checked: null
       },
       {
         name: 'Civil-Law Notary',
@@ -222,6 +256,8 @@ export class ResultsComponent implements OnInit, OnChanges {
         info: 'You’ll need a notary to legally transfer the property to your name and register it at the land registry. Costs for this will vary from 900 euros to as much as 2,000 euros, depending on the notary.',
         compulsory: true,
         taxDeductible: true,
+        approximate: true,
+        checked: null
       },
       {
         name: 'Transfer Tax',
@@ -236,6 +272,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         info: 'When you buy a home, you’ll pay 2% of the property value to the government. The only times this charge doesn’t apply are when you’re purchasing a newly built property or when you’re buying a property from a seller who has bought it less than 6 months previously.',
         compulsory: true,
         taxDeductible: false,
+        checked: null
       },
       {
         name: 'Organizing Medical Report',
@@ -250,6 +287,8 @@ export class ResultsComponent implements OnInit, OnChanges {
         info: 'This expense is related to organizing you medical report and handling files with the authorities.',
         compulsory: true,
         taxDeductible: false,
+        approximate: true,
+        checked: null
       },
       {
         name: 'Bank Guarantee',
@@ -267,6 +306,7 @@ export class ResultsComponent implements OnInit, OnChanges {
           ' upon transfer. You can expect the bank guarantee to cost you between from nothing to 1% of the amount of the guarantee.',
         compulsory: true,
         taxDeductible: false,
+        checked: null
       },
       {
         name: 'Structural Survey',
@@ -281,6 +321,8 @@ export class ResultsComponent implements OnInit, OnChanges {
         info: 'A structural survey to inspect your home will cost between 250 and 900 euros, depending on the size of the building.',
         compulsory: true,
         taxDeductible: false,
+        approximate: true,
+        checked: null
       },
       {
         name: 'National Mortgage Guarantee(NHG)',
@@ -296,6 +338,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         compulsory: false,
         taxDeductible: true,
         specialExpense: true,
+        checked: true
       },
       {
         name: 'Real Estate Agent',
@@ -311,6 +354,8 @@ export class ResultsComponent implements OnInit, OnChanges {
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
+        approximate: true,
+        checked: true
       },
       {
         name: 'Life Insurance',
@@ -326,6 +371,8 @@ export class ResultsComponent implements OnInit, OnChanges {
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
+        approximate: true,
+        checked: true
       },
       {
         name: 'Contact with Agency',
@@ -341,6 +388,8 @@ export class ResultsComponent implements OnInit, OnChanges {
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
+        approximate: true,
+        checked: true
       },
       {
         name: 'Translator',
@@ -356,6 +405,8 @@ export class ResultsComponent implements OnInit, OnChanges {
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
+        approximate: true,
+        checked: true
       },
       {
         name: 'Self-employed Customers',
@@ -371,6 +422,8 @@ export class ResultsComponent implements OnInit, OnChanges {
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
+        approximate: true,
+        checked: true
       }
     ];
 

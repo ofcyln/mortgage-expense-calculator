@@ -17,7 +17,8 @@
                fxLayoutAlign="space-between center">
         <section fxLayout="column">
           <mat-checkbox *ngIf="expenseItem.specialExpense; else nameField"
-                        [ngModel]="expenseItem.compulsory">
+                        (change)="updateExpenseItemCheckedState()"
+                        [(ngModel)]="expenseItem.checked">
             <p [ngStyle.lt-md]="{'font-weight': '500'}"
                [ngClass.lt-md]="'margin-top-sm'"
                class="margin-bottom-zero">
@@ -44,14 +45,19 @@
             <p [ngStyle.lt-md]="{'font-weight': '500'}"> {{ expenseItem.name }}
               <span *ngIf="!expenseItem.compulsory"
                     [ngStyle.gt-sm]="{'display': 'none'}"
-                    [ngStyle.lt-md]="{'font-size': '12px'}">(Not compulsory)</span>
+                    [ngStyle.lt-md]="{'font-size': '12px'}">(Not compulsory.)</span>
             </p>
 
-            <p *ngIf="expenseItem.taxDeductible"
+            <p *ngIf="expenseItem.approximate"
                [ngStyle.gt-sm]="{'display': 'none'}"
                [ngStyle.lt-md]="{'font-size': '11px', 'font-weight': '500'}"
                class="margin-bottom-zero">(This cost is tax deductible, which means it can be lowered with effectively
               38% or 49% depending on the amount of your gross income.)</p>
+
+            <p *ngIf="expenseItem.taxDeductible"
+               [ngStyle.gt-sm]="{'display': 'none'}"
+               [ngStyle.lt-md]="{'font-size': '11px', 'font-weight': '500'}"
+               class="margin-bottom-zero">(This expense has an average amount.)</p>
 
             <p [ngStyle.gt-sm]="{'display': 'none'}"
                [ngStyle.lt-md]="{'font-size': '12px'}"> {{ expenseItem.info }} </p>
@@ -69,9 +75,19 @@
 
           <mat-icon *ngIf="!expenseItem.compulsory"
                     mat-list-icon
-                    matTooltip="Not compulsory"
+                    matTooltip="Not compulsory."
                     [matTooltipPosition]="'right'"
                     [ngStyle.gt-xs]="{'cursor': 'help'}">info
+          </mat-icon>
+
+          <mat-icon *ngIf="expenseItem.approximate"
+                    mat-list-icon
+                    aria-hidden="false"
+                    svgIcon="approximately"
+                    matTooltip="This expense has an average amount."
+                    [matTooltipPosition]="'right'"
+                    [ngStyle.gt-xs]="{'cursor': 'help'}"
+                    aria-label="Approximate icon">approximately
           </mat-icon>
 
           <mat-icon mat-list-icon
@@ -86,7 +102,7 @@
       <article fxFlex="30"
                [fxFlex.lt-md]="25"
                fxLayoutAlign="end center">
-        <span> {{ calculateExpenses(expenseItem.amount.bothApplicable, expenseItem.amount.costRange, expenseItem.amount.percentage).average }} </span>
+              <span> {{ calculateExpense(expenseItem.amount.bothApplicable, expenseItem.amount.costRange, expenseItem.amount.percentage, expenseItem.checked).average }} </span>
       </article>
     </mat-list-item>
 
