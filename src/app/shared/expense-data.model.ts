@@ -1,4 +1,4 @@
-export interface ExpenseItems {
+export interface ExpenseItem {
   name: string;
   amount: CostRanges;
   info: string;

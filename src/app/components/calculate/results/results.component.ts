@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
-import { ExpenseItems } from '../../../shared/expense-data.model';
+import { ExpenseItem } from '../../../shared/expense-data.model';
 
 @Component({
   selector: 'app-results',
@@ -11,14 +11,18 @@ export class ResultsComponent implements OnInit, OnChanges {
   @Input() mortgageValue;
   @Input() calculateState;
 
-  public expenseItems: ExpenseItems[];
+  public expenseItems: ExpenseItem[];
+  public calculatedMortgageExpenses: ExpenseItem[];
+
+  private readonly FIRST_ELEMENT = 0;
+  private readonly SECOND_ELEMENT = 1;
 
   constructor() {
   }
 
   ngOnInit(): void {
     if (this.calculateState) {
-      this.expenseItems = this.createExpenseItemsList();
+      this.expenseItems = this.calculatedMortgageExpenses;
     }
   }
 
@@ -27,11 +31,11 @@ export class ResultsComponent implements OnInit, OnChanges {
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
           case 'mortgageValue': {
-            console.log(changes[propName].currentValue);
+            this.setCalculatedExpenses(changes[propName].currentValue);
             break;
           }
           case 'calculateState': {
-            console.log(changes[propName].currentValue);
+            // console.log(changes[propName].currentValue);
             break;
           }
         }
@@ -39,12 +43,70 @@ export class ResultsComponent implements OnInit, OnChanges {
     }
   }
 
-  createExpenseItemsList(): ExpenseItems[] {
-    const expenseItems: ExpenseItems[] = [
+  setCalculatedExpenses(mortgageAmount: number): ExpenseItem[] {
+    this.calculatedMortgageExpenses = this.createRawExpenseItemsList()
+      .map((expenseItem: ExpenseItem) => {
+        const expenseElement = {
+          name: expenseItem.name,
+          info: expenseItem.info,
+          compulsory: expenseItem.compulsory,
+          taxDeductible: expenseItem.taxDeductible,
+          specialExpense: expenseItem.specialExpense,
+        };
+
+        if (expenseItem.name === 'Real Estate Agent') {
+          return {
+            ... expenseElement,
+            amount: {
+              percentage: [
+                Math.floor((expenseItem.amount.percentage[this.FIRST_ELEMENT] / 100) * mortgageAmount),
+                Math.floor((expenseItem.amount.percentage[this.SECOND_ELEMENT] / 100) * mortgageAmount)
+              ],
+              costRange: {
+                min: expenseItem.amount.costRange.min,
+                max: expenseItem.amount.costRange.max,
+              },
+              bothApplicable: expenseItem.amount.bothApplicable,
+            }
+          } as ExpenseItem;
+        } else if (expenseItem.name === 'Bank Guarantee') {
+          return {
+            ... expenseElement,
+            amount: {
+              percentage: [
+                Math.floor((10 / 100) * (expenseItem.amount.percentage[this.FIRST_ELEMENT] / 100) * mortgageAmount)
+              ],
+              costRange: {
+                min: expenseItem.amount.costRange.min,
+                max: expenseItem.amount.costRange.max,
+              },
+              bothApplicable: expenseItem.amount.bothApplicable,
+            }
+          } as ExpenseItem;
+        } else {
+          return {
+            ... expenseElement,
+            amount: {
+              percentage: [Math.floor((expenseItem.amount.percentage[this.FIRST_ELEMENT] / 100) * mortgageAmount)],
+              costRange: {
+                min: expenseItem.amount.costRange.min,
+                max: expenseItem.amount.costRange.max,
+              },
+              bothApplicable: expenseItem.amount.bothApplicable,
+            }
+          } as ExpenseItem;
+        }
+      });
+
+    return this.calculatedMortgageExpenses;
+  }
+
+  createRawExpenseItemsList(): ExpenseItem[] {
+    const expenseItems: ExpenseItem[] = [
       {
         name: 'Financial Advisor',
         amount: {
-          percentage: [ 0 ],
+          percentage: [0],
           costRange: {
             min: 2000,
             max: 5000,
@@ -58,7 +120,7 @@ export class ResultsComponent implements OnInit, OnChanges {
       {
         name: 'Valuation',
         amount: {
-          percentage: [ 0 ],
+          percentage: [0],
           costRange: {
             min: 300,
             max: 800,
@@ -72,7 +134,7 @@ export class ResultsComponent implements OnInit, OnChanges {
       {
         name: 'Civil-Law Notary',
         amount: {
-          percentage: [ 0 ],
+          percentage: [0],
           costRange: {
             min: 900,
             max: 2000,
@@ -86,7 +148,7 @@ export class ResultsComponent implements OnInit, OnChanges {
       {
         name: 'Transfer Tax',
         amount: {
-          percentage: [ 2 ],
+          percentage: [2],
           costRange: {
             min: 0,
             max: 0,
@@ -100,7 +162,7 @@ export class ResultsComponent implements OnInit, OnChanges {
       {
         name: 'Organizing Medical Report',
         amount: {
-          percentage: [ 0 ],
+          percentage: [0],
           costRange: {
             min: 125,
             max: 150,
@@ -114,21 +176,24 @@ export class ResultsComponent implements OnInit, OnChanges {
       {
         name: 'Bank Guarantee',
         amount: {
-          percentage: [ 1 ],
+          percentage: [1],
           costRange: {
             min: 0,
             max: 0,
           },
           bothApplicable: false,
         },
-        info: 'You’ll need to provide the seller with a 10% deposit once you’ve signed the purchase agreement. If you can’t provide a 10% deposit, you’ll need to get a bank guarantee for that amount. You can expect the bank guarantee to cost you about 1% of the amount of the guarantee.',
+        info: 'You’ll need to provide the seller with a 10% deposit once you’ve signed the purchase agreement. If you can’t provide a' +
+          ' 10% deposit, you’ll need to get a bank guarantee for that amount. Fees for bank guarantees vary from provider to provider.' +
+          ' It is often 1% of the deposit, but some providers charge less or even nothing at all. The notary will deduct these fees' +
+          ' upon transfer. You can expect the bank guarantee to cost you between from nothing to 1% of the amount of the guarantee.',
         compulsory: true,
         taxDeductible: false,
       },
       {
         name: 'Structural Survey',
         amount: {
-          percentage: [ 0 ],
+          percentage: [0],
           costRange: {
             min: 250,
             max: 900,
@@ -142,7 +207,7 @@ export class ResultsComponent implements OnInit, OnChanges {
       {
         name: 'National Mortgage Guarantee(NHG)',
         amount: {
-          percentage: [ 0.9 ],
+          percentage: [0.9],
           costRange: {
             min: 0,
             max: 0,
@@ -157,7 +222,7 @@ export class ResultsComponent implements OnInit, OnChanges {
       {
         name: 'Real Estate Agent',
         amount: {
-          percentage: [ 0.5, 1.5 ],
+          percentage: [0.5, 1.5],
           costRange: {
             min: 500,
             max: 3000,
@@ -172,7 +237,7 @@ export class ResultsComponent implements OnInit, OnChanges {
       {
         name: 'Life Insurance',
         amount: {
-          percentage: [ 0 ],
+          percentage: [0],
           costRange: {
             min: 250,
             max: 500,
@@ -187,7 +252,7 @@ export class ResultsComponent implements OnInit, OnChanges {
       {
         name: 'Contact with Agency',
         amount: {
-          percentage: [ 0 ],
+          percentage: [0],
           costRange: {
             min: 350,
             max: 500,
@@ -202,7 +267,7 @@ export class ResultsComponent implements OnInit, OnChanges {
       {
         name: 'Translator',
         amount: {
-          percentage: [ 0 ],
+          percentage: [0],
           costRange: {
             min: 500,
             max: 750,
@@ -217,7 +282,7 @@ export class ResultsComponent implements OnInit, OnChanges {
       {
         name: 'Self-employed Customers',
         amount: {
-          percentage: [ 0 ],
+          percentage: [0],
           costRange: {
             min: 495,
             max: 500,
