@@ -68,12 +68,12 @@
   <button *ngIf="isCalculate"
           mat-icon-button
           color="primary"
-          class="margin-bottom-xl"
-          [ngClass.lt-md]="'margin-bottom-lg'"
-          matTooltip="Re-calculate"
+          class="margin-bottom-lg"
+          [ngClass.lt-md]="'margin-bottom-md'"
+          matTooltip="Return to main page"
           [matTooltipPosition]="'right'"
           (click)="refreshPage()">
-    <mat-icon>refresh</mat-icon>
+    <mat-icon>home</mat-icon>
   </button>
 </article>
 
