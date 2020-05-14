@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
-import { ExpenseItem } from '../../../shared/expense-data.model';
+import { ExpenseItem, ExpenseVariations, MinMaxModel } from '../../../shared/expense-data.model';
 
 @Component({
   selector: 'app-results',
@@ -13,9 +13,11 @@ export class ResultsComponent implements OnInit, OnChanges {
 
   public expenseItems: ExpenseItem[];
   public calculatedMortgageExpenses: ExpenseItem[];
+  public totalExpenseAmounts: ExpenseVariations;
 
   private readonly FIRST_ELEMENT = 0;
   private readonly SECOND_ELEMENT = 1;
+  private readonly TOTAL_NUMBER_OF_REAL_ESTATE_EXPENSE_SCENARIOS = 12;
 
   constructor() {
   }
@@ -31,16 +33,90 @@ export class ResultsComponent implements OnInit, OnChanges {
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
           case 'mortgageValue': {
-            this.setCalculatedExpenses(changes[propName].currentValue);
-            break;
-          }
-          case 'calculateState': {
-            // console.log(changes[propName].currentValue);
+            this.setCalculatedExpenses(changes[ propName ].currentValue);
+
+            this.expenseItems = this.calculatedMortgageExpenses;
+
+            this.totalExpenseAmounts = this.calculateTotal(this.expenseItems);
             break;
           }
         }
       }
     }
+  }
+
+  calculateTotal(expenseItems: ExpenseItem[]): ExpenseVariations {
+    const totalExpenseAmounts: ExpenseVariations = {
+      min: 0,
+      average: 0,
+      max: 0,
+    };
+
+    expenseItems.forEach((expenseItem: ExpenseItem) => {
+      const expenseVariations = this.calculateExpenses(
+        expenseItem.amount.bothApplicable,
+        expenseItem.amount.costRange,
+        expenseItem.amount.percentage
+      );
+
+      totalExpenseAmounts.min += expenseVariations.min;
+      totalExpenseAmounts.average += expenseVariations.average;
+      totalExpenseAmounts.max += expenseVariations.max;
+    });
+
+    return totalExpenseAmounts;
+  }
+
+  calculateExpenses(isBothApplicable: boolean, costRange: MinMaxModel, percentage: number[]): ExpenseVariations {
+    const firstPercentageElement = percentage[this.FIRST_ELEMENT];
+    const secondPercentageElement = percentage[this.SECOND_ELEMENT];
+
+    if (!isBothApplicable) {
+      if (firstPercentageElement === 0) {
+        return {
+          min: costRange.min,
+          average: Math.ceil( ( costRange.min + costRange.max ) / 2 ),
+          max: costRange.max
+        };
+      } else {
+        return {
+          min: firstPercentageElement,
+          average: firstPercentageElement,
+          max: firstPercentageElement
+        };
+      }
+    } else {
+      return {
+        min: costRange.min,
+        average: this.calculateRealEstateAgencyAverageExpense(costRange, percentage),
+        max: costRange.max + secondPercentageElement
+      };
+    }
+  }
+
+  calculateRealEstateAgencyAverageExpense(costRange: MinMaxModel, percentage: number[]): number {
+    const firstPercentageElement = percentage[ this.FIRST_ELEMENT ];
+    const secondPercentageElement = percentage[ this.SECOND_ELEMENT ];
+    const minCost = costRange.min;
+    const maxCost = costRange.max;
+    const averageCost = minCost + maxCost / 2;
+    const averagePercentageCost = ( firstPercentageElement + secondPercentageElement ) / 2;
+
+    return Math.ceil((
+      ( minCost ) +
+      ( averageCost ) +
+      ( minCost + firstPercentageElement ) +
+      ( minCost + secondPercentageElement ) +
+      ( minCost + ( averagePercentageCost ) ) +
+      ( maxCost ) +
+      ( maxCost + firstPercentageElement ) +
+      ( maxCost + secondPercentageElement ) +
+      ( maxCost + ( averagePercentageCost ) ) +
+      ( ( averageCost ) + firstPercentageElement ) +
+      ( ( averageCost ) + secondPercentageElement ) +
+      ( ( averageCost ) + ( averagePercentageCost ) )
+    ) / this.TOTAL_NUMBER_OF_REAL_ESTATE_EXPENSE_SCENARIOS
+    );
   }
 
   setCalculatedExpenses(mortgageAmount: number): ExpenseItem[] {
@@ -54,6 +130,17 @@ export class ResultsComponent implements OnInit, OnChanges {
           specialExpense: expenseItem.specialExpense,
         };
 
+        const constRange = {
+          costRange: {
+            min: expenseItem.amount.costRange.min,
+            max: expenseItem.amount.costRange.max,
+          },
+        };
+
+        const bothApplicable = {
+          bothApplicable: expenseItem.amount.bothApplicable,
+        };
+
         if (expenseItem.name === 'Real Estate Agent') {
           return {
             ... expenseElement,
@@ -62,11 +149,8 @@ export class ResultsComponent implements OnInit, OnChanges {
                 Math.floor((expenseItem.amount.percentage[this.FIRST_ELEMENT] / 100) * mortgageAmount),
                 Math.floor((expenseItem.amount.percentage[this.SECOND_ELEMENT] / 100) * mortgageAmount)
               ],
-              costRange: {
-                min: expenseItem.amount.costRange.min,
-                max: expenseItem.amount.costRange.max,
-              },
-              bothApplicable: expenseItem.amount.bothApplicable,
+              ...constRange,
+              ...bothApplicable,
             }
           } as ExpenseItem;
         } else if (expenseItem.name === 'Bank Guarantee') {
@@ -76,11 +160,8 @@ export class ResultsComponent implements OnInit, OnChanges {
               percentage: [
                 Math.floor((10 / 100) * (expenseItem.amount.percentage[this.FIRST_ELEMENT] / 100) * mortgageAmount)
               ],
-              costRange: {
-                min: expenseItem.amount.costRange.min,
-                max: expenseItem.amount.costRange.max,
-              },
-              bothApplicable: expenseItem.amount.bothApplicable,
+              ...constRange,
+              ...bothApplicable,
             }
           } as ExpenseItem;
         } else {
@@ -88,11 +169,8 @@ export class ResultsComponent implements OnInit, OnChanges {
             ... expenseElement,
             amount: {
               percentage: [Math.floor((expenseItem.amount.percentage[this.FIRST_ELEMENT] / 100) * mortgageAmount)],
-              costRange: {
-                min: expenseItem.amount.costRange.min,
-                max: expenseItem.amount.costRange.max,
-              },
-              bothApplicable: expenseItem.amount.bothApplicable,
+              ...constRange,
+              ...bothApplicable,
             }
           } as ExpenseItem;
         }

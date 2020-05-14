@@ -7,13 +7,19 @@ export interface ExpenseItem {
   specialExpense?: boolean,
 }
 
-interface CostRanges {
+export interface CostRanges {
   percentage: number[];
   costRange: MinMaxModel;
   bothApplicable: boolean;
 }
 
-interface MinMaxModel {
+export interface MinMaxModel {
   min: number;
+  max: number;
+}
+
+export interface ExpenseVariations {
+  min: number;
+  average: number;
   max: number;
 }

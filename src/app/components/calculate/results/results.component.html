@@ -86,7 +86,7 @@
       <article fxFlex="30"
                [fxFlex.lt-md]="25"
                fxLayoutAlign="end center">
-        <span> ??? </span>
+        <span> {{ calculateExpenses(expenseItem.amount.bothApplicable, expenseItem.amount.costRange, expenseItem.amount.percentage).average }} </span>
       </article>
     </mat-list-item>
 
@@ -98,7 +98,7 @@
          [ngStyle]="{'font-size': '24px'}"> TOTAL </p>
       <p fxFlex="30"
          fxLayoutAlign="end center"
-         [ngStyle]="{'font-size': '24px'}"> ??? </p>
+         [ngStyle]="{'font-size': '24px'}"> {{ totalExpenseAmounts.average }} </p>
     </mat-list-item>
   </mat-list>
 </mat-card>
