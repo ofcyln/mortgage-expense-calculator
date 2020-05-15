@@ -33,7 +33,7 @@ export class ResultsComponent implements OnInit, OnChanges {
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
           case 'mortgageValue': {
-            this.setCalculatedExpenses(changes[ propName ].currentValue);
+            this.setCalculatedExpenses(Number(changes[ propName ].currentValue));
 
             this.expenseItems = this.calculatedMortgageExpenses;
 

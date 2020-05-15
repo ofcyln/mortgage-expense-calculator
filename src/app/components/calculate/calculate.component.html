@@ -31,9 +31,12 @@
 
       <label>
         <input matInput
-               type="number"
-               inputmode="numeric"
+               type="tel"
+               inputmode="text"
                pattern="[0-9]*"
+               prefix="€"
+               mask="separator"
+               thousandSeparator=","
                [(ngModel)]="value"
                (keydown.enter)="setCalculationState()">
       </label>
