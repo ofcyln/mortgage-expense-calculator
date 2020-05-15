@@ -121,12 +121,84 @@
     <mat-divider class="position-relative"></mat-divider>
 
     <mat-list-item fxFlex>
-      <p fxFlex="70"
-         fxLayoutAlign="end center"
-         [ngStyle]="{'font-size': '24px'}"> TOTAL </p>
+      <div fxFlex="70"
+           [fxFlex.sm]="'60'"
+           [fxFlex.xs]="'60'"
+           fxLayoutAlign="end center">
+        <p [ngStyle]="{'font-size': '24px'}"
+           class="margin-bottom-zero"
+           fxLayoutAlign="end center"> TOTAL
+          <b [ngStyle]="{'font-size': '15px', 'padding-left': '5px'}">(Average)</b>
+        </p>
+
+        <mat-icon mat-list-icon
+                  matTooltip="This calculation shows average costs in total."
+                  [matTooltipPosition]="'below'"
+                  [ngStyle.gt-xs]="{'cursor': 'help'}"
+                  [ngStyle.lt-md]="{'display': 'none'}">help
+        </mat-icon>
+      </div>
+
       <p fxFlex="30"
+         [fxFlex.sm]="'40'"
+         [fxFlex.xs]="'40'"
          fxLayoutAlign="end center"
+         class="margin-bottom-zero"
          [ngStyle]="{'font-size': '24px'}"> {{ totalExpenseAmounts.average | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
+    </mat-list-item>
+
+    <mat-list-item fxFlex>
+      <div fxFlex="70"
+           [fxFlex.sm]="'60'"
+           [fxFlex.xs]="'60'"
+           fxLayoutAlign="end center">
+        <p [ngStyle]="{'font-size': '14px'}"
+           class="margin-bottom-zero"
+           fxLayoutAlign="end center"> TOTAL
+          <b [ngStyle]="{'font-size': '11px', 'padding-left': '5px'}">(Min)</b>
+        </p>
+
+        <mat-icon mat-list-icon
+                  matTooltip="This calculation shows minimum possible costs in total."
+                  [matTooltipPosition]="'below'"
+                  [ngStyle.gt-xs]="{'cursor': 'help'}"
+                  [ngStyle.lt-md]="{'display': 'none'}">help
+        </mat-icon>
+      </div>
+
+      <p fxFlex="30"
+         [fxFlex.sm]="'40'"
+         [fxFlex.xs]="'40'"
+         fxLayoutAlign="end center"
+         class="margin-bottom-zero"
+         [ngStyle]="{'font-size': '16px'}"> {{ totalExpenseAmounts.min | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
+    </mat-list-item>
+
+    <mat-list-item fxFlex>
+      <div fxFlex="70"
+           [fxFlex.sm]="'60'"
+           [fxFlex.xs]="'60'"
+           fxLayoutAlign="end center">
+        <p [ngStyle]="{'font-size': '14px'}"
+           class="margin-bottom-zero"
+           fxLayoutAlign="end center"> TOTAL
+          <b [ngStyle]="{'font-size': '11px', 'padding-left': '5px'}">(Max)</b>
+        </p>
+
+        <mat-icon mat-list-icon
+                  matTooltip="This calculation shows maximum possible costs in total."
+                  [matTooltipPosition]="'below'"
+                  [ngStyle.gt-xs]="{'cursor': 'help'}"
+                  [ngStyle.lt-md]="{'display': 'none'}">help
+        </mat-icon>
+      </div>
+
+      <p fxFlex="30"
+         [fxFlex.sm]="'40'"
+         [fxFlex.xs]="'40'"
+         fxLayoutAlign="end center"
+         class="margin-bottom-zero"
+         [ngStyle]="{'font-size': '16px'}"> {{ totalExpenseAmounts.max | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
     </mat-list-item>
   </mat-list>
 </mat-card>
