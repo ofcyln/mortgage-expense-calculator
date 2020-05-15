@@ -32,13 +32,14 @@
       <label>
         <input matInput
                type="number"
-               [(ngModel)]="value"
                inputmode="numeric"
-               pattern="[0-9]*">
+               pattern="[0-9]*"
+               [(ngModel)]="value"
+               (keydown.enter)="setCalculationState()">
       </label>
 
-      <button mat-button
-              *ngIf="value"
+      <button *ngIf="value"
+              mat-button
               matSuffix
               mat-icon-button
               aria-label="Clear"
@@ -70,10 +71,10 @@
           color="primary"
           class="margin-bottom-lg"
           [ngClass.lt-md]="'margin-bottom-md'"
-          matTooltip="Return to main page"
+          matTooltip="Clear page"
           [matTooltipPosition]="'right'"
           (click)="refreshPage()">
-    <mat-icon>home</mat-icon>
+    <mat-icon>refresh</mat-icon>
   </button>
 </article>
 
