@@ -20,7 +20,8 @@
           <mat-checkbox *ngIf="expenseItem.specialExpense; else nameField"
                         [disabled]="expenseItem.exceededAmount"
                         (change)="updateExpenseItemCheckedState()"
-                        [(ngModel)]="expenseItem.checked">
+                        [(ngModel)]="expenseItem.checked"
+                        color="primary">
             <p [ngStyle.lt-md]="{'font-weight': '500'}"
                [ngClass.lt-md]="'margin-top-sm'"
                class="margin-bottom-zero">
