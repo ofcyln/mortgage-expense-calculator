@@ -113,7 +113,8 @@
       <article fxFlex="30"
                [fxFlex.lt-md]="25"
                fxLayoutAlign="end center">
-              <span> {{ calculateExpense(expenseItem.amount.bothApplicable, expenseItem.amount.costRange, expenseItem.amount.percentage, expenseItem.checked).average }} </span>
+              <span> {{ calculateExpense(expenseItem.amount.bothApplicable, expenseItem.amount.costRange, expenseItem.amount.percentage,
+                expenseItem.checked).average  | currency: 'EUR' : 'symbol' : '1.0-0' }} </span>
       </article>
     </mat-list-item>
 
@@ -125,7 +126,7 @@
          [ngStyle]="{'font-size': '24px'}"> TOTAL </p>
       <p fxFlex="30"
          fxLayoutAlign="end center"
-         [ngStyle]="{'font-size': '24px'}"> {{ totalExpenseAmounts.average }} </p>
+         [ngStyle]="{'font-size': '24px'}"> {{ totalExpenseAmounts.average | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
     </mat-list-item>
   </mat-list>
 </mat-card>
