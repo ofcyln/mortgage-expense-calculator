@@ -29,17 +29,16 @@
                     [ngStyle.lt-md]="{'font-size': '20px'}">
       <mat-label [style.fontSize.px]="20">Mortgage Amount</mat-label>
 
-      <label>
-        <input matInput
-               type="tel"
-               inputmode="text"
-               pattern="[0-9]*"
-               prefix="€"
-               mask="separator"
-               thousandSeparator=","
-               [(ngModel)]="value"
-               (keydown.enter)="setCalculationState()">
-      </label>
+      <span matPrefix>€ &nbsp;</span>
+
+      <input matInput
+             type="tel"
+             inputmode="number"
+             pattern="[0-9]*"
+             mask="separator"
+             thousandSeparator=","
+             [(ngModel)]="value"
+             (keydown.enter)="setCalculationState()">
 
       <button *ngIf="value"
               mat-button
