@@ -6,6 +6,8 @@ import { NgModule } from '@angular/core';
 
 import { environment } from '../environments/environment';
 
+import { NgxMaskModule } from 'ngx-mask';
+
 import { CoreModule } from './core/core.module';
 import { CalculateComponent } from './components/calculate/calculate.component';
 import { AppComponent } from './app.component';
@@ -22,7 +24,8 @@ import { ResultsComponent } from './components/calculate/results/results.compone
     BrowserAnimationsModule,
     CoreModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [ AppComponent ]

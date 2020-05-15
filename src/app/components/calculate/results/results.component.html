@@ -1,11 +1,14 @@
 <mat-card fxLayout="row"
           fxLayoutAlign="center center"
-          fxFlex="0 1 80"
+          [fxFlex.xl]="'0 1 50'"
+          [fxFlex.lg]="'0 1 60'"
+          [fxFlex.md]="'0 1 75'"
           [fxFlex.lt-md]="'0 1 90'">
   <mat-list fxFlex="0 1 85"
             [fxFlex.lt-md]="'0 1 100'"
             fxLayout="column"
-            fxLayoutAlign="center center">
+            fxLayoutAlign="center center"
+            class="margin-top-md margin-bottom-md">
     <mat-list-item *ngFor="let expenseItem of expenseItems"
                    [ngStyle.lt-md]="{'height': '100%'}"
                    fxFlex>
@@ -15,7 +18,10 @@
                fxLayoutAlign="space-between center">
         <section fxLayout="column">
           <mat-checkbox *ngIf="expenseItem.specialExpense; else nameField"
-                        [ngModel]="expenseItem.compulsory">
+                        [disabled]="expenseItem.exceededAmount"
+                        (change)="updateExpenseItemCheckedState()"
+                        [(ngModel)]="expenseItem.checked"
+                        color="primary">
             <p [ngStyle.lt-md]="{'font-weight': '500'}"
                [ngClass.lt-md]="'margin-top-sm'"
                class="margin-bottom-zero">
@@ -33,6 +39,11 @@
                class="margin-bottom-zero">(This cost is tax deductible, which means it can be lowered with effectively
               38% or 49% depending on the amount of your gross income.)</p>
 
+            <p *ngIf="expenseItem.approximate"
+               [ngStyle.gt-sm]="{'display': 'none'}"
+               [ngStyle.lt-md]="{'font-size': '11px', 'font-weight': '500'}"
+               class="margin-bottom-zero">(This expense has an average amount.)</p>
+
             <p [ngStyle.gt-sm]="{'display': 'none'}"
                [ngStyle.lt-md]="{'font-size': '12px'}"
                [ngClass.lt-md]="'margin-top-sm'"> {{ expenseItem.info }} </p>
@@ -42,7 +53,7 @@
             <p [ngStyle.lt-md]="{'font-weight': '500'}"> {{ expenseItem.name }}
               <span *ngIf="!expenseItem.compulsory"
                     [ngStyle.gt-sm]="{'display': 'none'}"
-                    [ngStyle.lt-md]="{'font-size': '12px'}">(Not compulsory)</span>
+                    [ngStyle.lt-md]="{'font-size': '12px'}">(Not compulsory.)</span>
             </p>
 
             <p *ngIf="expenseItem.taxDeductible"
@@ -51,8 +62,14 @@
                class="margin-bottom-zero">(This cost is tax deductible, which means it can be lowered with effectively
               38% or 49% depending on the amount of your gross income.)</p>
 
+            <p *ngIf="expenseItem.approximate"
+               [ngStyle.gt-sm]="{'display': 'none'}"
+               [ngStyle.lt-md]="{'font-size': '11px', 'font-weight': '500'}"
+               class="margin-bottom-zero">(This expense has an average amount.)</p>
+
             <p [ngStyle.gt-sm]="{'display': 'none'}"
-               [ngStyle.lt-md]="{'font-size': '12px'}"> {{ expenseItem.info }} </p>
+               [ngStyle.lt-md]="{'font-size': '12px'}"
+               [ngClass.lt-md]="'margin-top-sm'"> {{ expenseItem.info }} </p>
           </ng-template>
         </section>
 
@@ -61,15 +78,28 @@
           <mat-icon *ngIf="expenseItem.taxDeductible"
                     mat-list-icon
                     matTooltip="This cost is tax deductible, which means it can be lowered with effectively 38% or 49% depending on the amount of your gross income."
+                    color="warn"
                     [matTooltipPosition]="'right'"
-                    [ngStyle.gt-xs]="{'cursor': 'help'}">euro
+                    [ngStyle.gt-xs]="{'cursor': 'help'}">euro_symbol
           </mat-icon>
 
           <mat-icon *ngIf="!expenseItem.compulsory"
                     mat-list-icon
-                    matTooltip="Not compulsory"
+                    matTooltip="Not compulsory."
+                    color="primary"
                     [matTooltipPosition]="'right'"
                     [ngStyle.gt-xs]="{'cursor': 'help'}">info
+          </mat-icon>
+
+          <mat-icon *ngIf="expenseItem.approximate"
+                    mat-list-icon
+                    aria-hidden="false"
+                    svgIcon="approximately"
+                    matTooltip="This expense is an average amount. You can find the cost range in the explanation."
+                    color="accent"
+                    [matTooltipPosition]="'right'"
+                    [ngStyle.gt-xs]="{'cursor': 'help'}"
+                    aria-label="Approximate icon">approximately
           </mat-icon>
 
           <mat-icon mat-list-icon
@@ -84,19 +114,92 @@
       <article fxFlex="30"
                [fxFlex.lt-md]="25"
                fxLayoutAlign="end center">
-        <span> ??? </span>
+              <span> {{ calculateExpense(expenseItem.amount.bothApplicable, expenseItem.amount.costRange, expenseItem.amount.percentage,
+                expenseItem.checked).average  | currency: 'EUR' : 'symbol' : '1.0-0' }} </span>
       </article>
     </mat-list-item>
 
     <mat-divider class="position-relative"></mat-divider>
 
     <mat-list-item fxFlex>
-      <p fxFlex="70"
-         fxLayoutAlign="end center"
-         [ngStyle]="{'font-size': '24px'}"> TOTAL </p>
+      <div fxFlex="70"
+           [fxFlex.sm]="'60'"
+           [fxFlex.xs]="'60'"
+           fxLayoutAlign="end center">
+        <p [ngStyle]="{'font-size': '24px', 'font-weight': '300'}"
+           class="margin-bottom-zero"
+           fxLayoutAlign="end center"> TOTAL
+          <b [ngStyle]="{'font-size': '15px', 'padding-left': '5px'}">(Average)</b>
+        </p>
+
+        <mat-icon mat-list-icon
+                  matTooltip="This calculation shows average costs in total."
+                  [matTooltipPosition]="'below'"
+                  [ngStyle.gt-xs]="{'cursor': 'help'}"
+                  [ngStyle.lt-md]="{'display': 'none'}">help
+        </mat-icon>
+      </div>
+
       <p fxFlex="30"
+         [fxFlex.sm]="'40'"
+         [fxFlex.xs]="'40'"
          fxLayoutAlign="end center"
-         [ngStyle]="{'font-size': '24px'}"> ??? </p>
+         class="margin-bottom-zero"
+         [ngStyle]="{'font-size': '24px'}"> {{ totalExpenseAmounts.average | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
+    </mat-list-item>
+
+    <mat-list-item fxFlex>
+      <div fxFlex="70"
+           [fxFlex.sm]="'60'"
+           [fxFlex.xs]="'60'"
+           fxLayoutAlign="end center">
+        <p [ngStyle]="{'font-size': '14px'}"
+           class="margin-bottom-zero"
+           fxLayoutAlign="end center"> TOTAL
+          <b [ngStyle]="{'font-size': '11px', 'padding-left': '5px'}">(Minimum)</b>
+        </p>
+
+        <mat-icon mat-list-icon
+                  matTooltip="This calculation shows minimum possible costs in total."
+                  [matTooltipPosition]="'below'"
+                  [ngStyle.gt-xs]="{'cursor': 'help'}"
+                  [ngStyle.lt-md]="{'display': 'none'}">help
+        </mat-icon>
+      </div>
+
+      <p fxFlex="30"
+         [fxFlex.sm]="'40'"
+         [fxFlex.xs]="'40'"
+         fxLayoutAlign="end center"
+         class="margin-bottom-zero"
+         [ngStyle]="{'font-size': '16px'}"> {{ totalExpenseAmounts.min | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
+    </mat-list-item>
+
+    <mat-list-item fxFlex>
+      <div fxFlex="70"
+           [fxFlex.sm]="'60'"
+           [fxFlex.xs]="'60'"
+           fxLayoutAlign="end center">
+        <p [ngStyle]="{'font-size': '14px'}"
+           class="margin-bottom-zero"
+           fxLayoutAlign="end center"> TOTAL
+          <b [ngStyle]="{'font-size': '11px', 'padding-left': '5px'}">(Maximum)</b>
+        </p>
+
+        <mat-icon mat-list-icon
+                  matTooltip="This calculation shows maximum possible costs in total."
+                  [matTooltipPosition]="'below'"
+                  [ngStyle.gt-xs]="{'cursor': 'help'}"
+                  [ngStyle.lt-md]="{'display': 'none'}">help
+        </mat-icon>
+      </div>
+
+      <p fxFlex="30"
+         [fxFlex.sm]="'40'"
+         [fxFlex.xs]="'40'"
+         fxLayoutAlign="end center"
+         class="margin-bottom-zero"
+         [ngStyle]="{'font-size': '16px'}"> {{ totalExpenseAmounts.max | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
     </mat-list-item>
   </mat-list>
 </mat-card>
