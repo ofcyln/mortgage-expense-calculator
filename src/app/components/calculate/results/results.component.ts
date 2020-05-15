@@ -295,7 +295,7 @@ export class ResultsComponent implements OnInit, OnChanges {
           },
           bothApplicable: false,
         },
-        info: 'This expense is related to organizing you medical report and handling files with the authorities.',
+        info: 'This expense is related to organizing your medical report and handling files with the authorities. The financial advisor handles your files and charges you between 125 euros to 150 euros.',
         compulsory: true,
         taxDeductible: false,
         approximate: true,
@@ -310,10 +310,11 @@ export class ResultsComponent implements OnInit, OnChanges {
           },
           bothApplicable: false,
         },
-        info: 'You’ll need to provide the seller with a 10% deposit once you’ve signed the purchase agreement. If you can’t provide a' +
-          ' 10% deposit, you’ll need to get a bank guarantee for that amount. Fees for bank guarantees vary from provider to provider.' +
-          ' It is often 1% of the deposit, but some providers charge less or even nothing at all. The notary will deduct these fees' +
-          ' upon transfer. You can expect the bank guarantee to cost you between from nothing to 1% of the amount of the guarantee.',
+        info: 'You’ll need to provide the seller with a 10% deposit once you’ve signed the purchase agreement. ' +
+          'If you can’t provide a 10% deposit, you’ll need to get a bank guarantee for that amount. ' +
+          'Fees for bank guarantees vary from provider to provider. It is often 1% of the deposit, ' +
+          'but some providers charge less or even nothing at all. The notary will deduct these fees ' +
+          'upon transfer. You can expect the bank guarantee to cost you 1% of the amount of the guarantee.',
         compulsory: true,
         taxDeductible: false,
       },
@@ -372,11 +373,11 @@ export class ResultsComponent implements OnInit, OnChanges {
           percentage: [0],
           costRange: {
             min: 250,
-            max: 500,
+            max: 350,
           },
           bothApplicable: false,
         },
-        info: 'Handling documents for life insurance application. You can also insure your partner.',
+        info: 'Handling documents for a life insurance policy application can be made by the financial advisor or by you. You can also buy another life insurance policy for your partner as well. A life insurance\'s first-time payment costs to you generally between 250 euros to 350 euros for per person.',
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
@@ -393,7 +394,7 @@ export class ResultsComponent implements OnInit, OnChanges {
           },
           bothApplicable: false,
         },
-        info: 'Contact with the selling estate agent when buying without an estate agent (makelaar) and checking the purchase agreement on your behalf by financial advisor.',
+        info: 'Contacting the selling estate agent when buying without an estate agent (makelaar) and checking the purchase agreement on your behalf by a financial advisor. This cost range differs for each financial advisor. It costs you between 350 euros to 500 euros.',
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
@@ -410,7 +411,7 @@ export class ResultsComponent implements OnInit, OnChanges {
           },
           bothApplicable: false,
         },
-        info: 'This expense is for arranging translator while you are signing documents in the civil-law notary.',
+        info: 'This expense is for arranging a translator while you are signing documents in the civil-law notary. Translators work hourly and they will probably bill you for a couple of hours work between 250 euros to 500 euros.',
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
@@ -422,12 +423,12 @@ export class ResultsComponent implements OnInit, OnChanges {
         amount: {
           percentage: [0],
           costRange: {
-            min: 495,
+            min: 475,
             max: 500,
           },
           bothApplicable: false,
         },
-        info: 'Additional fee due before handling your files.',
+        info: 'Additional fee due before handling your files. It costs you between the amount of 475 euros to 500 euros.',
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,

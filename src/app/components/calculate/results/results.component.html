@@ -23,8 +23,9 @@
                         [(ngModel)]="expenseItem.checked"
                         color="primary">
             <p [ngStyle.lt-md]="{'font-weight': '500'}"
-               [ngClass.lt-md]="'margin-top-sm'"
-               class="margin-bottom-zero">
+               [ngClass.lt-md]="'margin-bottom-sm'"
+               [ngClass.md]="'margin-bottom-zero'"
+               [ngClass.gt-md]="'margin-bottom-zero'">
               {{ expenseItem.name }}
             </p>
 
@@ -42,7 +43,7 @@
             <p *ngIf="expenseItem.approximate"
                [ngStyle.gt-sm]="{'display': 'none'}"
                [ngStyle.lt-md]="{'font-size': '11px', 'font-weight': '500'}"
-               class="margin-bottom-zero">(This expense has an average amount.)</p>
+               class="margin-bottom-zero">(This expense is an average amount. You can find the cost range in the explanation below.)</p>
 
             <p [ngStyle.gt-sm]="{'display': 'none'}"
                [ngStyle.lt-md]="{'font-size': '12px'}"
@@ -50,7 +51,10 @@
           </mat-checkbox>
 
           <ng-template #nameField>
-            <p [ngStyle.lt-md]="{'font-weight': '500'}"> {{ expenseItem.name }}
+            <p [ngStyle.lt-md]="{'font-weight': '500'}"
+               [ngClass.lt-md]="'margin-bottom-sm'"
+               [ngClass.md]="'margin-bottom-zero'"
+               [ngClass.gt-md]="'margin-bottom-zero'"> {{ expenseItem.name }}
               <span *ngIf="!expenseItem.compulsory"
                     [ngStyle.gt-sm]="{'display': 'none'}"
                     [ngStyle.lt-md]="{'font-size': '12px'}">(Not compulsory.)</span>
@@ -65,7 +69,7 @@
             <p *ngIf="expenseItem.approximate"
                [ngStyle.gt-sm]="{'display': 'none'}"
                [ngStyle.lt-md]="{'font-size': '11px', 'font-weight': '500'}"
-               class="margin-bottom-zero">(This expense has an average amount.)</p>
+               class="margin-bottom-zero">(This expense is an average amount. You can find the cost range in the explanation below.)</p>
 
             <p [ngStyle.gt-sm]="{'display': 'none'}"
                [ngStyle.lt-md]="{'font-size': '12px'}"
