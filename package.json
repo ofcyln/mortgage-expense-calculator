@@ -6,8 +6,29 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "ng lint \"src/**/*.ts\"",
+    "e2e": "ng e2e",
+    "build:prod": "ng build --prod --aot --build-optimizer",
+    "deploy:firebase": "firebase deploy",
+    "format": "prettier --single-quote --trailing-comma all --print-width 120 --arrow-parens always --tab-width 4 --write",
+    "tslint": "tslint \"src/**/*.ts\"",
+    "stylelint": "stylelint \"src/**/*.scss\"",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "npm run format",
+      "npm run tslint",
+      "git add"
+    ],
+    "src/**/*.scss": [
+      "npm run stylelint",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ofcyln/mortgage-expense-calculator.git"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +46,7 @@
     "@angular/service-worker": "^9.1.7",
     "ngx-mask": "^9.0.2",
     "rxjs": "~6.5.4",
+    "rxjs-tslint": "^0.1.8",
     "tslib": "^1.13.0",
     "zone.js": "~0.10.2"
   },
@@ -45,6 +67,11 @@
     "karma-jasmine-html-reporter": "^1.5.4",
     "protractor": "^7.0.0",
     "ts-node": "~8.3.0",
+    "husky": "^4.2.5",
+    "stylelint": "^13.3.3",
+    "lint-staged": "^10.2.2",
+    "stylelint-config-standard": "^20.0.0",
+    "prettier": "^2.0.5",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
   }
