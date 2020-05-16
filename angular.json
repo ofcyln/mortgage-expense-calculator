@@ -23,6 +23,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "es5BrowserSupport": true,
             "assets": [
               "src/favicon.ico",
               "src/assets",
@@ -51,6 +52,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "es5BrowserSupport": true,
               "budgets": [
                 {
                   "type": "initial",
