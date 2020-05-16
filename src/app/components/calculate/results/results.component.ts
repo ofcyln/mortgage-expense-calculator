@@ -9,12 +9,12 @@ import { CustomIconService } from '../../../shared/custom-icon.service';
   styleUrls: [ './results.component.scss' ]
 })
 export class ResultsComponent implements OnInit, OnChanges {
-  @Input() mortgageValue;
-  @Input() calculateState;
+  @Input() mortgageValue: string | undefined;
+  @Input() calculateState: boolean | undefined;
 
-  public expenseItems: ExpenseItem[];
-  public calculatedMortgageExpenses: ExpenseItem[];
-  public totalExpenseAmounts: ExpenseVariations;
+  public expenseItems: ExpenseItem[] | undefined;
+  public calculatedMortgageExpenses: ExpenseItem[] | undefined;
+  public totalExpenseAmounts: ExpenseVariations | undefined;
 
   private readonly FIRST_ELEMENT = 0;
   private readonly SECOND_ELEMENT = 1;
@@ -37,9 +37,12 @@ export class ResultsComponent implements OnInit, OnChanges {
 
             this.expenseItems = this.calculatedMortgageExpenses;
 
-            this.setExceededAmountFlag(this.mortgageValue);
+            this.setExceededAmountFlag(Number(this.mortgageValue));
 
-            this.totalExpenseAmounts = this.calculateTotal(this.expenseItems);
+            if (!!this.expenseItems) {
+              this.totalExpenseAmounts = this.calculateTotal(this.expenseItems);
+            }
+
             break;
           }
         }
@@ -47,13 +50,15 @@ export class ResultsComponent implements OnInit, OnChanges {
     }
   }
 
-  setExceededAmountFlag(mortgageValue) {
+  setExceededAmountFlag(mortgageValue: number) {
     if (mortgageValue > this.MAX_NATIONAL_MORTGAGE_GUARANTEE_AMOUNT) {
-      const exceededAmountItem = this.expenseItems.find(expenseElement => expenseElement.exceededAmount === false);
+      const exceededAmountItem = this.expenseItems?.find(expenseElement => expenseElement.exceededAmount === false);
 
-      exceededAmountItem.exceededAmount = true;
-      exceededAmountItem.amount.percentage[this.FIRST_ELEMENT] = 0;
-      exceededAmountItem.checked = false;
+      if (!!exceededAmountItem) {
+        exceededAmountItem.exceededAmount = true;
+        exceededAmountItem.amount.percentage[this.FIRST_ELEMENT] = 0;
+        exceededAmountItem.checked = false;
+      }
     }
   }
 
@@ -61,30 +66,33 @@ export class ResultsComponent implements OnInit, OnChanges {
     this.totalExpenseAmounts = this.calculateTotal(this.expenseItems);
   }
 
-  calculateTotal(expenseItems: ExpenseItem[]): ExpenseVariations {
+  calculateTotal(expenseItems: ExpenseItem[] | undefined): ExpenseVariations {
     const totalExpenseAmounts: ExpenseVariations = {
       min: 0,
       average: 0,
       max: 0,
     };
 
-    expenseItems.forEach((expenseItem: ExpenseItem) => {
-      const expenseVariations = this.calculateExpense(
-        expenseItem.amount.bothApplicable,
-        expenseItem.amount.costRange,
-        expenseItem.amount.percentage,
-        expenseItem.checked
-      );
+    if (!!expenseItems) {
+      expenseItems.forEach((expenseItem: ExpenseItem) => {
+        const expenseVariations = this.calculateExpense(
+          expenseItem.amount.bothApplicable,
+          expenseItem.amount.costRange,
+          expenseItem.amount.percentage,
+          expenseItem.checked
+        );
 
-      totalExpenseAmounts.min += expenseVariations.min;
-      totalExpenseAmounts.average += expenseVariations.average;
-      totalExpenseAmounts.max += expenseVariations.max;
-    });
+        totalExpenseAmounts.min += expenseVariations.min;
+        totalExpenseAmounts.average += expenseVariations.average;
+        totalExpenseAmounts.max += expenseVariations.max;
+      });
+    }
+
 
     return totalExpenseAmounts;
   }
 
-  calculateExpense(isBothApplicable: boolean, costRange: MinMaxModel, percentage: number[], checked: boolean): ExpenseVariations {
+  calculateExpense(isBothApplicable: boolean, costRange: MinMaxModel, percentage: number[], checked: boolean | undefined): ExpenseVariations {
     const firstPercentageElement = percentage[this.FIRST_ELEMENT];
     const secondPercentageElement = percentage[this.SECOND_ELEMENT];
     const checkNotDefined = checked === undefined || checked === null;
@@ -295,7 +303,7 @@ export class ResultsComponent implements OnInit, OnChanges {
           },
           bothApplicable: false,
         },
-        info: 'This expense is related to organizing you medical report and handling files with the authorities.',
+        info: 'This expense is related to organizing your medical report and handling files with the authorities. The financial advisor handles your files and charges you between 125 euros to 150 euros.',
         compulsory: true,
         taxDeductible: false,
         approximate: true,
@@ -310,10 +318,11 @@ export class ResultsComponent implements OnInit, OnChanges {
           },
           bothApplicable: false,
         },
-        info: 'You’ll need to provide the seller with a 10% deposit once you’ve signed the purchase agreement. If you can’t provide a' +
-          ' 10% deposit, you’ll need to get a bank guarantee for that amount. Fees for bank guarantees vary from provider to provider.' +
-          ' It is often 1% of the deposit, but some providers charge less or even nothing at all. The notary will deduct these fees' +
-          ' upon transfer. You can expect the bank guarantee to cost you between from nothing to 1% of the amount of the guarantee.',
+        info: 'You’ll need to provide the seller with a 10% deposit once you’ve signed the purchase agreement. ' +
+          'If you can’t provide a 10% deposit, you’ll need to get a bank guarantee for that amount. ' +
+          'Fees for bank guarantees vary from provider to provider. It is often 1% of the deposit, ' +
+          'but some providers charge less or even nothing at all. The notary will deduct these fees ' +
+          'upon transfer. You can expect the bank guarantee to cost you 1% of the amount of the guarantee.',
         compulsory: true,
         taxDeductible: false,
       },
@@ -372,11 +381,11 @@ export class ResultsComponent implements OnInit, OnChanges {
           percentage: [0],
           costRange: {
             min: 250,
-            max: 500,
+            max: 350,
           },
           bothApplicable: false,
         },
-        info: 'Handling documents for life insurance application. You can also insure your partner.',
+        info: 'Handling documents for a life insurance policy application can be made by the financial advisor or by you. You can also buy another life insurance policy for your partner as well. A life insurance\'s first-time payment costs to you generally between 250 euros to 350 euros for per person.',
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
@@ -393,7 +402,7 @@ export class ResultsComponent implements OnInit, OnChanges {
           },
           bothApplicable: false,
         },
-        info: 'Contact with the selling estate agent when buying without an estate agent (makelaar) and checking the purchase agreement on your behalf by financial advisor.',
+        info: 'Contacting the selling estate agent when buying without an estate agent (makelaar) and checking the purchase agreement on your behalf by a financial advisor. This cost range differs for each financial advisor. It costs you between 350 euros to 500 euros.',
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
@@ -410,7 +419,7 @@ export class ResultsComponent implements OnInit, OnChanges {
           },
           bothApplicable: false,
         },
-        info: 'This expense is for arranging translator while you are signing documents in the civil-law notary.',
+        info: 'This expense is for arranging a translator while you are signing documents in the civil-law notary. Translators work hourly and they will probably bill you for a couple of hours work between 250 euros to 500 euros.',
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
@@ -422,12 +431,12 @@ export class ResultsComponent implements OnInit, OnChanges {
         amount: {
           percentage: [0],
           costRange: {
-            min: 495,
+            min: 475,
             max: 500,
           },
           bothApplicable: false,
         },
-        info: 'Additional fee due before handling your files.',
+        info: 'Additional fee due before handling your files. It costs you between the amount of 475 euros to 500 euros.',
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,

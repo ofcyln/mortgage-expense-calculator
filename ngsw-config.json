@@ -1,6 +1,10 @@
 {
   "$schema": "./node_modules/@angular/service-worker/config/schema.json",
   "index": "/index.html",
+  "appData": {
+    "version": "2.0.0",
+    "changelog": "PWA configurations and asset integrations completed."
+  },
   "assetGroups": [
     {
       "name": "app",
