@@ -8,19 +8,33 @@
   <div fxLayout="row"
        fxLayoutAlign="center center"
        [ngClass]="'margin-top-sm'">
-    <p fxFlex="0 1 80"
+    <div fxFlex="0 1 80"
        [ngStyle]="{'line-height': '29px'}"
-       [ngStyle.lt-md]="{'font-size': '13px', 'line-height': '27px'}">
-      Buying a property is a big investment in our lives.
-      <br>
-      Most people are not sure what amount of money they need to have upfront for buying a property with a mortgage.
-      <br>
-      'Mortgage Expense Calculator' is a web application to use of calculating estimated mortgage expenses when you buy a
-      property.
-      <br>
-      Simply enter the mortgage amount that you are going to get below and click the calculate button to see the estimated
-      expense amount that you need to have for buying your property of dreams.
-    </p>
+       [ngStyle.lt-md]="{'font-size': '15px', 'line-height': '26px'}">
+      <p class="margin-bottom-zero">
+        Buying a property is a big investment in our lives.
+      </p>
+
+      <p class="margin-bottom-zero">
+        Most people are not sure what amount of money they need to have upfront for buying a property with a mortgage.
+      </p>
+
+      <p class="margin-bottom-zero">
+        'Mortgage Expense Calculator' is a web application to use of calculating estimated mortgage expenses when you buy a
+        property.
+        <button *ngIf="!show"
+                mat-button
+                color="primary"
+                class="read-more"
+                [ngStyle.gt-xs]="{'display': 'none'}"
+                (click)="showMore()">Read more...</button>
+      </p>
+
+      <p *ngIf="show" class="margin-bottom-zero">
+        Simply enter the mortgage amount that you are going to get below and click the calculate button to see the estimated
+        expense amount that you need to have for buying your property of dreams.
+      </p>
+    </div>
   </div>
 
   <div class="margin-top-md"

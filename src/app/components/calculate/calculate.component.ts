@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -9,11 +9,40 @@ import { DOCUMENT } from '@angular/common';
 export class CalculateComponent implements OnInit {
   value = null;
   isCalculate = false;
+  innerWidth: number;
+  innerHeight: number;
+  show = false;
+
+  private readonly MOBILE_DEVICE_CONTROL_HEIGHT = 674;
+  private readonly MOBILE_DEVICE_CONTROL_WIDTH = 599;
+  private readonly TIME_IN_MS = 500;
+
+  @HostListener('window:resize', [ '$event' ])
+  onResize(event) {
+    setTimeout(( () => {
+      this.innerWidth = event.target.innerWidth;
+      this.innerHeight = event.target.innerHeight;
+
+      this.doc.body.style.height = `${ this.innerHeight }px`;
+
+      this.innerHeight > this.MOBILE_DEVICE_CONTROL_HEIGHT || this.innerWidth > this.MOBILE_DEVICE_CONTROL_WIDTH
+        ? this.show = true
+        : this.show = false;
+    } ), this.TIME_IN_MS);
+  }
 
   constructor(@Inject(DOCUMENT) private doc: Document) {
   }
 
   ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+    this.innerHeight = window.innerHeight;
+
+    this.doc.body.style.height = `${ this.innerHeight }px`;
+
+    this.innerHeight > this.MOBILE_DEVICE_CONTROL_HEIGHT || this.innerWidth > this.MOBILE_DEVICE_CONTROL_WIDTH
+      ? this.show = true
+      : this.show = false;
   }
 
   setCalculationState() {
@@ -25,6 +54,10 @@ export class CalculateComponent implements OnInit {
     if (showCalculation) {
       this.isCalculate = true;
     }
+  }
+
+  showMore() {
+    this.show = !this.show;
   }
 
   refreshPage() {
