@@ -9,16 +9,16 @@ import { DOCUMENT } from '@angular/common';
 export class CalculateComponent implements OnInit {
   value = null;
   isCalculate = false;
-  innerWidth: number;
-  innerHeight: number;
   show = false;
+  innerHeight = window.innerHeight;
+  innerWidth = window.innerWidth;
 
   private readonly MOBILE_DEVICE_CONTROL_HEIGHT = 674;
   private readonly MOBILE_DEVICE_CONTROL_WIDTH = 599;
   private readonly TIME_IN_MS = 500;
 
   @HostListener('window:resize', [ '$event' ])
-  onResize(event) {
+  onResize(event: any) {
     setTimeout(( () => {
       this.innerWidth = event.target.innerWidth;
       this.innerHeight = event.target.innerHeight;
@@ -32,6 +32,8 @@ export class CalculateComponent implements OnInit {
   }
 
   constructor(@Inject(DOCUMENT) private doc: Document) {
+    this.innerHeight = window.innerHeight;
+    this.innerWidth = window.innerWidth;
   }
 
   ngOnInit(): void {
@@ -61,7 +63,7 @@ export class CalculateComponent implements OnInit {
   }
 
   refreshPage() {
-    this.doc.defaultView.location.reload();
+    this.doc.defaultView?.location.reload();
   }
 
 }

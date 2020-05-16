@@ -9,12 +9,12 @@ import { CustomIconService } from '../../../shared/custom-icon.service';
   styleUrls: [ './results.component.scss' ]
 })
 export class ResultsComponent implements OnInit, OnChanges {
-  @Input() mortgageValue;
-  @Input() calculateState;
+  @Input() mortgageValue: string | undefined;
+  @Input() calculateState: boolean | undefined;
 
-  public expenseItems: ExpenseItem[];
-  public calculatedMortgageExpenses: ExpenseItem[];
-  public totalExpenseAmounts: ExpenseVariations;
+  public expenseItems: ExpenseItem[] | undefined;
+  public calculatedMortgageExpenses: ExpenseItem[] | undefined;
+  public totalExpenseAmounts: ExpenseVariations | undefined;
 
   private readonly FIRST_ELEMENT = 0;
   private readonly SECOND_ELEMENT = 1;
@@ -37,9 +37,12 @@ export class ResultsComponent implements OnInit, OnChanges {
 
             this.expenseItems = this.calculatedMortgageExpenses;
 
-            this.setExceededAmountFlag(this.mortgageValue);
+            this.setExceededAmountFlag(Number(this.mortgageValue));
 
-            this.totalExpenseAmounts = this.calculateTotal(this.expenseItems);
+            if (!!this.expenseItems) {
+              this.totalExpenseAmounts = this.calculateTotal(this.expenseItems);
+            }
+
             break;
           }
         }
@@ -47,13 +50,15 @@ export class ResultsComponent implements OnInit, OnChanges {
     }
   }
 
-  setExceededAmountFlag(mortgageValue) {
+  setExceededAmountFlag(mortgageValue: number) {
     if (mortgageValue > this.MAX_NATIONAL_MORTGAGE_GUARANTEE_AMOUNT) {
-      const exceededAmountItem = this.expenseItems.find(expenseElement => expenseElement.exceededAmount === false);
+      const exceededAmountItem = this.expenseItems?.find(expenseElement => expenseElement.exceededAmount === false);
 
-      exceededAmountItem.exceededAmount = true;
-      exceededAmountItem.amount.percentage[this.FIRST_ELEMENT] = 0;
-      exceededAmountItem.checked = false;
+      if (!!exceededAmountItem) {
+        exceededAmountItem.exceededAmount = true;
+        exceededAmountItem.amount.percentage[this.FIRST_ELEMENT] = 0;
+        exceededAmountItem.checked = false;
+      }
     }
   }
 
@@ -61,30 +66,33 @@ export class ResultsComponent implements OnInit, OnChanges {
     this.totalExpenseAmounts = this.calculateTotal(this.expenseItems);
   }
 
-  calculateTotal(expenseItems: ExpenseItem[]): ExpenseVariations {
+  calculateTotal(expenseItems: ExpenseItem[] | undefined): ExpenseVariations {
     const totalExpenseAmounts: ExpenseVariations = {
       min: 0,
       average: 0,
       max: 0,
     };
 
-    expenseItems.forEach((expenseItem: ExpenseItem) => {
-      const expenseVariations = this.calculateExpense(
-        expenseItem.amount.bothApplicable,
-        expenseItem.amount.costRange,
-        expenseItem.amount.percentage,
-        expenseItem.checked
-      );
+    if (!!expenseItems) {
+      expenseItems.forEach((expenseItem: ExpenseItem) => {
+        const expenseVariations = this.calculateExpense(
+          expenseItem.amount.bothApplicable,
+          expenseItem.amount.costRange,
+          expenseItem.amount.percentage,
+          expenseItem.checked
+        );
 
-      totalExpenseAmounts.min += expenseVariations.min;
-      totalExpenseAmounts.average += expenseVariations.average;
-      totalExpenseAmounts.max += expenseVariations.max;
-    });
+        totalExpenseAmounts.min += expenseVariations.min;
+        totalExpenseAmounts.average += expenseVariations.average;
+        totalExpenseAmounts.max += expenseVariations.max;
+      });
+    }
+
 
     return totalExpenseAmounts;
   }
 
-  calculateExpense(isBothApplicable: boolean, costRange: MinMaxModel, percentage: number[], checked: boolean): ExpenseVariations {
+  calculateExpense(isBothApplicable: boolean, costRange: MinMaxModel, percentage: number[], checked: boolean | undefined): ExpenseVariations {
     const firstPercentageElement = percentage[this.FIRST_ELEMENT];
     const secondPercentageElement = percentage[this.SECOND_ELEMENT];
     const checkNotDefined = checked === undefined || checked === null;

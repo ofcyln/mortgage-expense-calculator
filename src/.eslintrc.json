@@ -22,6 +22,6 @@
   "rules": {
     "no-undefined": "off",
     "no-undef": "off",
-    "no-eq-null": "off",
+    "no-eq-null": "off"
   }
 }

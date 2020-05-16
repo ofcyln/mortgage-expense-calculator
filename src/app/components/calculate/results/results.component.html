@@ -149,7 +149,7 @@
          [fxFlex.xs]="'40'"
          fxLayoutAlign="end center"
          class="margin-bottom-zero"
-         [ngStyle]="{'font-size': '24px'}"> {{ totalExpenseAmounts.average | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
+         [ngStyle]="{'font-size': '24px'}"> {{ totalExpenseAmounts?.average | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
     </mat-list-item>
 
     <mat-list-item fxFlex>
@@ -176,7 +176,7 @@
          [fxFlex.xs]="'40'"
          fxLayoutAlign="end center"
          class="margin-bottom-zero"
-         [ngStyle]="{'font-size': '16px'}"> {{ totalExpenseAmounts.min | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
+         [ngStyle]="{'font-size': '16px'}"> {{ totalExpenseAmounts?.min | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
     </mat-list-item>
 
     <mat-list-item fxFlex>
@@ -203,7 +203,7 @@
          [fxFlex.xs]="'40'"
          fxLayoutAlign="end center"
          class="margin-bottom-zero"
-         [ngStyle]="{'font-size': '16px'}"> {{ totalExpenseAmounts.max | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
+         [ngStyle]="{'font-size': '16px'}"> {{ totalExpenseAmounts?.max | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
     </mat-list-item>
   </mat-list>
 </mat-card>
