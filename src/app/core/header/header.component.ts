@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { CustomIconService } from '../../shared/custom-icon.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +8,14 @@ import { CustomIconService } from '../../shared/custom-icon.service';
   styleUrls: [ './header.component.scss' ],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private customIconService: CustomIconService) {
+  constructor(private customIconService: CustomIconService, @Inject(DOCUMENT) private doc: Document) {
     this.customIconService.addIcon('mecLogoEmpty', 'mecLogoEmpty.svg');
   }
 
   ngOnInit(): void {
+  }
+
+  refreshPage() {
+    this.doc.defaultView?.location.reload();
   }
 }
