@@ -11,11 +11,17 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
+    "strict": true,
     "lib": [
       "es2018",
       "dom"
     ]
   },
+  "exclude": [
+    "node_modules",
+    "src/**/*.test.ts",
+    "dist"
+  ],
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
