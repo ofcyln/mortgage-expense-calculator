@@ -255,7 +255,7 @@ export class ResultsComponent implements OnInit, OnChanges {
           percentage: [0],
           costRange: {
             min: 300,
-            max: 800,s
+            max: 800,
           },
           bothApplicable: false,
         },
