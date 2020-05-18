@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
   <title>Mortgage Expense Calculator</title>
+
   <base href="/">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+  <!-- meta tags -->
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description"
+        content="'Mortgage Expense Calculator' will help you to calculate the estimated mortgage expenses for buying a house in the Netherlands.">
+  <meta name="keywords"
+        content="mortgage, mortgage expenses, mortgages cost, financial advise, expense calculator, cost calculation">
+  <meta name="author" content="Osman Fikret Ceylan">
 
   <!-- google font -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
@@ -20,6 +28,10 @@
   <!-- pwa meta tags -->
   <meta name="theme-color" content="#1976d2">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Mortgage Expense Calculator">
+  <meta name="application-name" content="Mortgage Expense Calculator">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-tap-highlight" content="no">
 
   <!-- favicon -->
   <link rel="icon" type="image/png" sizes="196x196" href="assets/icons/favicon-196.png">
@@ -113,11 +125,28 @@
         media="(prefers-color-scheme: dark) and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
   <link rel="apple-touch-startup-image" href="assets/splash-screens/apple-splash-dark-1136-640.jpeg"
         media="(prefers-color-scheme: dark) and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+
 </head>
 <body class="mat-typography">
 <app-root></app-root>
+
+<!-- addthis sharing service -->
+<script async type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5acb4b28d00953dd"></script>
+
+<!-- google analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MLS406CXCZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-MLS406CXCZ');
+</script>
+
 <noscript>Please enable JavaScript to continue using this application.</noscript>
-
-
 </body>
 </html>

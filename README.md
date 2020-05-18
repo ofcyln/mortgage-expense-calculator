@@ -98,3 +98,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 * https://www.snsbank.nl/particulier/hypotheken/mortgage-in-the-netherlands.html
 * https://www.iamexpat.nl/housing/dutch-mortgages/mortgage-rules-netherlands
 * https://www.hanno.nl/expat-mortgages/mortgage-calculator-netherlands/#quickscan
+
