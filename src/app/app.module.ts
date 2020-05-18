@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 
 import { environment } from '../environments/environment';
 
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { CoreModule } from './core/core.module';
@@ -26,6 +27,7 @@ import { ResultsComponent } from './components/calculate/results/results.compone
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HttpClientModule,
     NgxMaskModule.forRoot(),
+    ScrollToModule.forRoot()
   ],
   providers: [],
   bootstrap: [ AppComponent ]

@@ -85,8 +85,9 @@
   <button *ngIf="isCalculate"
           mat-icon-button
           color="primary"
-          class="margin-bottom-lg"
           [ngClass.lt-md]="'margin-bottom-md'"
+          class="margin-bottom-lg"
+          id="scrollToPoint"
           matTooltip="Clear page"
           [matTooltipPosition]="'right'"
           (click)="refreshPage()">

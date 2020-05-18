@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 
 import { ExpenseItem, ExpenseVariations, MinMaxModel } from '../../../shared/expense-data.model';
 import { CustomIconService } from '../../../shared/custom-icon.service';
+import { ScrollToConfigOptions, ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 
 @Component({
   selector: 'app-results',
@@ -20,12 +21,14 @@ export class ResultsComponent implements OnInit, OnChanges {
   private readonly SECOND_ELEMENT = 1;
   private readonly MAX_NATIONAL_MORTGAGE_GUARANTEE_AMOUNT = 31e4;
   private readonly TOTAL_NUMBER_OF_REAL_ESTATE_EXPENSE_SCENARIOS = 12;
+  private readonly MAX_OFFSET_ON_MOBILE = 4e3;
 
-  constructor(private customIconService: CustomIconService) {
+  constructor(private customIconService: CustomIconService, private scrollToService: ScrollToService) {
     this.customIconService.addIcon('approximately', 'approximately.svg');
   }
 
   ngOnInit(): void {
+    this.triggerScrollToEnd();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -48,6 +51,15 @@ export class ResultsComponent implements OnInit, OnChanges {
         }
       }
     }
+  }
+
+  triggerScrollToEnd() {
+    const config: ScrollToConfigOptions = {
+      target: 'scrollToPoint',
+      offset: this.MAX_OFFSET_ON_MOBILE
+    };
+
+    this.scrollToService.scrollTo(config);
   }
 
   setExceededAmountFlag(mortgageValue: number) {
