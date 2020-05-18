@@ -1,6 +1,6 @@
 # Mortgage Expense Calculator
-<img width="40%" title="Mortgage Expense Calculator" alt="Mortgage Expense Calculator" src="https://mortgageexpensecalculator.com/assets/logo/mec-logo-with-background-2.png"/>
-<br><br>
+<img width="50%" title="Mortgage Expense Calculator" alt="Mortgage Expense Calculator" src="https://mortgageexpensecalculator.com/assets/logo/mec-logo-with-background-2.png"/>
+<br>
 
 > Calculate the estimated mortgage expenses for buying a property in the Netherlands. Use it online by clicking the URL! Also, it's ready as a PWA, you can install it as an app!
 >[mortgageexpensecalculator.com](https://mortgageexpensecalculator.com)
@@ -36,12 +36,12 @@ All special conditions, like not compulsory expenses, maximum range condition de
 I've created a wireframe to see the overall view of the application at first [see the wireframe](https://mortgageexpensecalculator.com/assets/pdf/mortgage-expense-calculator-app-wireframe.pdf)
 
 * Desktop preview
-<br><br>
-<img width="50%" title="Mortgage Expense Calculator - Desktop version usage" alt="Mortgage Expense Calculator - Desktop usage" src="https://mortgageexpensecalculator.com/assets/animated/mec-desktop-gif-faster-min.gif"/>
-<br><br>
+<br>
+<img width="70%" title="Mortgage Expense Calculator - Desktop version usage" alt="Mortgage Expense Calculator - Desktop usage" src="https://mortgageexpensecalculator.com/assets/animated/mec-desktop-gif-faster-min.gif"/>
+<br>
 * PWA and mobile version preview
-<br><br>
-<img width="20%" title="Mortgage Expense Calculator - PWA and mobile version usage" alt="Mortgage Expense Calculator - PWA and mobile version usage" src="https://mortgageexpensecalculator.com/assets/animated/mec-mobile-gif-min.gif"/>
+<br>
+<img width="35%" title="Mortgage Expense Calculator - PWA and mobile version usage" alt="Mortgage Expense Calculator - PWA and mobile version usage" src="https://mortgageexpensecalculator.com/assets/animated/mec-mobile-gif-min.gif"/>
 
 ## Technologies used on the development process
 
