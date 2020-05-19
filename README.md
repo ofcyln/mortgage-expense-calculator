@@ -31,7 +31,7 @@ Mortgage Expense Calculator has been developed after a couple of one-on-one inte
 
 Calculation ranges in the application, are very accurate for those who want to use it.
 
-All special conditions, like not compulsory expenses, maximum range condition depending on the mortgage amount, tax-return possible expenses, etc. were considered to calculate the best-estimated results. Also, all of the expenses have special explanations.
+All special conditions, like not compulsory expenses, maximum range condition depending on the mortgage amount, tax-return possible expenses, etc. were considered to calculate the best-estimated results. Also, all the expenses have special explanations.
 
 ## Wireframe and Preview of the app
 
