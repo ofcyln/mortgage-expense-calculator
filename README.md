@@ -7,19 +7,21 @@
 
 ## Motivation 
 
-When I want to buy a property with a mortgage in the Netherlands, I needed to have some amount of money to pay expenses of a mortgage I want to borrow. 
+When you want to buy a property with a mortgage in the Netherlands, you need to have some amount of money to afford the expenses of a mortgage.
 
-These expenses were too difficult for me to calculate on the paper until this web application idea pops up in my mind.
+These expenses could be too difficult to calculate on the paper because of many considerations affecting each other items.
 
-* There were various cost items for getting a mortgage and I needed to organize them,
+These difficulties consist:
 
-* This expense items had special conditions and special cost ranges,
+* There are various cost items for getting a mortgage, and you need to organize them,
 
-* There were also special conditions like compulsory expense or not which is affecting your total expense directly,
+* These different expense items have special conditions and special cost ranges,
 
-* Special conditions were also including upper limits depending on the mortgage amount,
+* There are also special conditions like compulsory expense or not which is affecting your total expense directly,
 
-* At the end of each calculation on the paper, I was ending up with alternative scenarios of the expenses and I needed to go over each item with optimistic and pessimistic conditions.
+* Special conditions are also including upper limits depending on the mortgage amount,
+
+* At the end of each calculation on the paper, you could be ending up with alternative scenarios of the expenses, and you could need to go over each item with optimistic and pessimistic scenarios.
 
 So why not to automatically calculate it and help people to use it. 💡
 
