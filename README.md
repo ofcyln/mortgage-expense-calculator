@@ -59,6 +59,7 @@ I've created a wireframe to see the overall view of the application at first [se
 * Google Firebase
 * Google Analytics
 * [Logo Scene](http://logo-scene.firebaseapp.com/) web app to create splash screen mock and social share image variations
+* [PWA Asset Generator](https://github.com/onderceylan/pwa-asset-generator) for splash screen creations including dark mode splash screens
 
 ## Installation on your local environment
 
