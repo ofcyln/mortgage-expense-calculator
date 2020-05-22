@@ -2,7 +2,7 @@
   "$schema": "./node_modules/@angular/service-worker/config/schema.json",
   "index": "/index.html",
   "appData": {
-    "version": "2.0.0",
+    "version": "2.1.0",
     "changelog": "PWA configurations and asset integrations completed."
   },
   "assetGroups": [
@@ -26,6 +26,9 @@
         "files": [
           "/assets/**",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/**"
         ]
       }
     }
