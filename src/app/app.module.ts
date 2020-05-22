@@ -15,11 +15,7 @@ import { AppComponent } from './app.component';
 import { ResultsComponent } from './components/calculate/results/results.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CalculateComponent,
-    ResultsComponent
-  ],
+  declarations: [AppComponent, CalculateComponent, ResultsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -27,10 +23,9 @@ import { ResultsComponent } from './components/calculate/results/results.compone
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HttpClientModule,
     NgxMaskModule.forRoot(),
-    ScrollToModule.forRoot()
+    ScrollToModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

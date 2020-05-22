@@ -16,12 +16,27 @@
     "prettier/@typescript-eslint"
   ],
   "parserOptions": {
-    "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
-    "sourceType": "module" // Allows for the use of imports
+    "ecmaVersion": 2020,
+    // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module"
+    // Allows for the use of imports
   },
   "rules": {
     "no-undefined": "off",
     "no-undef": "off",
-    "no-eq-null": "off"
+    "no-eq-null": "off",
+    "no-prototype-builtins": "off",
+    "no-useless-constructor": "off",
+    "no-empty-function": [
+      "warn",
+      {
+        "allow": [
+          "constructors"
+        ]
+      }
+    ],
+    "@typescript-eslint/no-empty-function": [
+      "off"
+    ]
   }
 }

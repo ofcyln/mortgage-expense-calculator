@@ -1,11 +1,11 @@
 @import '../../../../assets/scss/mixins';
 
 :host {
-  mat-icon {
-    @include md-icon-size(16px);
+	mat-icon {
+		@include md-icon-size(16px);
 
-    &[svgicon=approximately] {
-      @include md-icon-size(14px);
-    }
-  }
+		&[svgicon='approximately'] {
+			@include md-icon-size(14px);
+		}
+	}
 }

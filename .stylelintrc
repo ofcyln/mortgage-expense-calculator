@@ -12,7 +12,7 @@
 				]
 			}
 		],
-		"indentation": "space",
+		"indentation": "tab",
 		"number-leading-zero": null,
 		"unit-whitelist": [
 			"em",
