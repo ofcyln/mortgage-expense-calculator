@@ -10,19 +10,23 @@
     "e2e": "ng e2e",
     "build:prod": "ng build --prod --aot --build-optimizer",
     "deploy:firebase": "firebase deploy",
-    "format": "prettier --single-quote --trailing-comma all --bracket-spacing true --print-width 140 --arrow-parens always --write",
-    "stylelint": "stylelint \"src/**/*.scss\"",
-    "precommit": "lint-staged"
+    "format": "prettier \"src/**/*.{ts,scss}\" --write",
+    "stylelint": "stylelint \"src/**/*.scss\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
+    "src/**/*.{ts,scss}": [
+      "prettier --write"
+    ],
     "src/**/*.ts": [
-      "npm run format",
-      "npm run lint",
-      "git add"
+      "eslint --cache --fix"
     ],
     "src/**/*.scss": [
-      "npm run stylelint",
-      "git add"
+      "stylelint --fix"
     ]
   },
   "repository": {
@@ -43,6 +47,7 @@
     "@angular/platform-browser-dynamic": "^9.1.7",
     "@angular/router": "^9.1.7",
     "@angular/service-worker": "^9.1.7",
+    "@nicky-lenaers/ngx-scroll-to": "^9.0.0",
     "ngx-mask": "^9.0.2",
     "rxjs": "~6.5.4",
     "rxjs-tslint": "^0.1.8",

@@ -27,7 +27,9 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              {"glob": "sitemap.xml", "input": "src/assets", "output": "/"},
+              {"glob": "robots.txt", "input": "src/assets", "output": "/"}
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",

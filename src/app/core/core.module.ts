@@ -10,26 +10,8 @@ import { ShareButtonsComponent } from './header/share-buttons/share-buttons.comp
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    NotFoundComponent,
-    ShareButtonsComponent
-  ],
-  imports: [
-    CommonModule,
-    AppRoutingModule,
-    FormsModule,
-    FlexLayoutModule,
-    MaterialModule
-  ],
-  exports: [
-    HeaderComponent,
-    NotFoundComponent,
-    AppRoutingModule,
-    FlexLayoutModule,
-    MaterialModule,
-    FormsModule
-  ],
+  declarations: [HeaderComponent, NotFoundComponent, ShareButtonsComponent],
+  imports: [CommonModule, AppRoutingModule, FormsModule, FlexLayoutModule, MaterialModule],
+  exports: [HeaderComponent, NotFoundComponent, AppRoutingModule, FlexLayoutModule, MaterialModule, FormsModule],
 })
-export class CoreModule {
-}
+export class CoreModule {}
