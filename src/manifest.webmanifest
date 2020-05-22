@@ -5,7 +5,7 @@
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "./",
-  "start_url": "./",
+  "start_url": "./?utm_source=standalone&utm_medium=pwa",
   "icons": [
     {
       "src": "assets/icons/manifest-icon-192.jpg",
