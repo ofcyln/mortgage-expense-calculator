@@ -77,8 +77,7 @@
           </ng-template>
         </section>
 
-        <section fxLayoutAlign="end center"
-                 [ngStyle.lt-md]="{'display': 'none'}">
+        <section fxLayoutAlign="end center" fxHide.lt-md>
           <mat-icon *ngIf="expenseItem.taxDeductible"
                     mat-list-icon
                     matTooltip="This cost is tax deductible, which means it can be lowered with effectively 38% or 49% depending on the amount of your gross income."
