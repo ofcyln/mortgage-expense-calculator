@@ -1,167 +1,168 @@
 @import 'assets/scss/mixins.scss';
 @import 'assets/scss/media-queries.scss';
 @import 'assets/scss/custom-add-this-service-styles.scss';
+@import 'assets/scss/custom-buymeacoffee-service-styles';
 
 body {
-  height: 100vh;
-  margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-  background-image: url('assets/logo/mecLogoEmptyWhite.svg');
-  background-repeat: no-repeat;
-  background-color: #fbfbfb;
-  background-size: 30%;
-  background-position: bottom;
+	height: 100vh;
+	margin: 0;
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
+	background-image: url('assets/logo/mecLogoEmptyWhite.svg');
+	background-repeat: no-repeat;
+	background-color: #fbfbfb;
+	background-size: 30%;
+	background-position: bottom;
 }
 
 .no--padding {
-  padding: 0 !important;
+	padding: 0 !important;
 }
 
 .no--margin {
-  margin: 0 !important;
+	margin: 0 !important;
 }
 
 .cursor--pointer {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .w-100 {
-  width: 100%;
+	width: 100%;
 }
 
 ::selection {
-  color: white;
-  background: #3f51b5;
+	color: white;
+	background: #3f51b5;
 }
 
 .margin {
-  &-top {
-    &-xl {
-      margin-top: 5em !important;
-    }
+	&-top {
+		&-xl {
+			margin-top: 5em !important;
+		}
 
-    &-lg {
-      margin-top: 3em !important;
-    }
+		&-lg {
+			margin-top: 3em !important;
+		}
 
-    &-md {
-      margin-top: 2em !important;
-    }
+		&-md {
+			margin-top: 2em !important;
+		}
 
-    &-sm {
-      margin-top: 1em !important;
-    }
+		&-sm {
+			margin-top: 1em !important;
+		}
 
-    &-zero {
-      margin-top: 0 !important;
-    }
-  }
+		&-zero {
+			margin-top: 0 !important;
+		}
+	}
 
-  &-bottom {
-    &-xl {
-      margin-bottom: 5em !important;
-    }
+	&-bottom {
+		&-xl {
+			margin-bottom: 5em !important;
+		}
 
-    &-lg {
-      margin-bottom: 3em !important;
-    }
+		&-lg {
+			margin-bottom: 3em !important;
+		}
 
-    &-md {
-      margin-bottom: 2em !important;
-    }
+		&-md {
+			margin-bottom: 2em !important;
+		}
 
-    &-sm {
-      margin-bottom: 1em !important;
-    }
+		&-sm {
+			margin-bottom: 1em !important;
+		}
 
-    &-zero {
-      margin-bottom: 0 !important;
-    }
-  }
+		&-zero {
+			margin-bottom: 0 !important;
+		}
+	}
 
-  &-left {
-    &-xl {
-      margin-left: 5em !important;
-    }
+	&-left {
+		&-xl {
+			margin-left: 5em !important;
+		}
 
-    &-lg {
-      margin-left: 3em !important;
-    }
+		&-lg {
+			margin-left: 3em !important;
+		}
 
-    &-md {
-      margin-left: 2em !important;
-    }
+		&-md {
+			margin-left: 2em !important;
+		}
 
-    &-sm {
-      margin-left: 1em !important;
-    }
+		&-sm {
+			margin-left: 1em !important;
+		}
 
-    &-zero {
-      margin-left: 0 !important;
-    }
-  }
+		&-zero {
+			margin-left: 0 !important;
+		}
+	}
 
-  &-right {
-    &-xl {
-      margin-right: 5em !important;
-    }
+	&-right {
+		&-xl {
+			margin-right: 5em !important;
+		}
 
-    &-lg {
-      margin-right: 3em !important;
-    }
+		&-lg {
+			margin-right: 3em !important;
+		}
 
-    &-md {
-      margin-right: 2em !important;
-    }
+		&-md {
+			margin-right: 2em !important;
+		}
 
-    &-sm {
-      margin-right: 1em !important;
-    }
+		&-sm {
+			margin-right: 1em !important;
+		}
 
-    &-zero {
-      margin-right: 0 !important;
-    }
-  }
+		&-zero {
+			margin-right: 0 !important;
+		}
+	}
 }
 
 .position-relative {
-  position: relative !important;
+	position: relative !important;
 }
 
 /**
  * Custom Angular Material styles
  */
 .mat-form-field {
-  width: 270px !important;
-  font-size: 18px;
+	width: 270px !important;
+	font-size: 18px;
 }
 
 .mat-form-field-appearance-legacy {
-  .mat-form-field-infix {
-    padding: 0.54em 0 !important;
-  }
+	.mat-form-field-infix {
+		padding: 0.54em 0 !important;
+	}
 }
 
 .mat-card .mat-divider-horizontal {
-  min-height: 20px;
+	min-height: 20px;
 }
 
 .mat-list-base .mat-list-item .mat-list-item-content {
-  justify-content: center;
-  align-items: center;
-  min-height: 48px;
+	justify-content: center;
+	align-items: center;
+	min-height: 48px;
 }
 
 .mat-checkbox-layout .mat-checkbox-label {
-  white-space: initial;
+	white-space: initial;
 }
 
 .mat-card:not([class*='mat-elevation-z']) {
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.07), 0 1px 1px 0 rgba(0, 0, 0, 0.35), 0 1px 3px 0 rgba(0, 0, 0, 0.43);
+	box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.07), 0 1px 1px 0 rgba(0, 0, 0, 0.35), 0 1px 3px 0 rgba(0, 0, 0, 0.43);
 }
 
 .mat-raised-button {
-  line-height: 50px !important;
-  padding: 0 20px !important;
-  font-size: 18px !important;
+	line-height: 50px !important;
+	padding: 0 20px !important;
+	font-size: 18px !important;
 }
