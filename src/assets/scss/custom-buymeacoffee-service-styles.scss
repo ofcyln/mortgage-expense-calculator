@@ -1,0 +1,33 @@
+body {
+	#bmc-wbtn {
+		width: 30px !important;
+		height: 30px !important;
+		border-radius: 50% !important;
+
+		img {
+			height: 20px !important;
+			width: 20px !important;
+		}
+	}
+}
+
+@media only screen and (min-width: 800px) {
+	body {
+		#bmc-wbtn {
+			width: 50px !important;
+			height: 50px !important;
+			left: initial !important;
+			right: 10px !important;
+
+			img {
+				height: 35px !important;
+				width: 35px !important;
+			}
+		}
+	}
+
+	iframe {
+		left: initial !important;
+		right: 10px !important;
+	}
+}
