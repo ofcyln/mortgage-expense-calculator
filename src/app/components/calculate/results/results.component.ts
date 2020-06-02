@@ -21,7 +21,7 @@ export class ResultsComponent implements OnInit, OnChanges {
   private readonly SECOND_ELEMENT = 1;
   private readonly MAX_NATIONAL_MORTGAGE_GUARANTEE_AMOUNT = 31e4;
   private readonly TOTAL_NUMBER_OF_REAL_ESTATE_EXPENSE_SCENARIOS = 12;
-  private readonly MAX_OFFSET_ON_MOBILE = 4e3;
+  private readonly MAX_OFFSET_ON_MOBILE = 5e3;
 
   constructor(private customIconService: CustomIconService, private scrollToService: ScrollToService) {
     this.customIconService.addIcon('approximately', 'approximately.svg');
