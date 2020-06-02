@@ -93,6 +93,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 * http://expatmortgages.nl/
 * https://www.burophilipvandenhurk.nl/
+* https://welocate.com/
 * https://www.globalpropertyguide.com/Europe/Netherlands/Buying-Guide
 * https://www.iamexpat.nl/housing/buy-house-netherlands/taxes-costs-fees
 * https://www.cournot.nl/hypotheek/costs-and-taxes-buying-house/
