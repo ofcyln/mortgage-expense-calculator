@@ -376,7 +376,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         taxDeductible: true,
         specialExpense: true,
         exceededAmount: false,
-        checked: true,
+        checked: false,
       },
       {
         name: 'Real Estate Agent',
@@ -394,7 +394,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         taxDeductible: false,
         specialExpense: true,
         approximate: true,
-        checked: true,
+        checked: false,
       },
       {
         name: 'Life Insurance',
@@ -412,7 +412,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         taxDeductible: false,
         specialExpense: true,
         approximate: true,
-        checked: true,
+        checked: false,
       },
       {
         name: 'Contact with Agency',
@@ -430,7 +430,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         taxDeductible: false,
         specialExpense: true,
         approximate: true,
-        checked: true,
+        checked: false,
       },
       {
         name: 'Translator',
@@ -448,7 +448,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         taxDeductible: false,
         specialExpense: true,
         approximate: true,
-        checked: true,
+        checked: false,
       },
       {
         name: 'Self-employed Customers',
@@ -465,7 +465,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         taxDeductible: false,
         specialExpense: true,
         approximate: true,
-        checked: true,
+        checked: false,
       },
     ];
 
