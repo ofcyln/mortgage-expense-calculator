@@ -10,18 +10,18 @@ import { ScrollToConfigOptions, ScrollToService } from '@nicky-lenaers/ngx-scrol
   styleUrls: ['./results.component.scss'],
 })
 export class ResultsComponent implements OnInit, OnChanges {
-  @Input() mortgageValue: string | undefined;
-  @Input() calculateState: boolean | undefined;
+  @Input() mortgageValue!: string;
+  @Input() calculateState!: boolean;
 
-  public expenseItems: ExpenseItem[] | undefined;
-  public calculatedMortgageExpenses: ExpenseItem[] | undefined;
-  public totalExpenseAmounts: ExpenseVariations | undefined;
+  public expenseItems!: ExpenseItem[];
+  public calculatedMortgageExpenses!: ExpenseItem[];
+  public totalExpenseAmounts!: ExpenseVariations;
 
   private readonly FIRST_ELEMENT = 0;
   private readonly SECOND_ELEMENT = 1;
   private readonly MAX_NATIONAL_MORTGAGE_GUARANTEE_AMOUNT = 31e4;
   private readonly TOTAL_NUMBER_OF_REAL_ESTATE_EXPENSE_SCENARIOS = 12;
-  private readonly MAX_OFFSET_ON_MOBILE = 4e3;
+  private readonly MAX_OFFSET_ON_MOBILE = 5e3;
 
   constructor(private customIconService: CustomIconService, private scrollToService: ScrollToService) {
     this.customIconService.addIcon('approximately', 'approximately.svg');
@@ -74,11 +74,35 @@ export class ResultsComponent implements OnInit, OnChanges {
     }
   }
 
-  updateExpenseItemCheckedState() {
+  updateExpenseItemCheckedState(expenseItem: ExpenseItem) {
+    const isRealEstateAgency = expenseItem.name === 'Real Estate Agent';
+    const isAgencyHelp = expenseItem.name === 'Contact with Agency';
+
+    const isEstateSelected = isRealEstateAgency && expenseItem.checked;
+    const isAgencyHelpSelected = isAgencyHelp && expenseItem.checked;
+
+    const checkEstateAgency = (element: ExpenseItem) => element.name === 'Real Estate Agent';
+    const checkContactAgency = (element: ExpenseItem) => element.name === 'Contact with Agency';
+
+    if (isEstateSelected) {
+      const contactAgencyElementIndex = this.expenseItems.findIndex(checkContactAgency);
+
+      if (this.expenseItems[contactAgencyElementIndex].checked) {
+        this.expenseItems[contactAgencyElementIndex].checked = false;
+      }
+    }
+
+    if (isAgencyHelpSelected) {
+      const realEstateAgencyElementIndex = this.expenseItems.findIndex(checkEstateAgency);
+      if (this.expenseItems[realEstateAgencyElementIndex].checked) {
+        this.expenseItems[realEstateAgencyElementIndex].checked = false;
+      }
+    }
+
     this.totalExpenseAmounts = this.calculateTotal(this.expenseItems);
   }
 
-  calculateTotal(expenseItems: ExpenseItem[] | undefined): ExpenseVariations {
+  calculateTotal(expenseItems: ExpenseItem[]): ExpenseVariations {
     const totalExpenseAmounts: ExpenseVariations = {
       min: 0,
       average: 0,
@@ -103,12 +127,7 @@ export class ResultsComponent implements OnInit, OnChanges {
     return totalExpenseAmounts;
   }
 
-  calculateExpense(
-    isBothApplicable: boolean,
-    costRange: MinMaxModel,
-    percentage: number[],
-    checked: boolean | undefined,
-  ): ExpenseVariations {
+  calculateExpense(isBothApplicable: boolean, costRange: MinMaxModel, percentage: number[], checked?: boolean): ExpenseVariations {
     const firstPercentageElement = percentage[this.FIRST_ELEMENT];
     const secondPercentageElement = percentage[this.SECOND_ELEMENT];
     const checkNotDefined = checked === undefined || checked === null;
@@ -264,7 +283,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         approximate: true,
       },
       {
-        name: 'Valuation',
+        name: 'Valuation Report',
         amount: {
           percentage: [0],
           costRange: {
@@ -274,7 +293,7 @@ export class ResultsComponent implements OnInit, OnChanges {
           bothApplicable: false,
         },
         info:
-          'Every bank or lender requires an official valuation report if you’re getting a mortgage. This will cost you somewhere between 300 euros to 800 euros, depending on the size of the house (the bigger, the more work) and of course the evaluator you choose.',
+          'Also known as (Appraisal report). Every bank or lender requires an official valuation report if you’re getting a mortgage. A local, certified appraiser visits the property and creates an valuation report about the property. This report will be required for your mortgage and is accepted by all banks. This will cost you somewhere between 300 euros to 800 euros, depending on the size of the house (the bigger, the more work) and of course the evaluator you choose.',
         compulsory: true,
         taxDeductible: true,
         approximate: true,
@@ -355,7 +374,8 @@ export class ResultsComponent implements OnInit, OnChanges {
           },
           bothApplicable: false,
         },
-        info: 'A structural survey to inspect your home will cost between 250 and 900 euros, depending on the size of the building.',
+        info:
+          'Also known as (Building Report). A building inspector who visits and checks the condition of the property and delivers an extensive construction report detailing short, medium and long term maintenance costs. A structural survey to inspect your home will cost between 250 and 900 euros, depending on the size of the building.',
         compulsory: true,
         taxDeductible: false,
         approximate: true,
@@ -376,7 +396,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         taxDeductible: true,
         specialExpense: true,
         exceededAmount: false,
-        checked: true,
+        checked: false,
       },
       {
         name: 'Real Estate Agent',
@@ -394,7 +414,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         taxDeductible: false,
         specialExpense: true,
         approximate: true,
-        checked: true,
+        checked: false,
       },
       {
         name: 'Life Insurance',
@@ -412,7 +432,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         taxDeductible: false,
         specialExpense: true,
         approximate: true,
-        checked: true,
+        checked: false,
       },
       {
         name: 'Contact with Agency',
@@ -430,7 +450,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         taxDeductible: false,
         specialExpense: true,
         approximate: true,
-        checked: true,
+        checked: false,
       },
       {
         name: 'Translator',
@@ -448,7 +468,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         taxDeductible: false,
         specialExpense: true,
         approximate: true,
-        checked: true,
+        checked: false,
       },
       {
         name: 'Self-employed Customers',
@@ -465,7 +485,25 @@ export class ResultsComponent implements OnInit, OnChanges {
         taxDeductible: false,
         specialExpense: true,
         approximate: true,
-        checked: true,
+        checked: false,
+      },
+      {
+        name: 'Mortgage for House Owners',
+        amount: {
+          percentage: [0],
+          costRange: {
+            min: 400,
+            max: 600,
+          },
+          bothApplicable: false,
+        },
+        info:
+          "Arranging a mortgage for existing house owners. It's being handled by financial advisor and it costs you between the amount of 475 euros to 500 euros.",
+        compulsory: false,
+        taxDeductible: false,
+        specialExpense: true,
+        approximate: true,
+        checked: false,
       },
     ];
 
