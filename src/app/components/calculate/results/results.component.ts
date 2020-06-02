@@ -293,7 +293,7 @@ export class ResultsComponent implements OnInit, OnChanges {
           bothApplicable: false,
         },
         info:
-          'Every bank or lender requires an official valuation report if you’re getting a mortgage. This will cost you somewhere between 300 euros to 800 euros, depending on the size of the house (the bigger, the more work) and of course the evaluator you choose.',
+          'Also known as (Appraisal report). Every bank or lender requires an official valuation report if you’re getting a mortgage. A local, certified appraiser visits the property and creates an valuation report about the property. This report will be required for your mortgage and is accepted by all banks. This will cost you somewhere between 300 euros to 800 euros, depending on the size of the house (the bigger, the more work) and of course the evaluator you choose.',
         compulsory: true,
         taxDeductible: true,
         approximate: true,
@@ -374,7 +374,8 @@ export class ResultsComponent implements OnInit, OnChanges {
           },
           bothApplicable: false,
         },
-        info: 'A structural survey to inspect your home will cost between 250 and 900 euros, depending on the size of the building.',
+        info:
+          'Also known as (Building Report). A building inspector who visits and checks the condition of the property and delivers an extensive construction report detailing short, medium and long term maintenance costs. A structural survey to inspect your home will cost between 250 and 900 euros, depending on the size of the building.',
         compulsory: true,
         taxDeductible: false,
         approximate: true,
@@ -480,6 +481,24 @@ export class ResultsComponent implements OnInit, OnChanges {
           bothApplicable: false,
         },
         info: 'Additional fee due before handling your files. It costs you between the amount of 475 euros to 500 euros.',
+        compulsory: false,
+        taxDeductible: false,
+        specialExpense: true,
+        approximate: true,
+        checked: false,
+      },
+      {
+        name: 'Mortgage for House Owners',
+        amount: {
+          percentage: [0],
+          costRange: {
+            min: 400,
+            max: 600,
+          },
+          bothApplicable: false,
+        },
+        info:
+          "Arranging a mortgage for existing house owners. It's being handled by financial advisor and it costs you between the amount of 475 euros to 500 euros.",
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
