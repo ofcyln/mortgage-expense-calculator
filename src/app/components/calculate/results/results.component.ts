@@ -283,7 +283,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         approximate: true,
       },
       {
-        name: 'Valuation',
+        name: 'Valuation Report',
         amount: {
           percentage: [0],
           costRange: {
