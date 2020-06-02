@@ -19,7 +19,7 @@
         <section fxLayout="column">
           <mat-checkbox *ngIf="expenseItem.specialExpense; else nameField"
                         [disabled]="expenseItem.exceededAmount"
-                        (change)="updateExpenseItemCheckedState()"
+                        (change)="updateExpenseItemCheckedState(expenseItem)"
                         [(ngModel)]="expenseItem.checked"
                         color="primary">
             <p [ngStyle.lt-md]="{'font-weight': '500'}"

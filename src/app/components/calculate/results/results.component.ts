@@ -10,12 +10,12 @@ import { ScrollToConfigOptions, ScrollToService } from '@nicky-lenaers/ngx-scrol
   styleUrls: ['./results.component.scss'],
 })
 export class ResultsComponent implements OnInit, OnChanges {
-  @Input() mortgageValue: string | undefined;
-  @Input() calculateState: boolean | undefined;
+  @Input() mortgageValue!: string;
+  @Input() calculateState!: boolean;
 
-  public expenseItems: ExpenseItem[] | undefined;
-  public calculatedMortgageExpenses: ExpenseItem[] | undefined;
-  public totalExpenseAmounts: ExpenseVariations | undefined;
+  public expenseItems!: ExpenseItem[];
+  public calculatedMortgageExpenses!: ExpenseItem[];
+  public totalExpenseAmounts!: ExpenseVariations;
 
   private readonly FIRST_ELEMENT = 0;
   private readonly SECOND_ELEMENT = 1;
@@ -74,11 +74,35 @@ export class ResultsComponent implements OnInit, OnChanges {
     }
   }
 
-  updateExpenseItemCheckedState() {
+  updateExpenseItemCheckedState(expenseItem: ExpenseItem) {
+    const isRealEstateAgency = expenseItem.name === 'Real Estate Agent';
+    const isAgencyHelp = expenseItem.name === 'Contact with Agency';
+
+    const isEstateSelected = isRealEstateAgency && expenseItem.checked;
+    const isAgencyHelpSelected = isAgencyHelp && expenseItem.checked;
+
+    const checkEstateAgency = (element: ExpenseItem) => element.name === 'Real Estate Agent';
+    const checkContactAgency = (element: ExpenseItem) => element.name === 'Contact with Agency';
+
+    if (isEstateSelected) {
+      const contactAgencyElementIndex = this.expenseItems.findIndex(checkContactAgency);
+
+      if (this.expenseItems[contactAgencyElementIndex].checked) {
+        this.expenseItems[contactAgencyElementIndex].checked = false;
+      }
+    }
+
+    if (isAgencyHelpSelected) {
+      const realEstateAgencyElementIndex = this.expenseItems.findIndex(checkEstateAgency);
+      if (this.expenseItems[realEstateAgencyElementIndex].checked) {
+        this.expenseItems[realEstateAgencyElementIndex].checked = false;
+      }
+    }
+
     this.totalExpenseAmounts = this.calculateTotal(this.expenseItems);
   }
 
-  calculateTotal(expenseItems: ExpenseItem[] | undefined): ExpenseVariations {
+  calculateTotal(expenseItems: ExpenseItem[]): ExpenseVariations {
     const totalExpenseAmounts: ExpenseVariations = {
       min: 0,
       average: 0,
@@ -103,12 +127,7 @@ export class ResultsComponent implements OnInit, OnChanges {
     return totalExpenseAmounts;
   }
 
-  calculateExpense(
-    isBothApplicable: boolean,
-    costRange: MinMaxModel,
-    percentage: number[],
-    checked: boolean | undefined,
-  ): ExpenseVariations {
+  calculateExpense(isBothApplicable: boolean, costRange: MinMaxModel, percentage: number[], checked?: boolean): ExpenseVariations {
     const firstPercentageElement = percentage[this.FIRST_ELEMENT];
     const secondPercentageElement = percentage[this.SECOND_ELEMENT];
     const checkNotDefined = checked === undefined || checked === null;
