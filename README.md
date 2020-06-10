@@ -37,6 +37,9 @@ All special conditions, like not compulsory expenses, maximum range condition de
 
 I've created a wireframe to see the overall view of the application before development [see the wireframe](https://mortgageexpensecalculator.com/assets/pdf/mortgage-expense-calculator-app-wireframe.pdf)
 
+## Preview of the app
+Will be updated soon...
+
 ## Technologies used on the development process
 
 * Angular 9+ version
