@@ -33,17 +33,9 @@ Calculation ranges in the application, are very accurate for those who want to u
 
 All special conditions, like not compulsory expenses, maximum range condition depending on the mortgage amount, tax-return possible expenses, etc. were considered to calculate the best-estimated results. Also, all the expenses have special explanations.
 
-## Wireframe and Preview of the app
+## Wireframe
 
-I've created a wireframe to see the overall view of the application at first [see the wireframe](https://mortgageexpensecalculator.com/assets/pdf/mortgage-expense-calculator-app-wireframe.pdf)
-
-* Desktop preview
-<br>
-<img width="70%" title="Mortgage Expense Calculator - Desktop version usage" alt="Mortgage Expense Calculator - Desktop usage" src="https://mortgageexpensecalculator.com/assets/animated/mec-desktop-gif-faster-min.gif"/>
-<br>
-* PWA and mobile version preview
-<br>
-<img width="35%" title="Mortgage Expense Calculator - PWA and mobile version usage" alt="Mortgage Expense Calculator - PWA and mobile version usage" src="https://mortgageexpensecalculator.com/assets/animated/mec-mobile-gif-min.gif"/>
+I've created a wireframe to see the overall view of the application before development [see the wireframe](https://mortgageexpensecalculator.com/assets/pdf/mortgage-expense-calculator-app-wireframe.pdf)
 
 ## Technologies used on the development process
 
