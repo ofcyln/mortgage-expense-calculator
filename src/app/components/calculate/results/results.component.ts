@@ -3,6 +3,8 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { ExpenseItem, ExpenseVariations, MinMaxModel } from '../../../shared/expense-data.model';
 import { CustomIconService } from '../../../shared/custom-icon.service';
 import { ScrollToConfigOptions, ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
+import * as jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-results',
@@ -53,7 +55,23 @@ export class ResultsComponent implements OnInit, OnChanges {
     }
   }
 
-  triggerScrollToEnd() {
+  public captureScreen(): void {
+    const data = document.querySelector('#content') as HTMLElement;
+
+    html2canvas(data).then((canvas: HTMLCanvasElement) => {
+      const contentDataURL = canvas.toDataURL('image/png');
+
+      const pdf = new jsPDF('p', 'pt', 'a4');
+
+      const imgWidth = 560;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      pdf.addImage(contentDataURL, 'PNG', 21, 21, imgWidth, imgHeight, '', 'FAST');
+      pdf.save('Mortgage Expense Calculation.pdf');
+    });
+  }
+
+  triggerScrollToEnd(): void {
     const config: ScrollToConfigOptions = {
       target: 'scrollToPoint',
       offset: this.MAX_OFFSET_ON_MOBILE,
@@ -62,7 +80,7 @@ export class ResultsComponent implements OnInit, OnChanges {
     this.scrollToService.scrollTo(config);
   }
 
-  setExceededAmountFlag(mortgageValue: number) {
+  setExceededAmountFlag(mortgageValue: number): void {
     if (mortgageValue > this.MAX_NATIONAL_MORTGAGE_GUARANTEE_AMOUNT) {
       const exceededAmountItem = this.expenseItems?.find((expenseElement) => expenseElement.exceededAmount === false);
 
@@ -74,15 +92,15 @@ export class ResultsComponent implements OnInit, OnChanges {
     }
   }
 
-  updateExpenseItemCheckedState(expenseItem: ExpenseItem) {
+  updateExpenseItemCheckedState(expenseItem: ExpenseItem): void {
     const isRealEstateAgency = expenseItem.name === 'Real Estate Agent';
     const isAgencyHelp = expenseItem.name === 'Contact with Agency';
 
     const isEstateSelected = isRealEstateAgency && expenseItem.checked;
     const isAgencyHelpSelected = isAgencyHelp && expenseItem.checked;
 
-    const checkEstateAgency = (element: ExpenseItem) => element.name === 'Real Estate Agent';
-    const checkContactAgency = (element: ExpenseItem) => element.name === 'Contact with Agency';
+    const checkEstateAgency: (element: ExpenseItem) => boolean = (element: ExpenseItem) => element.name === 'Real Estate Agent';
+    const checkContactAgency: (element: ExpenseItem) => boolean = (element: ExpenseItem) => element.name === 'Contact with Agency';
 
     if (isEstateSelected) {
       const contactAgencyElementIndex = this.expenseItems.findIndex(checkContactAgency);
