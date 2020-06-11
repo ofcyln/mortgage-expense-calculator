@@ -57,6 +57,7 @@ export class ResultsComponent implements OnInit, OnChanges {
 
   public captureScreen(): void {
     const data = document.querySelector('#content') as HTMLElement;
+    const calculatedElements = document.querySelectorAll('mat-list-item') as NodeList;
 
     html2canvas(data).then((canvas: HTMLCanvasElement) => {
       const contentDataURL = canvas.toDataURL('image/png');
@@ -66,7 +67,8 @@ export class ResultsComponent implements OnInit, OnChanges {
       const imgWidth = 560;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-      pdf.addImage(contentDataURL, 'PNG', 21, 21, imgWidth, imgHeight, '', 'FAST');
+      // pdf.text("Mortgage Expense Calculations", 20, 20);
+      pdf.addImage(contentDataURL, 'PNG', 20, 40, imgWidth, imgHeight, '', 'FAST');
       pdf.save('Mortgage Expense Calculation.pdf');
     });
   }
