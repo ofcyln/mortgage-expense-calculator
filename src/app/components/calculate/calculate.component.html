@@ -82,16 +82,31 @@
                class="margin-bottom-md"
                fxLayoutAlign="center center"></app-results>
 
-  <button *ngIf="isCalculate"
-          mat-icon-button
-          color="primary"
-          [ngClass.lt-md]="'margin-bottom-md'"
-          class="margin-bottom-lg"
-          id="scrollToPoint"
-          matTooltip="Clear page"
-          [matTooltipPosition]="'right'"
-          (click)="refreshPage()">
-    <mat-icon>refresh</mat-icon>
-  </button>
+  <section *ngIf="isCalculate"
+           class="functional-buttons-container"
+           fxLayout="column"
+           fxLayoutAlign="center center">
+    <button mat-icon-button
+            color="primary"
+            [ngClass.lt-md]="'margin-bottom-sm'"
+            class="margin-bottom-md"
+            id="exportAsPDF"
+            matTooltip="Export as PDF"
+            [matTooltipPosition]="'right'"
+            (click)="captureScreen()">
+      <mat-icon>picture_as_pdf</mat-icon>
+    </button>
+
+    <button mat-icon-button
+            color="primary"
+            [ngClass.lt-md]="'margin-bottom-md'"
+            class="margin-bottom-lg"
+            id="scrollToPoint"
+            matTooltip="Clear page"
+            [matTooltipPosition]="'right'"
+            (click)="refreshPage()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </section>
 </article>
 
