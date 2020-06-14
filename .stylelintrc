@@ -5,10 +5,11 @@
 			true,
 			{
 				"ignoreAtRules": [
-                    "mixin",
-					"extends",
-					"ignores",
-					"include"
+          "mixin",
+          "extends",
+          "ignores",
+          "include",
+          "for"
 				]
 			}
 		],

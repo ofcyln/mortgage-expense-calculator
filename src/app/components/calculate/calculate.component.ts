@@ -18,7 +18,8 @@ export class CalculateComponent implements OnInit {
 
   private readonly MOBILE_DEVICE_CONTROL_HEIGHT = 674;
   private readonly MOBILE_DEVICE_CONTROL_WIDTH = 599;
-  private readonly TIME_IN_MS = 500;
+  private readonly TIME_IN_MS_TO_REDRAW = 5e2;
+  private readonly TIME_IN_MS_TO_EXPORT = 5e3;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -31,7 +32,7 @@ export class CalculateComponent implements OnInit {
       this.innerHeight > this.MOBILE_DEVICE_CONTROL_HEIGHT || this.innerWidth > this.MOBILE_DEVICE_CONTROL_WIDTH
         ? (this.show = true)
         : (this.show = false);
-    }, this.TIME_IN_MS);
+    }, this.TIME_IN_MS_TO_REDRAW);
   }
 
   constructor(@Inject(DOCUMENT) private doc: Document) {
@@ -66,21 +67,31 @@ export class CalculateComponent implements OnInit {
     this.doc.defaultView?.location.reload();
   }
 
+  sleep(milliseconds: number) {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  }
+
   public captureScreen(): void {
+    this.isLoading = true;
+
     const data = document.querySelector('#content') as HTMLElement;
     const calculatedElements = document.querySelectorAll('mat-list-item') as NodeList;
 
-    html2canvas(data).then((canvas: HTMLCanvasElement) => {
-      const contentDataURL = canvas.toDataURL('image/png');
+    this.sleep(this.TIME_IN_MS_TO_EXPORT).then(() => {
+      html2canvas(data).then((canvas: HTMLCanvasElement) => {
+        const contentDataURL = canvas.toDataURL('image/png');
 
-      const pdf = new jsPDF('p', 'pt', 'a4');
+        const pdf = new jsPDF('p', 'pt', 'a4');
 
-      const imgWidth = 560;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        const imgWidth = 560;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-      // pdf.text("Mortgage Expense Calculations", 20, 20);
-      pdf.addImage(contentDataURL, 'PNG', 20, 40, imgWidth, imgHeight, '', 'FAST');
-      pdf.save('Mortgage Expense Calculation.pdf');
+        // pdf.text("Mortgage Expense Calculations", 20, 20);
+        pdf.addImage(contentDataURL, 'PNG', 20, 40, imgWidth, imgHeight, '', 'FAST');
+        pdf.save('Mortgage Expense Calculation.pdf');
+
+        this.isLoading = false;
+      });
     });
   }
 }
