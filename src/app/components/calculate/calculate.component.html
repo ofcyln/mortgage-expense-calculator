@@ -1,5 +1,10 @@
 <article fxLayout="column"
          fxLayoutAlign="center center">
+  <app-loading *ngIf="isLoading"
+               fxLayout="column"
+               fxFlex
+               fxLayoutAlign="center center"></app-loading>
+
   <h2 class="margin-top-md margin-bottom-sm"
       [ngStyle]="{'text-transform': 'uppercase', 'font-size': '29px'}"
       [ngStyle.lt-md]="{'font-size': '22px'}"
@@ -109,6 +114,3 @@
     </button>
   </section>
 </article>
-
-<app-loading *ngIf="isLoading"></app-loading>
-

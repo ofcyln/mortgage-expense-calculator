@@ -19,7 +19,7 @@ export class CalculateComponent implements OnInit {
   private readonly MOBILE_DEVICE_CONTROL_HEIGHT = 674;
   private readonly MOBILE_DEVICE_CONTROL_WIDTH = 599;
   private readonly TIME_IN_MS_TO_REDRAW = 5e2;
-  private readonly TIME_IN_MS_TO_EXPORT = 5e3;
+  private readonly TIME_IN_MS_TO_EXPORT = 1e4;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
