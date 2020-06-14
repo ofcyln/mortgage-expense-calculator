@@ -22,7 +22,7 @@
       <p class="margin-bottom-zero">
         'Mortgage Expense Calculator' is a web application to use of calculating estimated mortgage expenses when you buy a
         property.
-        <button *ngIf="!show"
+        <button *ngIf="!show"s
                 mat-button
                 color="primary"
                 class="read-more"
@@ -109,4 +109,6 @@
     </button>
   </section>
 </article>
+
+<app-loading *ngIf="isLoading"></app-loading>
 

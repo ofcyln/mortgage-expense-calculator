@@ -12,6 +12,7 @@ export class CalculateComponent implements OnInit {
   value = null;
   isCalculate = false;
   show = false;
+  isLoading = false;
   innerHeight = window.innerHeight;
   innerWidth = window.innerWidth;
 
