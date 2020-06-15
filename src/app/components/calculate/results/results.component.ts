@@ -51,8 +51,6 @@ export class ResultsComponent implements OnInit, OnChanges {
 
             if (this.expenseItems) {
               this.totalExpenseAmounts = this.calculateTotal(this.expenseItems);
-
-              this.expenseItemService.setSharedTotalExpenseAmounts(this.totalExpenseAmounts);
             }
 
             break;
@@ -109,8 +107,6 @@ export class ResultsComponent implements OnInit, OnChanges {
     }
 
     this.totalExpenseAmounts = this.calculateTotal(this.expenseItems);
-
-    this.expenseItemService.setSharedTotalExpenseAmounts(this.totalExpenseAmounts);
   }
 
   calculateTotal(expenseItems: ExpenseItem[]): ExpenseVariations {
@@ -134,8 +130,6 @@ export class ResultsComponent implements OnInit, OnChanges {
         totalExpenseAmounts.max += expenseVariations.max;
       });
     }
-
-    this.expenseItemService.setSharedTotalExpenseAmounts(totalExpenseAmounts);
 
     return totalExpenseAmounts;
   }

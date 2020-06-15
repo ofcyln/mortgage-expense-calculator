@@ -2,6 +2,7 @@ import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 import { PDFExportUtils } from '../../shared/utils/pdf-export.utils';
+import { ExpenseItemService } from '../../shared/expense-item.service';
 
 @Component({
   selector: 'app-calculate',
@@ -35,7 +36,7 @@ export class CalculateComponent implements OnInit {
     }, this.TIME_IN_MS_TO_REDRAW);
   }
 
-  constructor(@Inject(DOCUMENT) private doc: Document) {
+  constructor(@Inject(DOCUMENT) private doc: Document, private expenseItemService: ExpenseItemService) {
     this.innerHeight = window.innerHeight;
     this.innerWidth = window.innerWidth;
   }
@@ -74,9 +75,14 @@ export class CalculateComponent implements OnInit {
   captureScreen() {
     this.isLoading = true;
 
-    const calculatedElements = document.querySelectorAll('mat-list-item') as NodeList;
+    const calculatedListItemElements = document.querySelectorAll('mat-list-item article:last-child span') as NodeList;
+    const calculatedResultItemElements = document.querySelectorAll('.total-expense-amount') as NodeList;
 
-    const pdfExportUtils = new PDFExportUtils(calculatedElements);
+    const pdfExportUtils = new PDFExportUtils(
+      calculatedListItemElements,
+      this.expenseItemService.expenseItems,
+      calculatedResultItemElements,
+    );
 
     this.pause(this.TIME_IN_MS_TO_EXPORT).then(() => {
       pdfExportUtils.exportAsPDF();

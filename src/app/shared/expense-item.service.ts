@@ -1,21 +1,16 @@
 import { Injectable } from '@angular/core';
-import { ExpenseItem, ExpenseVariations } from './expense-data.model';
+import { ExpenseItem } from './expense-data.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExpenseItemService {
   public expenseItems!: ExpenseItem[];
-  public totalExpenseAmounts!: ExpenseVariations;
 
   constructor() {}
 
   setSharedExpenseItems(expenseItems: ExpenseItem[]): void {
     this.expenseItems = expenseItems;
-  }
-
-  setSharedTotalExpenseAmounts(totalExpenseAmounts: ExpenseVariations): void {
-    this.totalExpenseAmounts = totalExpenseAmounts;
   }
 
   createRawExpenseItemsList(): ExpenseItem[] {
