@@ -1,7 +1,7 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import * as jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+
+import { PDFExportUtils } from '../../shared/utils/pdf-export.utils';
 
 @Component({
   selector: 'app-calculate',
@@ -67,31 +67,21 @@ export class CalculateComponent implements OnInit {
     this.doc.defaultView?.location.reload();
   }
 
-  sleep(milliseconds: number) {
+  pause(milliseconds: number) {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
   }
 
-  public captureScreen(): void {
+  captureScreen() {
     this.isLoading = true;
 
-    const data = document.querySelector('#content') as HTMLElement;
     const calculatedElements = document.querySelectorAll('mat-list-item') as NodeList;
 
-    this.sleep(this.TIME_IN_MS_TO_EXPORT).then(() => {
-      html2canvas(data).then((canvas: HTMLCanvasElement) => {
-        const contentDataURL = canvas.toDataURL('image/png');
+    const pdfExportUtils = new PDFExportUtils(calculatedElements);
 
-        const pdf = new jsPDF('p', 'pt', 'a4');
+    this.pause(this.TIME_IN_MS_TO_EXPORT).then(() => {
+      pdfExportUtils.exportAsPDF();
 
-        const imgWidth = 560;
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-        // pdf.text("Mortgage Expense Calculations", 20, 20);
-        pdf.addImage(contentDataURL, 'PNG', 20, 40, imgWidth, imgHeight, '', 'FAST');
-        pdf.save('Mortgage Expense Calculation.pdf');
-
-        this.isLoading = false;
-      });
+      this.isLoading = false;
     });
   }
 }
