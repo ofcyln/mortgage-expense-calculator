@@ -47,7 +47,7 @@ export class PDFExportUtils {
     doc.setFontStyle('normal');
     doc.text('This calculation is for a mortgage amount of', 45, 45);
     doc.setFontStyle('bold');
-    doc.text(`€${this.mortgageAmount.value}`, 143, 45);
+    doc.text(`€ ${this.mortgageAmount.value}`, 143, 45);
 
     // Expense item generation
     this.expenseItems.forEach((element: ExpenseItem, index: number) => {
@@ -61,19 +61,19 @@ export class PDFExportUtils {
     // Result area
     doc.setFontStyle('bold');
     doc.setFontSize(14);
-    doc.text(this.resultArray[0].textContent?.split('help')[0], 100, 242);
-    doc.text(this.resultArray[0].textContent?.split('help')[1], 170, 242);
+    doc.text(this.addWhitespaceBefore(this.resultArray[0].textContent?.split('help')[0] || ''), 100, 242);
+    doc.text(this.addWhitespaceBefore(this.resultArray[0].textContent?.split('help')[1] || ''), 170, 242);
 
     doc.setFontStyle('normal');
     doc.setFontSize(11);
-    doc.text(this.resultArray[1].textContent?.split('help')[0], 100, 254);
+    doc.text(this.addWhitespaceBefore(this.resultArray[1].textContent?.split('help')[0] || ''), 100, 254);
     doc.setFontStyle('bold');
-    doc.text(this.resultArray[1].textContent?.split('help')[1], 170, 254);
+    doc.text(this.addWhitespaceBefore(this.resultArray[1].textContent?.split('help')[1] || ''), 170, 254);
 
     doc.setFontStyle('normal');
-    doc.text(this.resultArray[2].textContent?.split('help')[0], 100, 266);
+    doc.text(this.addWhitespaceBefore(this.resultArray[2].textContent?.split('help')[0] || ''), 100, 266);
     doc.setFontStyle('bold');
-    doc.text(this.resultArray[2].textContent?.split('help')[1], 170, 266);
+    doc.text(this.addWhitespaceBefore(this.resultArray[2].textContent?.split('help')[1] || ''), 170, 266);
 
     // Circle point info area
     doc.setFontStyle('normal');
@@ -124,6 +124,14 @@ export class PDFExportUtils {
 
     doc.setFontSize(12);
     doc.setFontStyle('bold');
-    doc.text(calculatedItem.textContent === ' €0 ' ? ' 0' : calculatedItem.textContent, 170, 60 + yPositionCircleGap * idx);
+    doc.text(
+      calculatedItem.textContent === ' €0 ' ? ' 0' : this.addWhitespaceBefore(calculatedItem.textContent || ''),
+      170,
+      60 + yPositionCircleGap * idx,
+    );
+  }
+
+  addWhitespaceBefore(text: string): string {
+    return text.replace(/€/g, '€ ');
   }
 }
