@@ -42,7 +42,7 @@
     </div>
   </div>
 
-  <div class="margin-top-md mortgage-amount"
+  <div class="margin-top-md"
        [ngClass.lt-md]="'margin-top-sm'">
     <mat-form-field [ngStyle]="{'font-size': '24px'}"
                     [ngStyle.lt-md]="{'font-size': '20px'}">
@@ -56,6 +56,7 @@
              pattern="[0-9]*"
              mask="separator"
              thousandSeparator=","
+             class="mortgage-amount"
              [(ngModel)]="value"
              (keydown.enter)="setCalculationState()">
 

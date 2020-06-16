@@ -77,11 +77,13 @@ export class CalculateComponent implements OnInit {
 
     const calculatedListItemElements = document.querySelectorAll('mat-list-item article:last-child span') as NodeList;
     const calculatedResultItemElements = document.querySelectorAll('.total-expense-amount') as NodeList;
+    const mortgageAmount = document.querySelector('.mortgage-amount') as HTMLInputElement;
 
     const pdfExportUtils = new PDFExportUtils(
       calculatedListItemElements,
       this.expenseItemService.expenseItems,
       calculatedResultItemElements,
+      mortgageAmount,
     );
 
     this.pause(this.TIME_IN_MS_TO_EXPORT).then(() => {

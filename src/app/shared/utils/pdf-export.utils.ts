@@ -6,10 +6,16 @@ export class PDFExportUtils {
   calculatedItemsArray: Node[];
   resultArray: Node[];
 
-  constructor(public itemList: NodeList, public expenseItems: ExpenseItem[], public totalExpenseAmounts: NodeList) {
+  constructor(
+    public itemList: NodeList,
+    public expenseItems: ExpenseItem[],
+    public totalExpenseAmounts: NodeList,
+    public mortgageAmount: HTMLInputElement,
+  ) {
     this.itemList = itemList;
     this.expenseItems = expenseItems;
     this.totalExpenseAmounts = totalExpenseAmounts;
+    this.mortgageAmount = mortgageAmount;
 
     this.calculatedItemsArray = Array.from(this.itemList as NodeList);
     this.resultArray = Array.from(this.totalExpenseAmounts);
@@ -41,7 +47,7 @@ export class PDFExportUtils {
     doc.setFontStyle('normal');
     doc.text('This calculation is for a mortgage amount of', 45, 45);
     doc.setFontStyle('bold');
-    doc.text('€300,000', 143, 45);
+    doc.text(`€${this.mortgageAmount.value}`, 143, 45);
 
     // Expense item generation
     this.expenseItems.forEach((element: ExpenseItem, index: number) => {
@@ -92,7 +98,7 @@ export class PDFExportUtils {
     doc.text(`Don't forget to share and donate, please.`, 75, 288);
 
     // Filename creation and save
-    doc.save('Mortgage Expense Calculator - CALCULATION REPORT.pdf');
+    doc.save(`Calculation report for €${this.mortgageAmount.value} - Mortgage Expense Calculator.pdf`);
   }
 
   generatePDFItem(idx: number, item: ExpenseItem, calculatedItem: Node, doc: jsPDF): void {
