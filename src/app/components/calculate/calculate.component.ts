@@ -1,6 +1,9 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
+import { PDFExportUtils } from '../../shared/utils/pdf-export.utils';
+import { ExpenseItemService } from '../../shared/expense-item.service';
+
 @Component({
   selector: 'app-calculate',
   templateUrl: './calculate.component.html',
@@ -10,12 +13,14 @@ export class CalculateComponent implements OnInit {
   value = null;
   isCalculate = false;
   show = false;
+  isLoading = false;
   innerHeight = window.innerHeight;
   innerWidth = window.innerWidth;
 
   private readonly MOBILE_DEVICE_CONTROL_HEIGHT = 674;
   private readonly MOBILE_DEVICE_CONTROL_WIDTH = 599;
-  private readonly TIME_IN_MS = 500;
+  private readonly TIME_IN_MS_TO_REDRAW = 5e2;
+  private readonly TIME_IN_MS_TO_EXPORT = 1e4;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -28,10 +33,10 @@ export class CalculateComponent implements OnInit {
       this.innerHeight > this.MOBILE_DEVICE_CONTROL_HEIGHT || this.innerWidth > this.MOBILE_DEVICE_CONTROL_WIDTH
         ? (this.show = true)
         : (this.show = false);
-    }, this.TIME_IN_MS);
+    }, this.TIME_IN_MS_TO_REDRAW);
   }
 
-  constructor(@Inject(DOCUMENT) private doc: Document) {
+  constructor(@Inject(DOCUMENT) private doc: Document, private expenseItemService: ExpenseItemService) {
     this.innerHeight = window.innerHeight;
     this.innerWidth = window.innerWidth;
   }
@@ -61,5 +66,30 @@ export class CalculateComponent implements OnInit {
 
   refreshPage() {
     this.doc.defaultView?.location.reload();
+  }
+
+  pause(milliseconds: number) {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  }
+
+  captureScreen() {
+    this.isLoading = true;
+
+    const calculatedListItemElements = document.querySelectorAll('mat-list-item article:last-child span') as NodeList;
+    const calculatedResultItemElements = document.querySelectorAll('.total-expense-amount') as NodeList;
+    const mortgageAmount = document.querySelector('.mortgage-amount') as HTMLInputElement;
+
+    const pdfExportUtils = new PDFExportUtils(
+      calculatedListItemElements,
+      this.expenseItemService.expenseItems,
+      calculatedResultItemElements,
+      mortgageAmount,
+    );
+
+    this.pause(this.TIME_IN_MS_TO_EXPORT).then(() => {
+      pdfExportUtils.exportAsPDF();
+
+      this.isLoading = false;
+    });
   }
 }

@@ -13,9 +13,10 @@ import { CoreModule } from './core/core.module';
 import { CalculateComponent } from './components/calculate/calculate.component';
 import { AppComponent } from './app.component';
 import { ResultsComponent } from './components/calculate/results/results.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
-  declarations: [AppComponent, CalculateComponent, ResultsComponent],
+  declarations: [AppComponent, CalculateComponent, ResultsComponent, LoadingComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

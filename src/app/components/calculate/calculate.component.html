@@ -1,5 +1,10 @@
 <article fxLayout="column"
          fxLayoutAlign="center center">
+  <app-loading *ngIf="isLoading"
+               fxLayout="column"
+               fxFlex
+               fxLayoutAlign="center center"></app-loading>
+
   <h2 class="margin-top-md margin-bottom-sm"
       [ngStyle]="{'text-transform': 'uppercase', 'font-size': '29px'}"
       [ngStyle.lt-md]="{'font-size': '22px'}"
@@ -22,7 +27,7 @@
       <p class="margin-bottom-zero">
         'Mortgage Expense Calculator' is a web application to use of calculating estimated mortgage expenses when you buy a
         property.
-        <button *ngIf="!show"
+        <button *ngIf="!show"s
                 mat-button
                 color="primary"
                 class="read-more"
@@ -51,6 +56,7 @@
              pattern="[0-9]*"
              mask="separator"
              thousandSeparator=","
+             class="mortgage-amount"
              [(ngModel)]="value"
              (keydown.enter)="setCalculationState()">
 
@@ -82,16 +88,30 @@
                class="margin-bottom-md"
                fxLayoutAlign="center center"></app-results>
 
-  <button *ngIf="isCalculate"
-          mat-icon-button
-          color="primary"
-          [ngClass.lt-md]="'margin-bottom-md'"
-          class="margin-bottom-lg"
-          id="scrollToPoint"
-          matTooltip="Clear page"
-          [matTooltipPosition]="'right'"
-          (click)="refreshPage()">
-    <mat-icon>refresh</mat-icon>
-  </button>
-</article>
+  <section *ngIf="isCalculate"
+           class="functional-buttons-container"
+           fxLayout="column"
+           fxLayoutAlign="center center">
+    <button mat-icon-button
+            color="primary"
+            [ngClass.lt-md]="'margin-bottom-sm'"
+            class="margin-bottom-md"
+            id="exportAsPDF"
+            matTooltip="Export as PDF"
+            [matTooltipPosition]="'right'"
+            (click)="captureScreen()">
+      <mat-icon>picture_as_pdf</mat-icon>
+    </button>
 
+    <button mat-icon-button
+            color="primary"
+            [ngClass.lt-md]="'margin-bottom-md'"
+            class="margin-bottom-lg"
+            id="scrollToPoint"
+            matTooltip="Clear page"
+            [matTooltipPosition]="'right'"
+            (click)="refreshPage()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </section>
+</article>

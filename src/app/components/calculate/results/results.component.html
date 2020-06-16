@@ -124,7 +124,8 @@
 
     <mat-divider class="position-relative"></mat-divider>
 
-    <mat-list-item fxFlex>
+    <mat-list-item fxFlex
+                   class="total-expense-amount">
       <div fxFlex="70"
            [fxFlex.sm]="'60'"
            [fxFlex.xs]="'60'"
@@ -151,7 +152,8 @@
          [ngStyle]="{'font-size': '24px'}"> {{ totalExpenseAmounts?.average | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
     </mat-list-item>
 
-    <mat-list-item fxFlex>
+    <mat-list-item fxFlex
+                   class="total-expense-amount">
       <div fxFlex="70"
            [fxFlex.sm]="'60'"
            [fxFlex.xs]="'60'"
@@ -178,7 +180,8 @@
          [ngStyle]="{'font-size': '16px'}"> {{ totalExpenseAmounts?.min | currency: 'EUR' : 'symbol' : '1.0-0' }} </p>
     </mat-list-item>
 
-    <mat-list-item fxFlex>
+    <mat-list-item fxFlex
+                   class="total-expense-amount">
       <div fxFlex="70"
            [fxFlex.sm]="'60'"
            [fxFlex.xs]="'60'"

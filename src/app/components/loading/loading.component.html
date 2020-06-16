@@ -1,0 +1,13 @@
+<article fxLayoutAlign="center center"
+         [ngStyle.gt-sm]="{'font-size': '22px'}"
+         [ngStyle.lt-md]="{'padding-left': '25px', 'padding-right': '25px', 'font-size': '17px'}"
+         class="margin-bottom-lg loading-text-area">Your PDF report generation is in progress.</article>
+
+<div class="loading">
+  <div class="dot" *ngFor="let i of [].constructor(5)"></div>
+</div>
+
+<article fxLayoutAlign="center center"
+         [ngStyle.gt-sm]="{'font-size': '22px'}"
+         [ngStyle.lt-md]="{'padding-left': '25px', 'padding-right': '25px', 'font-size': '17px'}"
+         class="margin-top-lg loading-text-area">Please don't forget to share and support <br>'Mortgage Expense Calculator'!</article>
