@@ -1,49 +1,83 @@
 body {
-  .at-expanding-share-button .at-expanding-share-button-services-list > li {
-    height: 40px !important;
-  }
+	.at-expanding-share-button .at-expanding-share-button-services-list > li {
+		height: 40px !important;
+	}
 
-  .at-expanding-share-button .at-share-btn {
-    height: 30px !important;
-  }
+	.at-expanding-share-button .at-share-btn {
+		height: 30px !important;
+	}
 
-  .at-expanding-share-button .at-icon-wrapper {
-    height: 30px !important;
-    line-height: 30px !important;
-    width: 30px !important;
-  }
+	.at-expanding-share-button .at-icon-wrapper {
+		height: 30px !important;
+		line-height: 30px !important;
+		width: 30px !important;
+	}
 
-  .at-expanding-share-button .at-icon {
-    height: 25px !important;
-    margin: 3px 0 !important;
-    width: 25px !important;
-  }
+	.at-expanding-share-button .at-icon {
+		height: 25px !important;
+		margin: 3px 0 !important;
+		width: 25px !important;
+	}
 
-  .at-expanding-share-button.at-expanding-share-button-mobile .at-expanding-share-button-toggle {
-    height: 30px !important;
-  }
+	.at-expanding-share-button.at-expanding-share-button-mobile .at-expanding-share-button-toggle {
+		height: 30px !important;
+	}
 
-  .at-expanding-share-button.at-expanding-share-button-mobile .at-expanding-share-button-toggle-bg,
-  .at-expanding-share-button.at-expanding-share-button-mobile .at-expanding-share-button-toggle-bg span {
-    height: 30px !important;
-    line-height: 30px !important;
-    width: 30px !important;
-  }
+	.at-expanding-share-button.at-expanding-share-button-mobile .at-expanding-share-button-toggle-bg,
+	.at-expanding-share-button.at-expanding-share-button-mobile .at-expanding-share-button-toggle-bg span {
+		height: 30px !important;
+		line-height: 30px !important;
+		width: 30px !important;
+	}
 
-  .at-expanding-share-button.at-expanding-share-button-mobile .at-expanding-share-button-toggle-bg,
-  .at-expanding-share-button.at-expanding-share-button-mobile .at-expanding-share-button-toggle-bg span {
-    height: 30px !important;
-    line-height: 30px !important;
-    width: 30px !important;
-  }
+	.at-expanding-share-button.at-expanding-share-button-mobile .at-expanding-share-button-toggle-bg,
+	.at-expanding-share-button.at-expanding-share-button-mobile .at-expanding-share-button-toggle-bg span {
+		height: 30px !important;
+		line-height: 30px !important;
+		width: 30px !important;
+	}
 
-  .at-expanding-share-button.at-expanding-share-button-mobile .at-expanding-share-button-click-flash {
-    height: 30px !important;
-    width: 30px !important;
-  }
+	.at-expanding-share-button.at-expanding-share-button-mobile .at-expanding-share-button-click-flash {
+		height: 30px !important;
+		width: 30px !important;
+	}
 
-  .at-expanding-share-button .at-expanding-share-button-toggle-bg > span {
-    background-size: 85% !important;
-    background-color: #3f51b5 !important;
-  }
+	.at-expanding-share-button .at-expanding-share-button-toggle-bg > span {
+		background-size: 85% !important;
+		background-color: #3f51b5 !important;
+	}
+
+	#at4-share {
+		&.animate {
+			&::before {
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: #fff !important;
+				animation-delay: 0.4s;
+				border-radius: 10px;
+				animation: tiny-wave 2s ease-out infinite;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	body {
+		.at-expanding-share-button-toggle-bg {
+			&.animate {
+				&::before {
+					content: '';
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					background: #fff !important;
+					animation-delay: 0.4s;
+					border-radius: 50%;
+					animation: bigger-wave 2s ease-out infinite;
+				}
+			}
+		}
+	}
 }

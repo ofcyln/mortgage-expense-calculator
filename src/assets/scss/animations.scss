@@ -1,0 +1,35 @@
+@keyframes wave {
+	50%,
+	75% {
+		transform: scale(2);
+	}
+
+	80%,
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes tiny-wave {
+	50%,
+	75% {
+		transform: scale(1.5);
+	}
+
+	80%,
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes bigger-wave {
+	50%,
+	75% {
+		transform: scale(3);
+	}
+
+	80%,
+	100% {
+		opacity: 0;
+	}
+}

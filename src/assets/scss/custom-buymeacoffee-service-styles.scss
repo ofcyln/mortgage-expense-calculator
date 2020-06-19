@@ -8,6 +8,19 @@ body {
 			height: 20px !important;
 			width: 20px !important;
 		}
+
+		&.animate {
+			&::before {
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: #fff !important;
+				animation-delay: 0.4s;
+				border-radius: inherit;
+				animation: bigger-wave 2s ease-out infinite;
+			}
+		}
 	}
 }
 
