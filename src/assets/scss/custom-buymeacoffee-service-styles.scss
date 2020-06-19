@@ -8,6 +8,16 @@ body {
 			height: 20px !important;
 			width: 20px !important;
 		}
+	}
+
+	.donation-container {
+		border-radius: 50%;
+		position: fixed;
+		width: 50px;
+		height: 50px;
+		bottom: 10px;
+		right: 10px;
+		z-index: 9;
 
 		&.animate {
 			&::before {
@@ -42,5 +52,16 @@ body {
 	iframe {
 		left: initial !important;
 		right: 10px !important;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	body {
+		.donation-container {
+			width: 30px !important;
+			height: 30px !important;
+			right: initial !important;
+			left: 10px !important;
+		}
 	}
 }

@@ -75,7 +75,7 @@ export class CalculateComponent implements OnInit {
   captureScreen() {
     this.isLoading = true;
 
-    this.animate('#bmc-wbtn', 'animate');
+    this.animate('#bmc-wbtn', 'animate', '.donation-container');
     this.animate('#at4-share', 'animate');
     this.animate('.at-expanding-share-button-toggle-bg', 'animate');
 
@@ -95,22 +95,49 @@ export class CalculateComponent implements OnInit {
 
       this.isLoading = false;
 
-      this.stopAnimate('#bmc-wbtn', 'animate');
+      this.stopAnimate('#bmc-wbtn', 'animate', '.donation-container');
       this.stopAnimate('#at4-share', 'animate');
       this.stopAnimate('.at-expanding-share-button-toggle-bg', 'animate');
     });
   }
 
-  animate(querySelector: string, className: string) {
-    const affectedElement = document.querySelector(querySelector);
+  animate(querySelector: string, className: string, source?: string) {
+    const affectedElement = this.doc.querySelector(querySelector);
+
+    if (source === '.donation-container') {
+      const container = this.doc.querySelector('.router-container');
+      const node = this.doc.createElement('section');
+      node.classList.add('donation-container');
+      container?.appendChild(node);
+
+      const coffee = this.doc.querySelector('.donation-container');
+
+      if (!!coffee && !!affectedElement) {
+        coffee.appendChild(affectedElement);
+
+        coffee.classList.add(className);
+      }
+
+      return;
+    }
 
     if (affectedElement) {
       affectedElement.classList.add(className);
     }
   }
 
-  stopAnimate(querySelector: string, className: string) {
-    const affectedElement = document.querySelector(querySelector);
+  stopAnimate(querySelector: string, className: string, source?: string) {
+    const affectedElement = this.doc.querySelector(querySelector);
+
+    if (source === '.donation-container') {
+      const coffee = this.doc.querySelector('.donation-container');
+
+      if (!!coffee && !!affectedElement) {
+        coffee.classList.remove(className);
+      }
+
+      return;
+    }
 
     if (affectedElement) {
       affectedElement.classList.remove(className);

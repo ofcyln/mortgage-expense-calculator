@@ -75,6 +75,7 @@ body {
 					background: #fff !important;
 					animation-delay: 0.4s;
 					border-radius: 50%;
+					z-index: -1;
 					animation: bigger-wave 2s ease-out infinite;
 				}
 			}
