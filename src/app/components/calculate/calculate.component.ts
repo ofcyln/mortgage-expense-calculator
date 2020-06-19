@@ -16,6 +16,7 @@ export class CalculateComponent implements OnInit {
   isLoading = false;
   innerHeight = window.innerHeight;
   innerWidth = window.innerWidth;
+  donationContainerElementClassName = '.donation-container';
 
   private readonly MOBILE_DEVICE_CONTROL_HEIGHT = 674;
   private readonly MOBILE_DEVICE_CONTROL_WIDTH = 599;
@@ -104,18 +105,18 @@ export class CalculateComponent implements OnInit {
   animate(querySelector: string, className: string, source?: string) {
     const affectedElement = this.doc.querySelector(querySelector);
 
-    if (source === '.donation-container') {
+    if (source === this.donationContainerElementClassName) {
       const container = this.doc.querySelector('.router-container');
       const node = this.doc.createElement('section');
       node.classList.add('donation-container');
       container?.appendChild(node);
 
-      const coffee = this.doc.querySelector('.donation-container');
+      const donationContainer = this.doc.querySelector('.donation-container');
 
-      if (!!coffee && !!affectedElement) {
-        coffee.appendChild(affectedElement);
+      if (!!donationContainer && !!affectedElement) {
+        donationContainer.appendChild(affectedElement);
 
-        coffee.classList.add(className);
+        donationContainer.classList.add(className);
       }
 
       return;
@@ -129,11 +130,11 @@ export class CalculateComponent implements OnInit {
   stopAnimate(querySelector: string, className: string, source?: string) {
     const affectedElement = this.doc.querySelector(querySelector);
 
-    if (source === '.donation-container') {
-      const coffee = this.doc.querySelector('.donation-container');
+    if (source === this.donationContainerElementClassName) {
+      const donationContainer = this.doc.querySelector('.donation-container');
 
-      if (!!coffee && !!affectedElement) {
-        coffee.classList.remove(className);
+      if (!!donationContainer && !!affectedElement) {
+        donationContainer.classList.remove(className);
       }
 
       return;
