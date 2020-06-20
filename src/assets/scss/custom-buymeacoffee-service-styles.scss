@@ -10,7 +10,7 @@ body {
 		}
 	}
 
-	.donation-container {
+	[data-donation-container] {
 		border-radius: 50%;
 		position: fixed;
 		width: 50px;
@@ -57,7 +57,7 @@ body {
 
 @media only screen and (max-width: 800px) {
 	body {
-		.donation-container {
+		[data-donation-container] {
 			width: 30px !important;
 			height: 30px !important;
 			right: initial !important;

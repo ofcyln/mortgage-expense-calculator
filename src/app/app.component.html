@@ -6,7 +6,8 @@
               [ngStyle]="{'z-index': '2', 'box-shadow': '0px 3px 9px -4px #333'}"></app-header>
 
   <section [ngStyle]="{'overflow-y': 'auto', 'height': 'calc(100% - 64px)'}"
-           class="w-100 router-container">
+           data-router-container
+           class="w-100">
     <router-outlet></router-outlet>
   </section>
 </main>
