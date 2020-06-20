@@ -1,9 +1,11 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
-import { ExpenseItem, ExpenseVariations, MinMaxModel } from '../../../shared/expense-data.model';
-import { CustomIconService } from '../../../shared/custom-icon.service';
 import { ScrollToConfigOptions, ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
+
+import { CustomIconService } from '../../../shared/custom-icon.service';
 import { ExpenseItemService } from '../../../shared/expense-item.service';
+
+import { ExpenseItem, ExpenseVariations, MinMaxModel } from '../../../shared/expense-data.model';
 
 @Component({
   selector: 'app-results',
