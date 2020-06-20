@@ -6,3 +6,11 @@
 <div class="loading">
   <div class="dot" *ngFor="let i of [].constructor(5)"></div>
 </div>
+
+<button mat-raised-button
+        color="primary"
+        [ngClass.lt-md]="'margin-top-md'"
+        class="margin-top-lg"
+        (click)="loadingService.processFaster()">
+  I've shared and/or donated already!
+</button>

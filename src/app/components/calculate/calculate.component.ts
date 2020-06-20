@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/common';
 
 import { PDFExportUtils } from '../../shared/utils/pdf-export.utils';
 import { ExpenseItemService } from '../../shared/expense-item.service';
+import { LoadingService } from '../loading/loading.service';
 
 @Component({
   selector: 'app-calculate',
@@ -13,7 +14,6 @@ export class CalculateComponent implements OnInit {
   value = null;
   isCalculate = false;
   show = false;
-  isLoading = false;
   innerHeight = window.innerHeight;
   innerWidth = window.innerWidth;
   donationContainerElementClassName = '.donation-container';
@@ -37,7 +37,11 @@ export class CalculateComponent implements OnInit {
     }, this.TIME_IN_MS_TO_REDRAW);
   }
 
-  constructor(@Inject(DOCUMENT) private doc: Document, private expenseItemService: ExpenseItemService) {
+  constructor(
+    @Inject(DOCUMENT) private doc: Document,
+    private expenseItemService: ExpenseItemService,
+    public loadingService: LoadingService,
+  ) {
     this.innerHeight = window.innerHeight;
     this.innerWidth = window.innerWidth;
   }
@@ -69,12 +73,8 @@ export class CalculateComponent implements OnInit {
     this.doc.defaultView?.location.reload();
   }
 
-  pause(milliseconds: number) {
-    return new Promise((resolve) => setTimeout(resolve, milliseconds));
-  }
-
   captureScreen() {
-    this.isLoading = true;
+    this.loadingService.isLoading = true;
 
     this.animate('#bmc-wbtn', 'animate', '.donation-container');
     this.animate('#at4-share', 'animate');
@@ -91,10 +91,10 @@ export class CalculateComponent implements OnInit {
       mortgageAmount,
     );
 
-    this.pause(this.TIME_IN_MS_TO_EXPORT).then(() => {
+    this.loadingService.pause(this.TIME_IN_MS_TO_EXPORT).then(() => {
       pdfExportUtils.exportAsPDF();
 
-      this.isLoading = false;
+      this.loadingService.isLoading = false;
 
       this.stopAnimate('#bmc-wbtn', 'animate', '.donation-container');
       this.stopAnimate('#at4-share', 'animate');
