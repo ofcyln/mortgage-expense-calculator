@@ -10,21 +10,38 @@ import { PDFExportUtils } from '../../shared/utils/pdf-export.utils';
 })
 export class LoadingService {
   isLoading = false;
-  timeout!: number;
+  countDownInterval!: number;
   donationContainerElementClassName = '[data-donation-container]';
+  countDownNumber!: number;
 
   constructor(@Inject(DOCUMENT) private doc: Document, private expenseItemService: ExpenseItemService) {}
 
-  pause(milliseconds: number) {
-    return new Promise((resolve) => {
-      this.timeout = setTimeout(resolve, milliseconds);
+  countDown(milliseconds: number, countDownTimer: number) {
+    let seconds = countDownTimer;
 
-      return this.timeout;
+    this.countDownNumber = countDownTimer;
+
+    return new Promise((resolve) => {
+      this.countDownInterval = setInterval(() => {
+        seconds -= 1;
+
+        this.countDownNumber = seconds;
+
+        seconds === 1 ? `${this.countDownNumber} second` : `${this.countDownNumber} seconds`;
+
+        if (seconds <= 0) {
+          clearInterval(this.countDownInterval);
+
+          resolve();
+        }
+      }, milliseconds);
+
+      return this.countDownInterval;
     });
   }
 
   processFaster() {
-    clearTimeout(this.timeout);
+    clearTimeout(this.countDownInterval);
 
     // Items in Angular Material calculated item output
     const calculatedListItemElements = this.getQueryElements('mat-list-item article:last-child span') as NodeList;

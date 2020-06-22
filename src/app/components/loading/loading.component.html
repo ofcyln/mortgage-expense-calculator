@@ -1,11 +1,10 @@
 <article fxLayoutAlign="center center"
          [ngStyle.gt-sm]="{'font-size': '22px'}"
          [ngStyle.lt-md]="{'padding-left': '25px', 'padding-right': '25px', 'font-size': '17px'}"
-         class="margin-bottom-md loading-text-area">While your PDF report generation is in progress, <br>please share and support us!</article>
+         class="margin-bottom-md loading-text-area">'Mortgage Expense Calculator' is an open-source project and it needs your support!
+  <br>Please consider to share and/or donate.</article>
 
-<div class="loading">
-  <div class="dot" *ngFor="let i of [].constructor(5)"></div>
-</div>
+<article class="countdown-area">{{ loadingService.countDownNumber }}</article>
 
 <button mat-raised-button
         color="primary"
