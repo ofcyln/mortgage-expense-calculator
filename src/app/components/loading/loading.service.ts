@@ -27,8 +27,6 @@ export class LoadingService {
 
         this.countDownNumber = seconds;
 
-        seconds === 1 ? `${this.countDownNumber} second` : `${this.countDownNumber} seconds`;
-
         if (seconds <= 0) {
           clearInterval(this.countDownInterval);
 
