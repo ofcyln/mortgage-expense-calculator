@@ -21,7 +21,8 @@ export class CalculateComponent implements OnInit {
   private readonly MOBILE_DEVICE_CONTROL_HEIGHT = 674;
   private readonly MOBILE_DEVICE_CONTROL_WIDTH = 599;
   private readonly TIME_IN_MS_TO_REDRAW = 5e2;
-  private readonly TIME_IN_MS_TO_EXPORT = 1e4;
+  private readonly TIME_IN_MS_OF_INTERVAL = 1e3;
+  private readonly COUNTDOWN_TIMER_IN_SECONDS = 30;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -96,7 +97,7 @@ export class CalculateComponent implements OnInit {
       mortgageAmount,
     );
 
-    this.loadingService.pause(this.TIME_IN_MS_TO_EXPORT).then(() => {
+    this.loadingService.countDown(this.TIME_IN_MS_OF_INTERVAL, this.COUNTDOWN_TIMER_IN_SECONDS).then(() => {
       pdfExportUtils.exportAsPDF();
 
       this.loadingService.isLoading = false;
