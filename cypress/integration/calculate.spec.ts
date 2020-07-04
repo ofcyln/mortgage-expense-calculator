@@ -9,27 +9,35 @@ context('Calculate', () => {
     cy.location().should((location) => {
       expect(location.pathname).to.eq('/calculate');
     })
-    // // https://on.cypress.io/hash
-    // cy.hash().should('be.empty')
   })
-  //
-  // it('cy.location() - get window.location', () => {
-  //   // https://on.cypress.io/location
-  //   cy.location().should((location) => {
-  //     expect(location.hash).to.be.empty
-  //     expect(location.href).to.eq('https://example.cypress.io/commands/location')
-  //     expect(location.host).to.eq('example.cypress.io')
-  //     expect(location.hostname).to.eq('example.cypress.io')
-  //     expect(location.origin).to.eq('https://example.cypress.io')
-  //     expect(location.pathname).to.eq('/commands/location')
-  //     expect(location.port).to.eq('')
-  //     expect(location.protocol).to.eq('https:')
-  //     expect(location.search).to.be.empty
-  //   })
-  // })
-  //
-  // it('cy.url() - get the current URL', () => {
-  //   // https://on.cypress.io/url
-  //   cy.url().should('eq', 'https://example.cypress.io/commands/location')
-  // })
+
+  it('Input area should not accept rather than numeric values', () => {
+    cy.get('[data-mortgage-amount]')
+      .type('amount').should('have.value', '');
+  });
+
+  it('Input area should only accept numeric values and value needs to be separated with decimal separator', () => {
+    cy.get('[data-mortgage-amount]')
+      .type('300000', { delay: 100 })
+      .should('have.value', '300,000');
+  });
+
+  it('\'Calculate\' button should not work when there is no value in input area', () => {
+    cy.get('[data-mortgage-amount]')
+      .type(' ').should('have.value', '');
+
+    cy.get('[data-calculate-button]')
+      .click()
+      .should('have.attr', 'data-calculate-button')
+  });
+
+  it('\'Calculate\' button should work when there is numeric value in input area', () => {
+    cy.get('[data-mortgage-amount]')
+      .type('300000', { delay: 100 });
+
+    cy.get('[data-calculate-button]')
+      .click()
+    cy.get('mat-card')
+      .should('have.class', 'mat-card');
+  });
 })
