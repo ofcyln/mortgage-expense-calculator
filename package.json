@@ -10,6 +10,9 @@
     "e2e": "ng e2e",
     "build:prod": "ng build --prod --aot --build-optimizer",
     "deploy:firebase": "firebase deploy",
+    "update": "ng update @angular/cli @angular/core",
+    "update:cli": "ng update @angular/cli",
+    "update:core": "ng update @angular/core",
     "format": "prettier \"src/**/*.{ts,scss}\" --write",
     "stylelint": "stylelint \"src/**/*.scss\""
   },
