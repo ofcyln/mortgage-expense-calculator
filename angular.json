@@ -23,13 +23,20 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "es5BrowserSupport": true,
             "assets": [
               "src/favicon.ico",
               "src/assets",
               "src/manifest.webmanifest",
-              {"glob": "sitemap.xml", "input": "src/assets", "output": "/"},
-              {"glob": "robots.txt", "input": "src/assets", "output": "/"}
+              {
+                "glob": "sitemap.xml",
+                "input": "src/assets",
+                "output": "/"
+              },
+              {
+                "glob": "robots.txt",
+                "input": "src/assets",
+                "output": "/"
+              }
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
@@ -54,7 +61,6 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "es5BrowserSupport": true,
               "budgets": [
                 {
                   "type": "initial",
