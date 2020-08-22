@@ -2,7 +2,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { environment } from '../environments/environment';
 
@@ -26,7 +26,12 @@ import { LoadingComponent } from './components/loading/loading.component';
     NgxMaskModule.forRoot(),
     ScrollToModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'nl',
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

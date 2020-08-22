@@ -107,7 +107,8 @@ export class PDFExportUtils {
     doc.setFontStyle('normal');
 
     doc.setLineWidth(0.3);
-    if (calculatedItem.textContent === ' €0 ') {
+
+    if (calculatedItem.textContent === ' € 0 ') {
       doc.setFillColor(239, 214, 19);
 
       if (item.exceededAmount) {
@@ -116,6 +117,7 @@ export class PDFExportUtils {
     } else {
       doc.setFillColor(25, 189, 24);
     }
+
     doc.circle(18, 59 + yPositionCircleGap * idx, 1, 'F');
 
     doc.setFontSize(12);
