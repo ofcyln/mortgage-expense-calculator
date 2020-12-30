@@ -154,6 +154,10 @@ body {
 	min-height: 48px;
 }
 
+.mat-list-base .mat-list-item.list-radio-item {
+	height: 100%;
+}
+
 .mat-checkbox-layout .mat-checkbox-label {
 	white-space: initial;
 }

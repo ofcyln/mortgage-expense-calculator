@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatListModule,
     MatTooltipModule,
     MatCheckboxModule,
+    MatRadioModule,
   ],
   exports: [
     MatToolbarModule,
@@ -31,6 +33,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatListModule,
     MatTooltipModule,
     MatCheckboxModule,
+    MatRadioModule,
   ],
 })
 export class MaterialModule {}

@@ -11,6 +11,7 @@
             class="margin-top-md margin-bottom-md">
     <mat-list-item *ngFor="let expenseItem of expenseItems"
                    [ngStyle.lt-md]="{'height': '100%'}"
+                   [ngStyle]="expenseItem.name === 'Transfer Tax' ? {'height': '100%'} : {'height': '56px'}"
                    fxFlex>
       <article fxFlex="70"
                [fxFlex.lt-md]="75"
@@ -74,6 +75,67 @@
             <p [ngStyle.gt-sm]="{'display': 'none'}"
                [ngStyle.lt-md]="{'font-size': '12px'}"
                [ngClass.lt-md]="'margin-top-sm'"> {{ expenseItem.info }} </p>
+
+            <section *ngIf="expenseItem.name === 'Transfer Tax'"
+                     fxLayout="column"
+                     fxLayoutAlign="start start">
+              <mat-list-item [ngStyle.lt-md]="{'height': '100%'}"
+                             [ngStyle]="{'margin-bottom': '0.5rem'}"
+                             class="list-radio-item"
+                             fxFlex>
+                <article fxFlex="40"
+                         fxLayout="row">
+                  Buyer(s)
+                </article>
+
+                <article fxLayout="column"
+                         fxFlex="45">
+                  <mat-radio-group
+                    fxLayout="column"
+                    fxLayoutAlign="end start"
+                    aria-labelledby="buyer-radio-group-label"
+                    class="buyer-radio-group"
+                    [ngStyle]="{'font-size': '14px'}"
+                    [(ngModel)]="buyerGroupFlag">
+                    <mat-radio-button
+                      *ngFor="let buyerGroup of buyerGroups"
+                      [value]="buyerGroup"
+                      class="buyer-radio-button"
+                      [ngStyle]="{'margin-bottom': '1rem'}">
+                      {{buyerGroup}}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </article>
+              </mat-list-item>
+
+              <mat-list-item [ngStyle.lt-md]="{'height': '100%'}"
+                             class="list-radio-item"
+                             fxFlex>
+                <article fxFlex="40"
+                         fxLayout="row">
+                  Buyer(s) Age(s)
+                </article>
+
+                <article fxLayout="column"
+                         fxFlex="45">
+                  <mat-radio-group
+                    fxLayout="column"
+                    fxLayoutAlign="end start"
+                    aria-labelledby="age-radio-group-label"
+                    [ngStyle]="{'font-size': '14px'}"
+                    class="age-radio-group"
+                    [(ngModel)]="ageGroupFlag">
+                    <mat-radio-button
+                      *ngFor="let ageGroup of ageGroups"
+                      [value]="ageGroup"
+                      class="buyer-radio-button"
+                      [ngStyle]="{'margin-bottom': '0.5rem'}">
+                      {{ageGroup}}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </article>
+              </mat-list-item>
+            </section>
           </ng-template>
         </section>
 

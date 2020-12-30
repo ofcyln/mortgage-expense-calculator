@@ -19,6 +19,10 @@ export class ResultsComponent implements OnInit, OnChanges {
   public expenseItems!: ExpenseItem[];
   public calculatedMortgageExpenses!: ExpenseItem[];
   public totalExpenseAmounts!: ExpenseVariations;
+  public buyerGroupFlag = '';
+  public buyerGroups: string[] = ['Alone', 'With partner'];
+  public ageGroupFlag = '';
+  public ageGroups: string[] = ['Between 18 and 35', 'Over 34', "One of the partner's age is over 34"];
 
   private readonly FIRST_ELEMENT = 0;
   private readonly SECOND_ELEMENT = 1;
