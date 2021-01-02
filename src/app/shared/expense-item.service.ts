@@ -26,7 +26,7 @@ export class ExpenseItemService {
           bothApplicable: false,
         },
         info:
-          'Mortgages can either be taken out directly from a bank (or other institution), or via an intermediary such as a financial advisor. Both banks and/or financial advisor charge you between 2,000 euros to more than 4,000 euros.',
+          'Mortgages can either be taken out directly from a bank (or other institution), or via an intermediary such as a financial advisor. Both banks and/or financial advisor charge you between 2.000 Euros to more than 4.000 Euros.',
         compulsory: true,
         taxDeductible: true,
         approximate: true,
@@ -42,7 +42,7 @@ export class ExpenseItemService {
           bothApplicable: false,
         },
         info:
-          'Also known as (Appraisal report). Every bank or lender requires an official valuation report if you’re getting a mortgage. A local, certified appraiser visits the property and creates an valuation report about the property. This report will be required for your mortgage and is accepted by all banks. This will cost you somewhere between 300 euros to 800 euros, depending on the size of the house (the bigger, the more work) and of course the evaluator you choose.',
+          'Also known as (Appraisal report). Every bank or lender requires an official valuation report if you’re getting a mortgage. A local, certified appraiser visits the property and creates an valuation report about the property. This report will be required for your mortgage and is accepted by all banks. This will cost you somewhere between 300 Euros to 800 Euros, depending on the size of the house (the bigger, the more work) and of course the evaluator you choose.',
         compulsory: true,
         taxDeductible: true,
         approximate: true,
@@ -58,7 +58,7 @@ export class ExpenseItemService {
           bothApplicable: false,
         },
         info:
-          'You’ll need a notary to legally transfer the property to your name and register it at the land registry. Civil-Law Notary fees including deed of property conveyance (kosten leveringsakte) and mortgage contract (hypotheekakte). Costs for this will vary from 900 euros to 2,000 euros, depending on the notary.',
+          'You’ll need a notary to legally transfer the property to your name and register it at the land registry. Civil-Law Notary fees including deed of property conveyance (kosten leveringsakte) and mortgage contract (hypotheekakte). Costs for this will vary from 900 Euros to 2.000 Euros, depending on the notary.',
         compulsory: true,
         taxDeductible: true,
         approximate: true,
@@ -89,7 +89,7 @@ export class ExpenseItemService {
           bothApplicable: false,
         },
         info:
-          'This expense is related to organizing your medical report and handling files with the authorities. The financial advisor handles your files and charges you between 125 euros to 150 euros.',
+          'This expense is related to organizing your medical report and handling files with the authorities. The financial advisor handles your files and charges you between 125 Euros to 150 Euros.',
         compulsory: true,
         taxDeductible: false,
         approximate: true,
@@ -124,7 +124,7 @@ export class ExpenseItemService {
           bothApplicable: false,
         },
         info:
-          'Also known as (Building Report). A building inspector who visits and checks the condition of the property and delivers an extensive construction report detailing short, medium and long term maintenance costs. A structural survey to inspect your home will cost between 250 and 900 euros, depending on the size of the building.',
+          'Also known as (Building Report). A building inspector who visits and checks the condition of the property and delivers an extensive construction report detailing short, medium and long term maintenance costs. A structural survey to inspect your home will cost between 250 and 900 Euros, depending on the size of the building.',
         compulsory: true,
         taxDeductible: false,
         approximate: true,
@@ -132,7 +132,7 @@ export class ExpenseItemService {
       {
         name: 'National Mortgage Guarantee(NHG)',
         amount: {
-          percentage: [0.9],
+          percentage: [0.7],
           costRange: {
             min: 0,
             max: 0,
@@ -140,7 +140,7 @@ export class ExpenseItemService {
           bothApplicable: false,
         },
         info:
-          'NHG is a protection against residual debt if you can’t pay your mortgage due to unemployment, divorce or the inability to work. It will cost you 0.9% of the mortgage amount, but you’ll earn your money back quickly because lenders offer much lower interest rates if you make use of this protection. NHG is only available for mortgages up to maximum 310,000 euros as of 2020.',
+          'NHG is a protection against residual debt if you can’t pay your mortgage due to unemployment, divorce or the inability to work. It will cost you 0,7% of the mortgage amount, but you’ll earn your money back quickly because lenders offer much lower interest rates if you make use of this protection. NHG is only available for mortgages up to maximum 325.000 Euros as of 2021.',
         compulsory: false,
         taxDeductible: true,
         specialExpense: true,
@@ -158,7 +158,7 @@ export class ExpenseItemService {
           bothApplicable: true,
         },
         info:
-          'You may wish to hire a real estate agent for help finding a house and negotiating the price. Some agents charge a fixed fee that’s usually between 500 and 3,000 euros. Others charge between 0.5% and 1.5% of the property value. Some charge both.',
+          'You may wish to hire a real estate agent for help finding a house and negotiating the price. Some agents charge a fixed fee that’s usually between 500 and 3.000 Euros. Others charge between 0,5% and 1,5% of the property value. Some charge both.',
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
@@ -176,7 +176,7 @@ export class ExpenseItemService {
           bothApplicable: false,
         },
         info:
-          "Handling documents for a life insurance policy application can be made by the financial advisor or by you. You can also buy another life insurance policy for your partner as well. A life insurance's first-time payment costs to you generally between 250 euros to 350 euros for per person.",
+          "Handling documents for a life insurance policy application can be made by the financial advisor or by you. You can also buy another life insurance policy for your partner as well. A life insurance's first-time payment costs to you generally between 250 Euros to 350 Euros for per person.",
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
@@ -194,7 +194,7 @@ export class ExpenseItemService {
           bothApplicable: false,
         },
         info:
-          'Contacting the selling estate agent when buying without an estate agent (makelaar) and checking the purchase agreement on your behalf by a financial advisor. This cost range differs for each financial advisor. It costs you between 350 euros to 500 euros.',
+          'Contacting the selling estate agent when buying without an estate agent (makelaar) and checking the purchase agreement on your behalf by a financial advisor. This cost range differs for each financial advisor. It costs you between 350 Euros to 500 Euros.',
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
@@ -212,7 +212,7 @@ export class ExpenseItemService {
           bothApplicable: false,
         },
         info:
-          'This expense is for arranging a translator while you are signing documents in the civil-law notary. Translators work hourly and they will probably bill you for a couple of hours work between 250 euros to 500 euros.',
+          'This expense is for arranging a translator while you are signing documents in the civil-law notary. Translators work hourly and they will probably bill you for a couple of hours work between 250 Euros to 500 Euros.',
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
@@ -229,7 +229,7 @@ export class ExpenseItemService {
           },
           bothApplicable: false,
         },
-        info: 'Additional fee due before handling your files. It costs you between the amount of 475 euros to 500 euros.',
+        info: 'Additional fee due before handling your files. It costs you between the amount of 475 Euros to 500 Euros.',
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
@@ -247,7 +247,7 @@ export class ExpenseItemService {
           bothApplicable: false,
         },
         info:
-          "Arranging a mortgage for existing house owners. It's being handled by financial advisor and it costs you between the amount of 475 euros to 500 euros.",
+          "Arranging a mortgage for existing house owners. It's being handled by financial advisor and it costs you between the amount of 475 Euros to 500 Euros.",
         compulsory: false,
         taxDeductible: false,
         specialExpense: true,
