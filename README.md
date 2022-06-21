@@ -42,7 +42,7 @@ Will be updated soon...
 
 ## Technologies used on the development process
 
-* Angular 9+ version
+* Angular v14
 * Angular Material UI
 * PWA - Progressive Web Apps
 * Angular fxLayout
@@ -58,7 +58,7 @@ Will be updated soon...
 
 ## Installation on your local environment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.2
 
 ### Development server
 
