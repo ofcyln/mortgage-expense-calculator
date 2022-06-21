@@ -9,7 +9,8 @@
           "extends",
           "ignores",
           "include",
-          "for"
+          "for",
+          "use"
 				]
 			}
 		],
