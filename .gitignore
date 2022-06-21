@@ -34,6 +34,7 @@ speed-measure-plugin*.json
 .eslintcache
 
 # misc
+/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage
