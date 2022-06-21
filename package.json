@@ -51,7 +51,7 @@
     "@angular/router": "^14.0.2",
     "@angular/service-worker": "^14.0.2",
     "@nicky-lenaers/ngx-scroll-to": "^9.0.0",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "ngx-mask": "^9.1.4",
     "rxjs": "~6.5.4",
     "rxjs-tslint": "^0.1.8",
