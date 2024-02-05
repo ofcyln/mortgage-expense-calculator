@@ -22,7 +22,7 @@ export class CalculateComponent implements OnInit {
   private readonly MOBILE_DEVICE_CONTROL_WIDTH = 599;
   private readonly TIME_IN_MS_TO_REDRAW = 5e2;
   private readonly TIME_IN_MS_OF_INTERVAL = 1e3;
-  private readonly COUNTDOWN_TIMER_IN_SECONDS = 30;
+  private readonly COUNTDOWN_TIMER_IN_SECONDS = 10;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {

@@ -1,116 +1,103 @@
-<article fxLayout="column"
-         fxLayoutAlign="center center">
-  <app-loading *ngIf="loadingService.isLoading"
-               fxLayout="column"
-               fxFlex
-               fxLayoutAlign="center center"></app-loading>
+<article fxLayout="column" fxLayoutAlign="center center">
+  <app-loading *ngIf="loadingService.isLoading" fxLayout="column" fxFlex fxLayoutAlign="center center"></app-loading>
 
-  <h2 class="margin-top-md margin-bottom-sm"
-      [ngStyle]="{'text-transform': 'uppercase', 'font-size': '29px'}"
-      [ngStyle.lt-md]="{'font-size': '22px'}"
-      [ngClass.lt-md]="'margin-top-sm margin-bottom-zero'">Mortgage Expense Calculator</h2>
+  <h2
+    class="margin-top-md margin-bottom-sm"
+    [ngStyle]="{ 'text-transform': 'uppercase', 'font-size': '29px' }"
+    [ngStyle.lt-md]="{ 'font-size': '22px' }"
+    [ngClass.lt-md]="'margin-top-sm margin-bottom-zero'"
+  >
+    Mortgage Expense Calculator
+  </h2>
 
-  <div fxLayout="row"
-       fxLayoutAlign="center center"
-       [ngClass]="'margin-top-sm'">
-    <div fxFlex="0 1 80"
-       [ngStyle]="{'line-height': '29px'}"
-       [ngStyle.lt-md]="{'font-size': '15px', 'line-height': '26px'}">
-      <p class="margin-bottom-zero">
-        Buying a property is a big investment in our lives.
+  <div fxLayout="row" fxLayoutAlign="center center" [ngClass]="'margin-top-sm'">
+    <div fxFlex="0 1 80" [ngStyle]="{ 'line-height': '29px' }" [ngStyle.lt-md]="{ 'font-size': '15px', 'line-height': '26px' }">
+      <p>Purchasing a property is a significant financial commitment.</p>
+
+      <p>Many individuals are uncertain about the upfront costs associated with buying a property through a mortgage.</p>
+
+      <p>
+        Introducing the 'Mortgage Expense Calculator,' a user-friendly web application designed to estimate mortgage expenses when
+        purchasing a property.
+        <button *ngIf="!show" mat-button color="primary" class="read-more" [ngStyle.gt-xs]="{ display: 'none' }" (click)="showMore()">
+          Read more...
+        </button>
       </p>
 
-      <p class="margin-bottom-zero">
-        Most people are not sure what amount of money they need to have upfront for buying a property with a mortgage.
-      </p>
-
-      <p class="margin-bottom-zero">
-        'Mortgage Expense Calculator' is a web application to use of calculating estimated mortgage expenses when you buy a
-        property.
-        <button *ngIf="!show"
-                mat-button
-                color="primary"
-                class="read-more"
-                [ngStyle.gt-xs]="{'display': 'none'}"
-                (click)="showMore()">Read more...</button>
+      <p *ngIf="show">
+        To use the calculator, simply input the mortgage amount you plan to acquire and click the calculate button. The application will
+        then provide an estimated expense amount required to fulfill your dream of owning a property.
       </p>
 
       <p *ngIf="show" class="margin-bottom-zero">
-        Simply enter the mortgage amount that you are going to get below and click the calculate button to see the estimated
-        expense amount that you need to have for buying your property of dreams.
+        Simply enter the mortgage amount that you are going to get below and click the calculate button to see the estimated expense amount
+        that you need to have for buying your property of dreams.
       </p>
     </div>
   </div>
 
-  <div class="margin-top-md"
-       [ngClass.lt-md]="'margin-top-sm'">
-    <mat-form-field [ngStyle]="{'font-size': '24px'}"
-                    [ngStyle.lt-md]="{'font-size': '20px'}">
+  <div class="margin-top-md" [ngClass.lt-md]="'margin-top-sm'">
+    <mat-form-field [ngStyle]="{ 'font-size': '24px' }" [ngStyle.lt-md]="{ 'font-size': '20px' }">
       <mat-label [style.fontSize.px]="20">Mortgage Amount</mat-label>
 
       <span matPrefix>€ &nbsp;</span>
 
-      <input matInput
-             type="tel"
-             inputmode="number"
-             pattern="[0-9]*"
-             mask="separator"
-             thousandSeparator="."
-             data-mortgage-amount
-             [(ngModel)]="value"
-             (keydown.enter)="setCalculationState()">
+      <input
+        matInput
+        type="tel"
+        inputmode="number"
+        pattern="[0-9]*"
+        mask="separator"
+        thousandSeparator="."
+        data-mortgage-amount
+        [(ngModel)]="value"
+        (keydown.enter)="setCalculationState()"
+      />
 
-      <button *ngIf="value"
-              mat-button
-              matSuffix
-              mat-icon-button
-              aria-label="Clear"
-              (click)="value=null">
+      <button *ngIf="value" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="value = null">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
   </div>
 
-  <div class="margin-top-lg"
-       [ngClass.lt-md]="'margin-top-sm'">
-    <button *ngIf="!isCalculate"
-            mat-raised-button
-            color="primary"
-            (click)="setCalculationState()">CALCULATE
-    </button>
+  <div class="margin-top-lg" [ngClass.lt-md]="'margin-top-sm'">
+    <button *ngIf="!isCalculate" mat-raised-button color="primary" (click)="setCalculationState()">CALCULATE</button>
   </div>
 
-  <app-results *ngIf="isCalculate"
-               fxFill
-               fxLayout="row"
-               [mortgageValue]="value"
-               [calculateState]="isCalculate"
-               class="margin-bottom-md"
-               fxLayoutAlign="center center"></app-results>
+  <app-results
+    *ngIf="isCalculate"
+    fxFill
+    fxLayout="row"
+    [mortgageValue]="value"
+    [calculateState]="isCalculate"
+    class="margin-bottom-md"
+    fxLayoutAlign="center center"
+  ></app-results>
 
-  <section *ngIf="isCalculate"
-           class="functional-buttons-container"
-           fxLayout="column"
-           fxLayoutAlign="center center">
-    <button mat-icon-button
-            color="primary"
-            [ngClass.lt-md]="'margin-bottom-sm'"
-            class="margin-bottom-md"
-            id="exportAsPDF"
-            matTooltip="Export as PDF"
-            [matTooltipPosition]="'right'"
-            (click)="captureScreen()">
+  <section *ngIf="isCalculate" class="functional-buttons-container" fxLayout="column" fxLayoutAlign="center center">
+    <button
+      mat-icon-button
+      color="primary"
+      [ngClass.lt-md]="'margin-bottom-sm'"
+      class="margin-bottom-md"
+      id="exportAsPDF"
+      matTooltip="Export as PDF"
+      [matTooltipPosition]="'right'"
+      (click)="captureScreen()"
+    >
       <mat-icon>picture_as_pdf</mat-icon>
     </button>
 
-    <button mat-icon-button
-            color="primary"
-            [ngClass.lt-md]="'margin-bottom-md'"
-            class="margin-bottom-lg"
-            id="scrollToPoint"
-            matTooltip="Clear page"
-            [matTooltipPosition]="'right'"
-            (click)="refreshPage()">
+    <button
+      mat-icon-button
+      color="primary"
+      [ngClass.lt-md]="'margin-bottom-md'"
+      class="margin-bottom-lg"
+      id="scrollToPoint"
+      matTooltip="Clear page"
+      [matTooltipPosition]="'right'"
+      (click)="refreshPage()"
+    >
       <mat-icon>refresh</mat-icon>
     </button>
   </section>
