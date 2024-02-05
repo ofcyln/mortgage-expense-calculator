@@ -22,7 +22,7 @@ export class ResultsComponent implements OnInit, OnChanges {
 
   private readonly FIRST_ELEMENT = 0;
   private readonly SECOND_ELEMENT = 1;
-  private readonly MAX_NATIONAL_MORTGAGE_GUARANTEE_AMOUNT = 325e3;
+  private readonly MAX_NATIONAL_MORTGAGE_GUARANTEE_AMOUNT = 435e3;
   private readonly TOTAL_NUMBER_OF_REAL_ESTATE_EXPENSE_SCENARIOS = 12;
   private readonly MAX_OFFSET_ON_MOBILE = 5e3;
 
@@ -214,7 +214,7 @@ export class ResultsComponent implements OnInit, OnChanges {
   }
 
   setCalculatedExpenses(mortgageAmount: number): ExpenseItem[] {
-    this.calculatedMortgageExpenses = this.expenseItemService.createRawExpenseItemsList().map((expenseItem: ExpenseItem) => {
+    this.calculatedMortgageExpenses = this.expenseItemService.getRawExpenseList().map((expenseItem: ExpenseItem) => {
       const expenseElement = {
         name: expenseItem.name,
         info: expenseItem.info,
