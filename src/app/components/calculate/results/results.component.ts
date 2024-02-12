@@ -121,7 +121,7 @@ export class ResultsComponent implements OnInit, OnChanges {
     if (expenseItems) {
       expenseItems.forEach((expenseItem: ExpenseItem) => {
         const expenseVariations = this.calculateExpense(
-          expenseItem.amount.bothApplicable,
+          expenseItem.amount.botnPercentageAndValueApplicableOnCalculation,
           expenseItem.amount.costRange,
           expenseItem.amount.percentage,
           expenseItem.checked,
@@ -174,7 +174,7 @@ export class ResultsComponent implements OnInit, OnChanges {
         } else {
           return {
             min: costRange.min,
-            average: this.calculateRealEstateAgencyAverageExpense(costRange, percentage),
+            average: this.calculatePercentageIncludedAverageExpense(costRange, percentage),
             max: costRange.max + secondPercentageElement,
           };
         }
@@ -188,7 +188,7 @@ export class ResultsComponent implements OnInit, OnChanges {
     }
   }
 
-  calculateRealEstateAgencyAverageExpense(costRange: MinMaxModel, percentage: number[]): number {
+  calculatePercentageIncludedAverageExpense(costRange: MinMaxModel, percentage: number[]): number {
     const firstPercentageElement = percentage[this.FIRST_ELEMENT];
     const secondPercentageElement = percentage[this.SECOND_ELEMENT];
     const minCost = costRange.min;
@@ -233,8 +233,8 @@ export class ResultsComponent implements OnInit, OnChanges {
         },
       };
 
-      const bothApplicable = {
-        bothApplicable: expenseItem.amount.bothApplicable,
+      const botnPercentageAndValueApplicableOnCalculation = {
+        botnPercentageAndValueApplicableOnCalculation: expenseItem.amount.botnPercentageAndValueApplicableOnCalculation,
       };
 
       if (expenseItem.name === 'Real Estate Agent') {
@@ -246,7 +246,7 @@ export class ResultsComponent implements OnInit, OnChanges {
               Math.floor((expenseItem.amount.percentage[this.SECOND_ELEMENT] / 100) * mortgageAmount),
             ],
             ...constRange,
-            ...bothApplicable,
+            ...botnPercentageAndValueApplicableOnCalculation,
           },
         } as ExpenseItem;
       } else if (expenseItem.name === 'Bank Guarantee') {
@@ -255,7 +255,7 @@ export class ResultsComponent implements OnInit, OnChanges {
           amount: {
             percentage: [Math.floor((10 / 100) * (expenseItem.amount.percentage[this.FIRST_ELEMENT] / 100) * mortgageAmount)],
             ...constRange,
-            ...bothApplicable,
+            ...botnPercentageAndValueApplicableOnCalculation,
           },
         } as ExpenseItem;
       } else {
@@ -264,7 +264,7 @@ export class ResultsComponent implements OnInit, OnChanges {
           amount: {
             percentage: [Math.floor((expenseItem.amount.percentage[this.FIRST_ELEMENT] / 100) * mortgageAmount)],
             ...constRange,
-            ...bothApplicable,
+            ...botnPercentageAndValueApplicableOnCalculation,
           },
         } as ExpenseItem;
       }

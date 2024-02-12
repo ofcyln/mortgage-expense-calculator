@@ -13,7 +13,7 @@ export interface ExpenseItem {
 export interface CostRanges {
   percentage: number[];
   costRange: MinMaxModel;
-  bothApplicable: boolean;
+  botnPercentageAndValueApplicableOnCalculation: boolean;
 }
 
 export interface MinMaxModel {
