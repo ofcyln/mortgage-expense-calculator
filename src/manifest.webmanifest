@@ -8,6 +8,7 @@
   "scope": "./",
   "start_url": "./?utm_source=standalone&utm_medium=pwa",
   "version": "4.0.0",
+  "clear_site_data": ["cache"],
   "icons": [
     {
       "src": "assets/icons/manifest-icon-192.jpg",

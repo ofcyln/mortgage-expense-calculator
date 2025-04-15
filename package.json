@@ -59,6 +59,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
+    "firebase": "^11.6.0",
     "@angular-devkit/build-angular": "^15.2.10",
     "@angular/cli": "^15.2.10",
     "@angular/compiler-cli": "^15.2.10",
