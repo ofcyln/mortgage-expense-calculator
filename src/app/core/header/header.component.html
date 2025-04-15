@@ -1,15 +1,10 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row fxLayout="row" fxLayoutGap="10px">
-    <button (click)="refreshPage()"
-            mat-icon-button
-            aria-label="Main page link">
-      <mat-icon aria-hidden="false"
-                svgIcon="mecLogoEmpty"
-                aria-label="House icon">mecLogoEmpty
-      </mat-icon>
+    <button (click)="refreshPage()" mat-icon-button aria-label="Main page link">
+      <mat-icon aria-hidden="false" svgIcon="mecLogoEmpty" aria-label="House icon">mecLogoEmpty </mat-icon>
     </button>
 
-    <h1 [ngStyle.lt-md]="{'font-size': '14px'}">Mortgage Expense Calculator</h1>
+    <h1 [ngStyle.lt-md]="{ 'font-size': '14px' }">Mortgage Expense Calculator</h1>
 
     <app-share-buttons></app-share-buttons>
   </mat-toolbar-row>
