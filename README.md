@@ -42,7 +42,7 @@ Will be updated soon...
 
 ## Technologies used on the development process
 
-* Angular v14
+* Angular v15
 * Angular Material UI
 * PWA - Progressive Web Apps
 * Angular fxLayout
