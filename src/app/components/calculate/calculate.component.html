@@ -3,35 +3,23 @@
 
   <h2
     class="margin-top-md margin-bottom-sm"
-    [ngStyle]="{ 'text-transform': 'uppercase', 'font-size': '29px' }"
+    [ngStyle]="{ 'font-size': '29px' }"
     [ngStyle.lt-md]="{ 'font-size': '22px' }"
     [ngClass.lt-md]="'margin-top-sm margin-bottom-zero'"
   >
-    Mortgage Expense Calculator 2025
+    Welcome to the Mortgage Expense Calculator!
   </h2>
 
   <div fxLayout="row" fxLayoutAlign="center center" [ngClass]="'margin-top-sm'">
     <div fxFlex="0 1 80" [ngStyle]="{ 'line-height': '29px' }" [ngStyle.lt-md]="{ 'font-size': '15px', 'line-height': '26px' }">
-      <p>Purchasing a property is a significant financial commitment.</p>
-
-      <p>Many individuals are uncertain about the upfront costs associated with buying a property through a mortgage.</p>
+      <p>
+        Purchasing a property is a major financial decision, and understanding the upfront costs can be challenging. Our user-friendly web
+        app simplifies this process by estimating your mortgage expenses.
+      </p>
 
       <p>
-        Introducing the 'Mortgage Expense Calculator,' a user-friendly web application designed to estimate mortgage expenses when
-        purchasing a property.
-        <button *ngIf="!show" mat-button color="primary" class="read-more" [ngStyle.gt-xs]="{ display: 'none' }" (click)="showMore()">
-          Read more...
-        </button>
-      </p>
-
-      <p *ngIf="show">
-        To use the calculator, simply input the mortgage amount you plan to acquire and click the calculate button. The application will
-        then provide an estimated expense amount required to fulfill your dream of owning a property.
-      </p>
-
-      <p *ngIf="show" class="margin-bottom-zero">
-        Simply enter the mortgage amount that you are going to get below and click the calculate button to see the estimated expense amount
-        that you need to have for buying your property of dreams.
+        To get started, just enter your desired mortgage amount below and click the "Calculate" button. You'll receive an estimate of the
+        expenses you'll need to make your dream of homeownership a reality.
       </p>
     </div>
   </div>
