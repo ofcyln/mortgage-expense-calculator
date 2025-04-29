@@ -80,7 +80,10 @@
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
             },
-            "development": {}
+            "development": {
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            }
           },
           "defaultConfiguration": "production"
         },

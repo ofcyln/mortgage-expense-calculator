@@ -24,8 +24,8 @@ import { UpdateNotificationComponent } from './core/components/update-notificati
     BrowserAnimationsModule,
     CoreModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      registrationStrategy: 'registerWhenStable:30000',
+      enabled: environment.serviceWorker,
+      registrationStrategy: 'registerImmediately',
     }),
     HttpClientModule,
     NgxMaskModule.forRoot(),
