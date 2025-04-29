@@ -5,16 +5,8 @@
     "node": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint"
-  ],
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "prettier/@typescript-eslint"
-  ],
+  "plugins": ["@typescript-eslint"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "parserOptions": {
     "ecmaVersion": 2022,
     // Allows for the parsing of modern ECMAScript features
@@ -30,13 +22,9 @@
     "no-empty-function": [
       "warn",
       {
-        "allow": [
-          "constructors"
-        ]
+        "allow": ["constructors"]
       }
     ],
-    "@typescript-eslint/no-empty-function": [
-      "off"
-    ]
+    "@typescript-eslint/no-empty-function": ["off"]
   }
 }

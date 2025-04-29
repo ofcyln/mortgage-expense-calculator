@@ -1,13 +1,10 @@
-<main fxFill
-      fxLayout="column"
-      fxLayoutAlign="start center"
-      [ngStyle]="{'overflow': 'hidden', 'height': '100%'}">
-  <app-header class="w-100"
-              [ngStyle]="{'z-index': '2', 'box-shadow': '0px 3px 9px -4px #333'}"></app-header>
+<main fxFill fxLayout="column" fxLayoutAlign="start center" [ngStyle]="{ overflow: 'hidden', height: '100%' }">
+  <app-header class="w-100" [ngStyle]="{ 'z-index': '2', 'box-shadow': '0px 3px 9px -4px #333' }"></app-header>
 
-  <section [ngStyle]="{'overflow-y': 'auto', 'height': 'calc(100% - 64px)'}"
-           data-router-container
-           class="w-100">
+  <section [ngStyle]="{ 'overflow-y': 'auto', height: 'calc(100% - 64px)' }" data-router-container class="w-100">
     <router-outlet></router-outlet>
   </section>
+
+  <!-- Update notification component -->
+  <app-update-notification></app-update-notification>
 </main>

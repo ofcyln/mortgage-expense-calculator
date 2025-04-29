@@ -25,10 +25,11 @@ export class CalculateComponent implements OnInit {
   private readonly COUNTDOWN_TIMER_IN_SECONDS = 10;
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
+  onResize(event: UIEvent) {
     setTimeout(() => {
-      this.innerWidth = event.target.innerWidth;
-      this.innerHeight = event.target.innerHeight;
+      const target = event.target as Window;
+      this.innerWidth = target.innerWidth;
+      this.innerHeight = target.innerHeight;
 
       this.doc.body.style.height = `${this.innerHeight}px`;
 
