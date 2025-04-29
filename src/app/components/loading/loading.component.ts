@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { LoadingService } from './loading.service';
 
@@ -7,8 +7,6 @@ import { LoadingService } from './loading.service';
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
 })
-export class LoadingComponent implements OnInit {
+export class LoadingComponent {
   constructor(public loadingService: LoadingService) {}
-
-  ngOnInit(): void {}
 }

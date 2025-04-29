@@ -167,3 +167,13 @@ body {
 	padding: 0 20px !important;
 	font-size: 18px !important;
 }
+
+// Update notification styles
+.update-notification {
+	background-color: #3f51b5 !important;
+	color: white !important;
+}
+
+.update-notification .mat-simple-snackbar-action {
+	color: white !important;
+}
