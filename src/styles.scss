@@ -177,3 +177,17 @@ body {
 .update-notification .mat-simple-snackbar-action {
 	color: white !important;
 }
+
+.btn-container {
+	position: absolute;
+	bottom: 16px;
+	right: 16px;
+	min-width: auto !important;
+	z-index: 1000;
+
+	a.kofi-button {
+		font-family: inherit !important;
+		padding: 2px 16px !important;
+		min-width: auto !important;
+	}
+}
