@@ -8,6 +8,7 @@ import { CustomIconService } from '../../shared/custom-icon.service';
 })
 export class HeaderComponent {
   private document: Document;
+  currentYear: number = new Date().getFullYear();
 
   constructor(private customIconService: CustomIconService) {
     this.document = window.document;
