@@ -120,7 +120,7 @@ export const expenseList: ExpenseItem[] = [
   {
     name: 'National Mortgage Guarantee(NHG)',
     amount: {
-      percentage: [0.6],
+      percentage: [0.4],
       costRange: {
         min: 0,
         max: 0,
