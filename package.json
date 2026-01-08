@@ -51,6 +51,7 @@
     "@angular/router": "^15.2.10",
     "@angular/service-worker": "^15.2.10",
     "@nicky-lenaers/ngx-scroll-to": "^9.0.0",
+    "firebase": "^12.7.0",
     "jspdf": "^1.5.3",
     "ngx-mask": "^9.1.4",
     "rxjs": "~6.5.4",
