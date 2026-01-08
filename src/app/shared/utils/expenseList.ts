@@ -128,7 +128,7 @@ export const expenseList: ExpenseItem[] = [
       botnPercentageAndValueApplicableOnCalculation: false,
     },
     info:
-      'NHG is a protection against residual debt if you can’t pay your mortgage due to unemployment, divorce or the inability to work. It will cost you 0,6% of the mortgage amount, but you’ll earn your money back quickly because lenders offer much lower interest rates if you make use of this protection. NHG is only available for mortgages up to maximum €470.000 as of 2026.',
+      'NHG is a protection against residual debt if you can’t pay your mortgage due to unemployment, divorce or the inability to work. It will cost you 0,4% of the mortgage amount, but you’ll earn your money back quickly because lenders offer much lower interest rates if you make use of this protection. NHG is only available for mortgages up to maximum €470.000 as of 2026.',
     compulsory: false,
     taxDeductible: true,
     specialExpense: true,
